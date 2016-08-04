@@ -37,3 +37,10 @@ en:
 
   title: OSM Awards
   description: We are granting awards!
+
+  who: Who
+  forwhat: For what
+  url: URL
+  delete: delete
+  addnominee: Add a nominee
+  listnominees: List of nominees

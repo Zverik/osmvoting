@@ -20,10 +20,10 @@
     <form action="{{ url_for('add_nominee') }}" method="post">
         {{ form.csrf_token }}
         {{ form.nomination }}
-        {{ form.who.label }} {{ form.who }}<br>
-        {{ form.project.label }} {{ form.project }}<br>
-        {{ form.url.label }} {{ form.url }} (optional)<br>
-        <input type="submit" value="Add a nominee">
+        {{ lang.who }} {{ form.who }}<br>
+        {{ lang.forwhat }} {{ form.project }}<br>
+        {{ lang.url }} {{ form.url }} (optional)<br>
+        <input type="submit" value="{{ lang.addnominee }}">
     </form>
     <ul>
         {% for n in nominees %}
@@ -35,7 +35,7 @@
         {{ n.project }}
         {% endif %}
         {% if n.proposedby == user %}
-        <small>(<a href="{{ url_for('delete_nominee', nid=n.id) }}">delete</a>)</small>
+        <small>(<a href="{{ url_for('delete_nominee', nid=n.id) }}">{{ lang.delete }}</a>)</small>
         {% endif %}
         </li>
         {% endif %}
