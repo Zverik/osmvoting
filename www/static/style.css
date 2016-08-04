@@ -1,0 +1,32 @@
+body {
+  font-family: sans-serif;
+  font-size: 12pt;
+  max-width: 700px;
+  margin: 1em auto;
+  padding: 0 1em;
+}
+
+.nominations {
+  text-align: center;
+}
+
+.nomination {
+  display: inline-block;
+  background: #cdf;
+  margin: 0.5em 1em;
+  padding: 4px 8px;
+}
+
+.nomination a {
+  color: black;
+}
+
+.addform {
+  background: #eee;
+  padding: 4px;
+}
+
+.addform input[type=submit] {
+  margin-top: 4px;
+  font-size: 14pt;
+}

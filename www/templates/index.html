@@ -1,10 +1,12 @@
 <!doctype html>
 <meta charset="utf-8">
 <title>Voting!</title>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 <body>
     <h1>{{ lang.title }} {{ year }}</h1>
     <p>{{ lang.description }}</p>
     <p><b>{{ lang.stages[stage].title }}:</b> {{ lang.stages[stage].description }}</p>
+    <div class="nominations">
     {% for nom in nominations %}
     {% if nom != nomination %}
     <div class="nomination">
@@ -12,20 +14,21 @@
     </div>
     {% endif %}
     {% endfor %}
-
-    <div class="nomination">
-        <div class="ntitle">{{ lang.nominations[nomination].title }}</div>
-        <div class="ndesc">{{ lang.nominations[nomination].description }}</div>
     </div>
-    <form action="{{ url_for('add_nominee') }}" method="post">
+
+    <div class="current-nom">
+        <h2>{{ lang.nominations[nomination].title }}</h2>
+        <p>{{ lang.nominations[nomination].description }}</p>
+    </div>
+    <form action="{{ url_for('add_nominee') }}" method="post" class="addform">
         {{ form.csrf_token }}
         {{ form.nomination }}
-        {{ lang.who }} {{ form.who }}<br>
-        {{ lang.forwhat }} {{ form.project }}<br>
-        {{ lang.url }} {{ form.url }} (optional)<br>
+        {{ lang.who }} {{ form.who(size=60) }}<br>
+        {{ lang.forwhat }} {{ form.project(size=60) }}<br>
+        {{ lang.url }} {{ form.url(size=60) }} ({{ lang.optional }})<br>
         <input type="submit" value="{{ lang.addnominee }}">
     </form>
-    <ul>
+    <ul class="nominees">
         {% for n in nominees %}
         <li>{{ n.who }}
         {%- if n.project %},
@@ -34,11 +37,11 @@
         {% else %}
         {{ n.project }}
         {% endif %}
-        {% if n.proposedby == user %}
+        {% endif %}
+        {% if n.proposedby == user or isadmin %}
         <small>(<a href="{{ url_for('delete_nominee', nid=n.id) }}">{{ lang.delete }}</a>)</small>
         {% endif %}
         </li>
-        {% endif %}
         {% endfor %}
     </ul>
 </body>

@@ -3,8 +3,9 @@ from db import database, Nominee
 from flask import session, url_for, redirect, request, render_template, g
 from flask_oauthlib.client import OAuth
 from flask_wtf import Form
-from wtforms import StringField, HiddenField
+from wtforms import StringField
 from wtforms.validators import DataRequired, Optional, URL
+from playhouse.shortcuts import model_to_dict
 from datetime import date
 import yaml
 import os
@@ -103,7 +104,7 @@ class AddNomineeForm(Form):
 
 @app.route('/nominees')
 @app.route('/nominees/<n>')
-def edit_nominees(n=None):
+def edit_nominees(n=None, form=None):
     """Called from login(), a convenience method."""
     if 'nomination' not in session:
         session['nomination'] = 0
@@ -112,11 +113,17 @@ def edit_nominees(n=None):
             session['nomination'] = int(n)
         elif n in config.NOMINATIONS:
             session['nomination'] = config.NOMINATIONS.index(n)
-    form = AddNomineeForm()
+    tmp_obj = None
+    if 'tmp_nominee' in session:
+        tmp_obj = session['tmp_nominee']
+        del session['tmp_nominee']
+    form = AddNomineeForm(data=tmp_obj)
     nominees = Nominee.select().where(Nominee.nomination == session['nomination'])
+    uid = session['osm_uid']
+    isadmin = uid == 290271  # Zverik
     return render_template('index.html',
                            form=form, nomination=config.NOMINATIONS[session['nomination']],
-                           nominees=nominees,
+                           nominees=nominees, user=uid, isadmin=isadmin,
                            year=date.today().year, stage=config.STAGE,
                            nominations=config.NOMINATIONS, lang=g.lang)
 
@@ -124,7 +131,7 @@ def edit_nominees(n=None):
 @app.route('/add', methods=['POST'])
 def add_nominee():
     form = AddNomineeForm()
-    if form.validate() and len(form.nomination.data) == 1:
+    if form.validate():
         n = Nominee()
         form.populate_obj(n)
         n.nomination = session['nomination']
@@ -136,4 +143,7 @@ def add_nominee():
 
 @app.route('/delete/<nid>')
 def delete_nominee(nid):
-    return 'del'
+    n = Nominee.get(Nominee.id == nid)
+    session['tmp_nominee'] = model_to_dict(n)
+    n.delete_instance()
+    return redirect(url_for('edit_nominees'))

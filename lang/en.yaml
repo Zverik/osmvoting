@@ -1,46 +1,82 @@
 en:
   nominations:
     core:
-      title: Core Services
-      description: For outstanding contribution to any of the core services.
+      title: Core Systems Award
+      description: >
+        For outstanding contributions to any of the core tools, systems, processes or resources.
+        Not limited to systems in OSMF control. The Rails port, osm2pgsql, openstreetmap-carto, iD,
+        JOSM, mapnik and any other tool that mappers use on a daily basis, knowingly or not.
 
     innovation:
-      title: Innovation
-      description: For innovative software or example of usage.
+      title: Innovation Award
+      description: >
+        For the best new service or approach. New tools for contributing data, image recognition,
+        trace or OSM data analysis, new mapping approach or new perspective on old tools.
 
     writing:
-      title: Best Blog Post
-      description: For the best documentation or blog post.
+      title: Influential Writing Award
+      description: >
+        For the best tutorial, documentation, blog or a blog post. A text or series of texts
+        that attracted many new people to OSM, provided an interesting outlook on the project,
+        or inspired the community to do better things.
 
     mapping:
-      title: Wonderful Mapping
-      description: Yay mapping!
+      title: Greatness in Mapping Award
+      description: >
+        For significant contributions to the map data, or exemplary mapping: micro-mapping,
+        clean-up, mapping towns from scratch, proper imports.
 
     community:
-      title: Expanding the Community
-      description: We really do.
+      title: Expanding the Community Award
+      description: >
+        For efforts in expanding the community. Not only geographically, but also in diversity,
+        into humanitarian sector or government.
 
     ulf:
       title: Ulf Möller Memorial Award
-      description: For the person who contributed the most.
+      description: >
+        For making a difference to the OpenStreetMap project, through good mapping,
+        benefit to the community and other improvements to the OSM.
 
   stages:
     call:
       title: Call For Nominees
-      description: Select five nominees from predefined lists or suggest your own.
+      description: >
+        We are collecting nominees. Suggest a person, a group or an organization for
+        an award. Only three fields: a name, a project (what did they do to claim an award),
+        an optionally an URL for any web page that describes the project. You can
+        submit up to 5 nominees for each category, same people can stand for multiple
+        awards. The call for nominees ends on 27th of August (that's Saturday).
+
     voting:
       title: Voting
-      description: Choose any five nominees for each category.
+      description: >
+        We are voting for nominees! Choose a single nominee for each category, that
+        you think should receive an award. You can come back and change your vote
+        any time before the voting ends. The nominee with most votes wins.
+        The voting ends on 22th of September, right before the State of the Map 2016
+        conference, on which winners will be announced.
+
+    processing:
+      title: Processing
+      description: >
+        Please wait until we process the voting results. They will be published
+        on 25th of September, after the announcement at State of the Map 2016 conference.
+
     results:
       title: Results
-      description: ''
+      description: Here are results of the OSM Awards. 
 
   title: OSM Awards
-  description: We are granting awards!
+  description: >
+    This year, we are granting the OpenStreetMap Awards! Six nominees will receive awards in
+    six categories at State of the Map 2016 conference. This is a community award: you decide
+    who nominees are and you vote for them.
 
-  who: Who
+  who: Whom
   forwhat: For what
   url: URL
+  optional: optional
   delete: delete
   addnominee: Add a nominee
   listnominees: List of nominees
