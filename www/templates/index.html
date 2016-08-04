@@ -1,0 +1,44 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Voting!</title>
+<body>
+    <h1>{{ lang.title }} {{ year }}</h1>
+    <p>{{ lang.description }}</p>
+    <p><b>{{ lang.stages[stage].title }}:</b> {{ lang.stages[stage].description }}</p>
+    {% for nom in nominations %}
+    {% if nom != nomination %}
+    <div class="nomination">
+        <div class="ntitle"><a href="{{ url_for('edit_nominees', n=nom) }}">{{ lang.nominations[nom].title }}</a></div>
+    </div>
+    {% endif %}
+    {% endfor %}
+
+    <div class="nomination">
+        <div class="ntitle">{{ lang.nominations[nomination].title }}</div>
+        <div class="ndesc">{{ lang.nominations[nomination].description }}</div>
+    </div>
+    <form action="{{ url_for('add_nominee') }}" method="post">
+        {{ form.csrf_token }}
+        {{ form.nomination }}
+        {{ form.who.label }} {{ form.who }}<br>
+        {{ form.project.label }} {{ form.project }}<br>
+        {{ form.url.label }} {{ form.url }} (optional)<br>
+        <input type="submit" value="Add a nominee">
+    </form>
+    <ul>
+        {% for n in nominees %}
+        <li>{{ n.who }}
+        {%- if n.project %},
+        {% if n.url %}
+        <a href="{{ n.url }}">{{ n.project }}</a>
+        {% else %}
+        {{ n.project }}
+        {% endif %}
+        {% if n.proposedby == user %}
+        <small>(<a href="{{ url_for('delete_nominee', nid=n.id) }}">delete</a>)</small>
+        {% endif %}
+        </li>
+        {% endif %}
+        {% endfor %}
+    </ul>
+</body>

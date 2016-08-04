@@ -1,0 +1,5 @@
+*.pyc
+*.swp
+osmvoting.db
+venv/
+config_local.py

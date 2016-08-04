@@ -1,0 +1,39 @@
+en:
+  nominations:
+    core:
+      title: Core Services
+      description: For outstanding contribution to any of the core services.
+
+    innovation:
+      title: Innovation
+      description: For innovative software or example of usage.
+
+    writing:
+      title: Best Blog Post
+      description: For the best documentation or blog post.
+
+    mapping:
+      title: Wonderful Mapping
+      description: Yay mapping!
+
+    community:
+      title: Expanding the Community
+      description: We really do.
+
+    ulf:
+      title: Ulf Möller Memorial Award
+      description: For the person who contributed the most.
+
+  stages:
+    call:
+      title: Call For Nominees
+      description: Select five nominees from predefined lists or suggest your own.
+    voting:
+      title: Voting
+      description: Choose any five nominees for each category.
+    results:
+      title: Results
+      description: ''
+
+  title: OSM Awards
+  description: We are granting awards!
