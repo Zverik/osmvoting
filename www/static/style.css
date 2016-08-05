@@ -30,3 +30,11 @@ body {
   margin-top: 4px;
   font-size: 14pt;
 }
+
+.vote a.minus {
+    color: red;
+}
+
+.vote a.plus {
+    color: green;
+}

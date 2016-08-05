@@ -20,6 +20,7 @@
         <h2>{{ lang.nominations[nomination].title }}</h2>
         <p>{{ lang.nominations[nomination].description }}</p>
     </div>
+    {% if canadd %}
     <form action="{{ url_for('add_nominee') }}" method="post" class="addform">
         {{ form.csrf_token }}
         {{ form.nomination }}
@@ -28,6 +29,7 @@
         {{ lang.url }} {{ form.url(size=60) }}<br>
         <input type="submit" value="{{ lang.addnominee }}">
     </form>
+    {% endif %}
     <ul class="nominees">
         {% for n in nominees %}
         <li>{{ n.who }}
@@ -39,10 +41,11 @@
         {% endif %}
         {% endif %}
         <span class="vote">
-        {% if not n.user %}
-        <button onclick="javascript:location.href='{{ url_for('prevote', nid=n.id) }}'">+1</button>
-        {% else %}
-        <a href="{{ url_for('prevote', nid=n.id) }}">-1</a>
+        {% if n.voteuser %}
+        <small><a href="{{ url_for('prevote', nid=n.id) }}" class="minus">-1</a></small>
+        {% elif canvote %}
+        {#<button onclick="javascript:location.href='{{ url_for('prevote', nid=n.id) }}'">+1</button>#}
+        <small><a href="{{ url_for('prevote', nid=n.id) }}" class="plus">+1</a></small>
         {% endif %}
         </span>
         {% if n.proposedby == user or isadmin %}

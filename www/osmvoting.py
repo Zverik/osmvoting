@@ -114,6 +114,8 @@ def edit_nominees(n=None, form=None):
             session['nomination'] = int(n)
         elif n in config.NOMINATIONS:
             session['nomination'] = config.NOMINATIONS.index(n)
+    nom = session['nomination']
+
     tmp_obj = None
     if 'tmp_nominee' in session:
         tmp_obj = session['tmp_nominee']
@@ -125,16 +127,13 @@ def edit_nominees(n=None, form=None):
     logger = logging.getLogger('peewee')
     logger.setLevel(logging.DEBUG)
     logger.addHandler(logging.StreamHandler())
-    nominees = Nominee.select(Nominee, Vote.user.alias('voteuser')).where(Nominee.nomination == session['nomination']).join(
-        Vote, JOIN.LEFT_OUTER).where((Vote.user.is_null()) | (Vote.preliminary & (Vote.user == uid)))
-    for n in nominees:
-        print model_to_dict(n) 
-        print n.voteuser
-    # TODO: fill in votes
+    nominees = Nominee.select(Nominee, Vote.user.alias('voteuser')).where(Nominee.nomination == nom).join(
+        Vote, JOIN.LEFT_OUTER).where((Vote.user.is_null()) | (Vote.preliminary & (Vote.user == uid))).naive()
+    canadd = Nominee.select().where((Nominee.proposedby == uid) & (Nominee.nomination == nom)).count() < 10
     return render_template('index.html',
-                           form=form, nomination=config.NOMINATIONS[session['nomination']],
-                           nominees=nominees, user=uid, isadmin=isadmin,
-                           year=date.today().year, stage=config.STAGE,
+                           form=form, nomination=config.NOMINATIONS[nom],
+                           nominees=nominees, user=uid, isadmin=isadmin, canvote=canvote(uid),
+                           year=date.today().year, stage=config.STAGE, canadd=canadd,
                            nominations=config.NOMINATIONS, lang=g.lang)
 
 
@@ -159,6 +158,11 @@ def delete_nominee(nid):
     return redirect(url_for('edit_nominees'))
 
 
+def canvote(uid):
+    return Vote.select().join(Nominee).where(
+        (Vote.user == uid) & (Vote.preliminary) & (Nominee.nomination == session['nomination'])).count() < 5
+
+
 @app.route('/prevote/<nid>')
 def prevote(nid):
     uid = session['osm_uid']
@@ -167,9 +171,10 @@ def prevote(nid):
         v = Vote.get((Vote.user == uid) & (Vote.nominee == n) & (Vote.preliminary))
         v.delete_instance()
     except Vote.DoesNotExist:
-        v = Vote()
-        v.nominee = n
-        v.user = uid
-        v.preliminary = True
-        v.save()
+        if canvote(uid):
+            v = Vote()
+            v.nominee = n
+            v.user = uid
+            v.preliminary = True
+            v.save()
     return redirect(url_for('edit_nominees'))

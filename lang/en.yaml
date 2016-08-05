@@ -45,8 +45,9 @@ en:
         We are collecting nominees. Suggest a person, a group or an organization for
         an award. Only three fields: a name, a project (what did they do to claim an award),
         an optionally an URL for any web page that describes the project. You can
-        submit up to 5 nominees for each category, same people can stand for multiple
-        awards. The call for nominees ends on 27th of August (that's Saturday).
+        submit up to 10 nominees for each category, same people can stand for multiple
+        awards. Also do vote for existing and new nominees, there is a limit of 5 votes
+        for each category. The call for nominees ends on 27th of August (that's Saturday).
 
     voting:
       title: Voting
