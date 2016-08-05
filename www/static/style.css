@@ -17,6 +17,10 @@ body {
   padding: 4px 8px;
 }
 
+.nomination .current {
+  color: gray;
+}
+
 .nomination a {
   color: black;
 }

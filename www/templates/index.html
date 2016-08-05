@@ -8,11 +8,13 @@
     <p><b>{{ lang.stages[stage].title }}:</b> {{ lang.stages[stage].description }}</p>
     <div class="nominations">
     {% for nom in nominations %}
-    {% if nom != nomination %}
     <div class="nomination">
+    {% if nom != nomination %}
         <div class="ntitle"><a href="{{ url_for('edit_nominees', n=nom) }}">{{ lang.nominations[nom].title }}</a></div>
-    </div>
+    {% else %}
+        <div class="ntitle current">{{ lang.nominations[nom].title }}</div>
     {% endif %}
+    </div>
     {% endfor %}
     </div>
 
