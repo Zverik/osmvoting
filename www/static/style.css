@@ -36,5 +36,7 @@ body {
 }
 
 .vote a.plus {
-    color: green;
+    color: white;
+    background: green;
+    text-decoration: none;
 }
