@@ -38,6 +38,13 @@
         {{ n.project }}
         {% endif %}
         {% endif %}
+        <span class="vote">
+        {% if not n.user %}
+        <button onclick="javascript:location.href='{{ url_for('prevote', nid=n.id) }}'">+1</button>
+        {% else %}
+        <a href="{{ url_for('prevote', nid=n.id) }}">-1</a>
+        {% endif %}
+        </span>
         {% if n.proposedby == user or isadmin %}
         <small>(<a href="{{ url_for('delete_nominee', nid=n.id) }}">{{ lang.delete }}</a>)</small>
         {% endif %}

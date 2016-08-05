@@ -21,8 +21,8 @@ class Nominee(BaseModel):
 
 class Vote(BaseModel):
     user = IntegerField(index=True)
-    nomination = IntegerField(index=True)
     nominee = ForeignKeyField(Nominee)
+    preliminary = BooleanField(index=True)
 
 
 def create_tables():

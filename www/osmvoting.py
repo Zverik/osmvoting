@@ -1,5 +1,5 @@
 from www import app
-from db import database, Nominee
+from db import database, Nominee, Vote
 from flask import session, url_for, redirect, request, render_template, g
 from flask_oauthlib.client import OAuth
 from flask_wtf import Form
@@ -7,6 +7,7 @@ from wtforms import StringField
 from wtforms.validators import DataRequired, Optional, URL
 from playhouse.shortcuts import model_to_dict
 from datetime import date
+from peewee import JOIN
 import yaml
 import os
 import config
@@ -118,9 +119,18 @@ def edit_nominees(n=None, form=None):
         tmp_obj = session['tmp_nominee']
         del session['tmp_nominee']
     form = AddNomineeForm(data=tmp_obj)
-    nominees = Nominee.select().where(Nominee.nomination == session['nomination'])
     uid = session['osm_uid']
     isadmin = uid == 290271  # Zverik
+    import logging
+    logger = logging.getLogger('peewee')
+    logger.setLevel(logging.DEBUG)
+    logger.addHandler(logging.StreamHandler())
+    nominees = Nominee.select(Nominee, Vote.user.alias('voteuser')).where(Nominee.nomination == session['nomination']).join(
+        Vote, JOIN.LEFT_OUTER).where((Vote.user.is_null()) | (Vote.preliminary & (Vote.user == uid)))
+    for n in nominees:
+        print model_to_dict(n) 
+        print n.voteuser
+    # TODO: fill in votes
     return render_template('index.html',
                            form=form, nomination=config.NOMINATIONS[session['nomination']],
                            nominees=nominees, user=uid, isadmin=isadmin,
@@ -146,4 +156,20 @@ def delete_nominee(nid):
     n = Nominee.get(Nominee.id == nid)
     session['tmp_nominee'] = model_to_dict(n)
     n.delete_instance()
+    return redirect(url_for('edit_nominees'))
+
+
+@app.route('/prevote/<nid>')
+def prevote(nid):
+    uid = session['osm_uid']
+    n = Nominee.get(Nominee.id == nid)
+    try:
+        v = Vote.get((Vote.user == uid) & (Vote.nominee == n) & (Vote.preliminary))
+        v.delete_instance()
+    except Vote.DoesNotExist:
+        v = Vote()
+        v.nominee = n
+        v.user = uid
+        v.preliminary = True
+        v.save()
     return redirect(url_for('edit_nominees'))
