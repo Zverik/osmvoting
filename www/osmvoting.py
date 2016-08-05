@@ -123,10 +123,6 @@ def edit_nominees(n=None, form=None):
     form = AddNomineeForm(data=tmp_obj)
     uid = session['osm_uid']
     isadmin = uid == 290271  # Zverik
-    import logging
-    logger = logging.getLogger('peewee')
-    logger.setLevel(logging.DEBUG)
-    logger.addHandler(logging.StreamHandler())
     nominees = Nominee.select(Nominee, Vote.user.alias('voteuser')).where(Nominee.nomination == nom).join(
         Vote, JOIN.LEFT_OUTER).where((Vote.user.is_null()) | (Vote.preliminary & (Vote.user == uid))).naive()
     canadd = Nominee.select().where((Nominee.proposedby == uid) & (Nominee.nomination == nom)).count() < 10
