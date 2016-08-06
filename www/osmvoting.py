@@ -37,19 +37,22 @@ def teardown(exception):
 
 
 def load_user_language():
-    supported = set([x for x in os.listdir(os.path.join(config.BASE_DIR, 'lang')) if '.yaml' in x])
+    supported = set([x[:x.index('.')].decode('utf-8') for x in os.listdir(os.path.join(config.BASE_DIR, 'lang')) if '.yaml' in x])
     accepted = request.headers.get('Accept-Language', '')
     lang = 'en'
     for lpart in accepted.split(','):
         if ';' in lpart:
             lpart = lpart[:lpart.index(';')]
         pieces = lpart.strip().split('-')
+        print pieces, supported
         if len(pieces) >= 2:
             testlang = '{}_{}'.format(pieces[0].lower(), pieces[1].upper())
             if testlang in supported:
                 lang = testlang
+                break
         if len(pieces) == 1 and pieces[0].lower() in supported:
             lang = pieces[0].lower()
+            break
 
     # Load language
     with codecs.open(os.path.join(config.BASE_DIR, 'lang', lang + '.yaml'), 'r', 'utf-8') as f:
