@@ -8,6 +8,7 @@ DATABASE_URI = 'sqlite:///' + os.path.join(BASE_DIR, 'osmvoting.db')
 
 NOMINATIONS = ['core', 'innovation', 'writing', 'mapping', 'community', 'ulf']
 STAGE = 'call'
+ADMINS = set([290271])  # Zverik
 
 # Override these (and anything else) in config_local.py
 OAUTH_KEY = ''

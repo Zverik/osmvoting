@@ -122,9 +122,9 @@ def edit_nominees(n=None, form=None):
         del session['tmp_nominee']
     form = AddNomineeForm(data=tmp_obj)
     uid = session['osm_uid']
-    isadmin = uid == 290271  # Zverik
+    isadmin = uid in config.ADMINS
     nominees = Nominee.select(Nominee, Vote.user.alias('voteuser')).where(Nominee.nomination == nom).join(
-        Vote, JOIN.LEFT_OUTER).where((Vote.user.is_null()) | (Vote.preliminary & (Vote.user == uid))).naive()
+        Vote, JOIN.LEFT_OUTER, on=((Vote.nominee == Nominee.id) & (Vote.user == uid) & (Vote.preliminary))).naive()
     canadd = Nominee.select().where((Nominee.proposedby == uid) & (Nominee.nomination == nom)).count() < 10
     return render_template('index.html',
                            form=form, nomination=config.NOMINATIONS[nom],
