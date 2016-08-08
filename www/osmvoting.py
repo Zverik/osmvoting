@@ -110,6 +110,8 @@ class AddNomineeForm(Form):
 @app.route('/nominees/<n>')
 def edit_nominees(n=None, form=None):
     """Called from login(), a convenience method."""
+    if 'osm_token' not in session:
+        return redirect(url_for('login'))
     if 'nomination' not in session:
         session['nomination'] = 0
     if n is not None:
@@ -138,6 +140,8 @@ def edit_nominees(n=None, form=None):
 
 @app.route('/add', methods=['POST'])
 def add_nominee():
+    if 'osm_token' not in session:
+        return redirect(url_for('login'))
     form = AddNomineeForm()
     if form.validate():
         n = Nominee()
@@ -151,6 +155,8 @@ def add_nominee():
 
 @app.route('/delete/<nid>')
 def delete_nominee(nid):
+    if 'osm_token' not in session:
+        return redirect(url_for('login'))
     n = Nominee.get(Nominee.id == nid)
     session['tmp_nominee'] = model_to_dict(n)
     n.delete_instance()
@@ -164,6 +170,8 @@ def canvote(uid):
 
 @app.route('/prevote/<nid>')
 def prevote(nid):
+    if 'osm_token' not in session:
+        return redirect(url_for('login'))
     uid = session['osm_uid']
     n = Nominee.get(Nominee.id == nid)
     try:
