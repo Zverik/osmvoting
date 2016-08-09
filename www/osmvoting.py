@@ -44,7 +44,6 @@ def load_user_language():
         if ';' in lpart:
             lpart = lpart[:lpart.index(';')]
         pieces = lpart.strip().split('-')
-        print pieces, supported
         if len(pieces) >= 2:
             testlang = '{}_{}'.format(pieces[0].lower(), pieces[1].upper())
             if testlang in supported:
