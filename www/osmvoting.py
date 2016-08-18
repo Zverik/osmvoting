@@ -158,7 +158,7 @@ def delete_nominee(nid):
         return redirect(url_for('login'))
     n = Nominee.get(Nominee.id == nid)
     session['tmp_nominee'] = model_to_dict(n)
-    n.delete_instance()
+    n.delete_instance(recursive=True)
     return redirect(url_for('edit_nominees'))
 
 
