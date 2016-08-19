@@ -38,9 +38,9 @@ body {
 .vote a.minus {
     color: white;
     background: green;
+    text-decoration: none;
 }
 
 .vote a.plus {
     color: green;
-    text-decoration: none;
 }
