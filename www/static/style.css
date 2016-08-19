@@ -36,11 +36,11 @@ body {
 }
 
 .vote a.minus {
-    color: red;
+    color: white;
+    background: green;
 }
 
 .vote a.plus {
-    color: white;
-    background: green;
+    color: green;
     text-decoration: none;
 }
