@@ -49,6 +49,13 @@ en:
         awards. Also do vote for existing and new nominees, there is a limit of 5 votes
         for each category. The call for nominees ends on 27th of August (that's Saturday).
 
+    select:
+      title: Selecting Nominees
+      description: >
+        The team consisting of the Board members, CWG and SOTMWG is working on filtering
+        a list of nominees to five for each category, using your submissions and votes.
+        The voting will open on the 3rd of September.
+
     voting:
       title: Voting
       description: >
