@@ -44,7 +44,7 @@
         {% endif %}
         <span class="vote">
         {% if votes %}
-        [{{ votes[n.id] }}]
+        [{{ votes[n.id] }}/<span class="{{ 'teamvote' if teamvotes[n.id] else '' }}">{{ teamvotes[n.id] }}</span>]
         {% endif %}
         {% if n.voteuser and canunvote %}
         <a href="{{ url_for('prevote', nid=n.id) }}" class="minus">unvote</a>

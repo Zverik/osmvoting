@@ -136,12 +136,20 @@ def edit_nominees(n=None, form=None):
         votes = {}
         for v in votesq:
             votes[v.id] = v.num_votes
+        # Now for the team votes
+        votesq = Nominee.select(Nominee.id, fn.COUNT(Vote.id).alias('num_votes')).join(
+            Vote, JOIN.LEFT_OUTER, on=((Vote.nominee == Nominee.id) & (Vote.preliminary) & (Vote.user << list(config.TEAM)))).group_by(Nominee.id)
+        teamvotes = {}
+        for v in votesq:
+            teamvotes[v.id] = v.num_votes
     else:
         votes = None
+        teamvotes = None
     return render_template('index.html',
                            form=form, nomination=config.NOMINATIONS[nom],
                            nominees=nominees, user=uid, isadmin=isadmin, canvote=canvote(uid),
-                           canunvote=config.STAGE == 'call' or isteam(uid), votes=votes,
+                           canunvote=config.STAGE == 'call' or isteam(uid),
+                           votes=votes, teamvotes=teamvotes,
                            year=date.today().year, stage=config.STAGE, canadd=canadd,
                            nominations=config.NOMINATIONS, lang=g.lang)
 

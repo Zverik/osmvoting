@@ -36,16 +36,20 @@ body {
 }
 
 .vote {
-    font-size: small;
-    font-style: italic;
+  font-size: small;
+  font-style: italic;
+}
+
+.teamvote {
+  color: red;
 }
 
 .vote a.minus {
-    color: white;
-    background: green;
-    text-decoration: none;
+  color: white;
+  background: green;
+  text-decoration: none;
 }
 
 .vote a.plus {
-    color: green;
+  color: green;
 }
