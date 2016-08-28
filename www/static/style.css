@@ -35,6 +35,11 @@ body {
   font-size: 14pt;
 }
 
+.vote {
+    font-size: small;
+    font-style: italic;
+}
+
 .vote a.minus {
     color: white;
     background: green;

@@ -43,11 +43,14 @@
         {% endif %}
         {% endif %}
         <span class="vote">
+        {% if votes %}
+        [{{ votes[n.id] }}]
+        {% endif %}
         {% if n.voteuser and canunvote %}
-        <small><a href="{{ url_for('prevote', nid=n.id) }}" class="minus">unvote</a></small>
+        <a href="{{ url_for('prevote', nid=n.id) }}" class="minus">unvote</a>
         {% elif canvote %}
         {#<button onclick="javascript:location.href='{{ url_for('prevote', nid=n.id) }}'">+1</button>#}
-        <small><a href="{{ url_for('prevote', nid=n.id) }}" class="plus">vote</a></small>
+        <a href="{{ url_for('prevote', nid=n.id) }}" class="plus">vote</a>
         {% endif %}
         </span>
         {% if (canunvote and n.proposedby == user) or isadmin %}

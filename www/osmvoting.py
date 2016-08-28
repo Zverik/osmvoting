@@ -7,7 +7,7 @@ from wtforms import StringField
 from wtforms.validators import DataRequired, Optional, URL
 from playhouse.shortcuts import model_to_dict
 from datetime import date
-from peewee import JOIN
+from peewee import JOIN, fn
 import yaml
 import os
 import config
@@ -130,10 +130,18 @@ def edit_nominees(n=None, form=None):
     nominees = Nominee.select(Nominee, Vote.user.alias('voteuser')).where(Nominee.nomination == nom).join(
         Vote, JOIN.LEFT_OUTER, on=((Vote.nominee == Nominee.id) & (Vote.user == uid) & (Vote.preliminary))).naive()
     canadd = config.STAGE == 'call' and Nominee.select().where((Nominee.proposedby == uid) & (Nominee.nomination == nom)).count() < 10
+    if isteam(uid):
+        votesq = Nominee.select(Nominee.id, fn.COUNT(Vote.id).alias('num_votes')).join(
+            Vote, JOIN.LEFT_OUTER, on=((Vote.nominee == Nominee.id) & (Vote.preliminary))).group_by(Nominee.id)
+        votes = {}
+        for v in votesq:
+            votes[v.id] = v.num_votes
+    else:
+        votes = None
     return render_template('index.html',
                            form=form, nomination=config.NOMINATIONS[nom],
                            nominees=nominees, user=uid, isadmin=isadmin, canvote=canvote(uid),
-                           canunvote=config.STAGE != 'select' or uid in config.TEAM,
+                           canunvote=config.STAGE == 'call' or isteam(uid), votes=votes,
                            year=date.today().year, stage=config.STAGE, canadd=canadd,
                            nominations=config.NOMINATIONS, lang=g.lang)
 
@@ -164,10 +172,14 @@ def delete_nominee(nid):
 
 
 def canvote(uid):
-    if config.STAGE != 'call' and not (config.STAGE == 'select' and uid in config.TEAM):
+    if config.STAGE != 'call' and not isteam(uid):
         return False
     return Vote.select().join(Nominee).where(
         (Vote.user == uid) & (Vote.preliminary) & (Nominee.nomination == session['nomination'])).count() < 5
+
+
+def isteam(uid):
+    return config.STAGE == 'select' and uid in config.TEAM
 
 
 @app.route('/prevote/<nid>')
@@ -175,7 +187,7 @@ def prevote(nid):
     if 'osm_token' not in session:
         return redirect(url_for('login'))
     uid = session['osm_uid']
-    if config.STAGE != 'call' and not (config.STAGE == 'select' and uid in config.TEAM):
+    if config.STAGE != 'call' and not isteam(uid):
         return redirect(url_for('login'))
     n = Nominee.get(Nominee.id == nid)
     try:
