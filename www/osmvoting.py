@@ -64,7 +64,7 @@ def login():
     if 'osm_token' not in session:
         session['objects'] = request.args.get('objects')
         return openstreetmap.authorize(callback=url_for('oauth'))
-    if config.STAGE == 'call':
+    if config.STAGE in ('call', 'select'):
         return redirect(url_for('edit_nominees'))
     return 'Unknown stage: {0}'.format(config.STAGE)
 
