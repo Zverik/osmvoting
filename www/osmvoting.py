@@ -129,7 +129,7 @@ def edit_nominees(n=None, form=None):
     isadmin = uid in config.ADMINS
     nominees = Nominee.select(Nominee, Vote.user.alias('voteuser')).where(Nominee.nomination == nom).join(
         Vote, JOIN.LEFT_OUTER, on=((Vote.nominee == Nominee.id) & (Vote.user == uid) & (Vote.preliminary))).naive()
-    canadd = config.STAGE == 'call' and Nominee.select().where((Nominee.proposedby == uid) & (Nominee.nomination == nom)).count() < 10
+    canadd = isadmin or (config.STAGE == 'call' and Nominee.select().where((Nominee.proposedby == uid) & (Nominee.nomination == nom)).count() < 10)
     if isteam(uid):
         votesq = Nominee.select(Nominee.id, fn.COUNT(Vote.id).alias('num_votes')).join(
             Vote, JOIN.LEFT_OUTER, on=((Vote.nominee == Nominee.id) & (Vote.preliminary))).group_by(Nominee.id)
