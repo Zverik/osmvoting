@@ -140,6 +140,9 @@ def edit_nominees(n=None, form=None):
         votesq = Nominee.select(Nominee.id, fn.COUNT(Vote.id).alias('num_votes')).join(
             Vote, JOIN.LEFT_OUTER, on=((Vote.nominee == Nominee.id) & (Vote.preliminary) & (Vote.user << list(config.TEAM)))).group_by(Nominee.id)
         teamvotes = {}
+        if isadmin:
+            for v in votesq:
+                teamvotes[v.id] = v.num_votes
     else:
         votes = None
         teamvotes = None
