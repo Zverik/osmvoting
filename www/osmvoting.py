@@ -157,7 +157,7 @@ def edit_nominees(n=None, form=None):
 
 @app.route('/add', methods=['POST'])
 def add_nominee():
-    if 'osm_token' not in session or config.STAGE != 'call':
+    if 'osm_token' not in session or not canvote(session['osm_uid']):
         return redirect(url_for('login'))
     form = AddNomineeForm()
     if form.validate():
