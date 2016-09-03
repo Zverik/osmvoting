@@ -210,6 +210,8 @@ def choose_nominee(nid):
 
 
 def canvote(uid):
+    if session['osm_uid'] in config.ADMINS:
+        return True
     if config.STAGE != 'call' and not isteam(uid):
         return False
     return Vote.select().join(Nominee).where(
