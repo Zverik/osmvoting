@@ -178,7 +178,8 @@ def add_nominee():
 
 @app.route('/delete/<nid>')
 def delete_nominee(nid):
-    if 'osm_token' not in session or config.STAGE != 'call':
+    if 'osm_token' not in session or (
+            config.STAGE != 'call' and session['osm_uid'] not in config.ADMINS):
         return redirect(url_for('login'))
     n = Nominee.get(Nominee.id == nid)
     session['tmp_nominee'] = model_to_dict(n)
