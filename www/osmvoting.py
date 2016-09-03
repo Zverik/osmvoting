@@ -3,7 +3,7 @@ from db import database, Nominee, Vote
 from flask import session, url_for, redirect, request, render_template, g
 from flask_oauthlib.client import OAuth
 from flask_wtf import Form
-from wtforms import StringField
+from wtforms import StringField, HiddenField
 from wtforms.validators import DataRequired, Optional, URL
 from playhouse.shortcuts import model_to_dict
 from datetime import date
@@ -37,7 +37,8 @@ def teardown(exception):
 
 
 def load_user_language():
-    supported = set([x[:x.index('.')].decode('utf-8') for x in os.listdir(os.path.join(config.BASE_DIR, 'lang')) if '.yaml' in x])
+    supported = set([x[:x.index('.')].decode('utf-8') for x in os.listdir(
+        os.path.join(config.BASE_DIR, 'lang')) if '.yaml' in x])
     accepted = request.headers.get('Accept-Language', '')
     lang = 'en'
     for lpart in accepted.split(','):
@@ -103,6 +104,7 @@ class AddNomineeForm(Form):
     who = StringField('Who', validators=[DataRequired()])
     project = StringField('For what')
     url = StringField('URL', validators=[Optional(), URL()])
+    nomid = HiddenField('Nominee IS', validators=[Optional()])
 
 
 @app.route('/nominees')
@@ -129,7 +131,8 @@ def edit_nominees(n=None, form=None):
     isadmin = uid in config.ADMINS
     nominees = Nominee.select(Nominee, Vote.user.alias('voteuser')).where(Nominee.nomination == nom).join(
         Vote, JOIN.LEFT_OUTER, on=((Vote.nominee == Nominee.id) & (Vote.user == uid) & (Vote.preliminary))).naive()
-    canadd = isadmin or (config.STAGE == 'call' and Nominee.select().where((Nominee.proposedby == uid) & (Nominee.nomination == nom)).count() < 10)
+    canadd = isadmin or (config.STAGE == 'call' and Nominee.select().where(
+        (Nominee.proposedby == uid) & (Nominee.nomination == nom)).count() < 10)
     if isteam(uid):
         votesq = Nominee.select(Nominee.id, fn.COUNT(Vote.id).alias('num_votes')).join(
             Vote, JOIN.LEFT_OUTER, on=((Vote.nominee == Nominee.id) & (Vote.preliminary))).group_by(Nominee.id)
@@ -137,8 +140,8 @@ def edit_nominees(n=None, form=None):
         for v in votesq:
             votes[v.id] = v.num_votes
         # Now for the team votes
-        votesq = Nominee.select(Nominee.id, fn.COUNT(Vote.id).alias('num_votes')).join(
-            Vote, JOIN.LEFT_OUTER, on=((Vote.nominee == Nominee.id) & (Vote.preliminary) & (Vote.user << list(config.TEAM)))).group_by(Nominee.id)
+        votesq = Nominee.select(Nominee.id, fn.COUNT(Vote.id).alias('num_votes')).join(Vote, JOIN.LEFT_OUTER, on=(
+                (Vote.nominee == Nominee.id) & (Vote.preliminary) & (Vote.user << list(config.TEAM)))).group_by(Nominee.id)
         teamvotes = {}
         if isadmin:
             for v in votesq:
@@ -161,10 +164,13 @@ def add_nominee():
         return redirect(url_for('login'))
     form = AddNomineeForm()
     if form.validate():
-        n = Nominee()
+        if form.nomid.data.isdigit():
+            n = Nominee.get(Nominee.id == int(form.nomid.data))
+        else:
+            n = Nominee()
+            n.nomination = session['nomination']
+            n.proposedby = session['osm_uid']
         form.populate_obj(n)
-        n.nomination = session['nomination']
-        n.proposedby = session['osm_uid']
         n.save()
         return redirect(url_for('edit_nominees'))
     return 'Error in fields:\n{}'.format('\n'.join(['{}: {}'.format(k, v) for k, v in form.errors.items()]))
@@ -177,6 +183,28 @@ def delete_nominee(nid):
     n = Nominee.get(Nominee.id == nid)
     session['tmp_nominee'] = model_to_dict(n)
     n.delete_instance(recursive=True)
+    return redirect(url_for('edit_nominees'))
+
+
+@app.route('/edit/<nid>')
+def edit_nominee(nid):
+    if 'osm_token' not in session or session['osm_uid'] not in config.ADMINS:
+        return redirect(url_for('login'))
+    n = Nominee.get(Nominee.id == nid)
+    n2 = model_to_dict(n)
+    n2['nomid'] = nid
+    session['tmp_nominee'] = n2
+    return redirect(url_for('edit_nominees'))
+
+
+@app.route('/choose/<nid>')
+def choose_nominee(nid):
+    if 'osm_token' not in session or session['osm_uid'] not in config.ADMINS:
+        return redirect(url_for('login'))
+    n = Nominee.get(Nominee.id == nid)
+    n.chosen = not n.chosen
+    print n.chosen
+    n.save()
     return redirect(url_for('edit_nominees'))
 
 

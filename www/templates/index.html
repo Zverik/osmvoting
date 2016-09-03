@@ -22,10 +22,10 @@
         <h2>{{ lang.nominations[nomination].title }}</h2>
         <p>{{ lang.nominations[nomination].description }}</p>
     </div>
-    {% if canadd %}
+    {% if canadd or isadmin %}
     <form action="{{ url_for('add_nominee') }}" method="post" class="addform">
         {{ form.csrf_token }}
-        {{ form.nomination }}
+        {{ form.nomid }}
         {{ lang.who }} {{ form.who(size=60) }}<br>
         {{ lang.forwhat }} {{ form.project(size=60) }}<br>
         {{ lang.url }} {{ form.url(size=60) }}<br>
@@ -34,7 +34,7 @@
     {% endif %}
     <ul class="nominees">
         {% for n in nominees %}
-        <li>{{ n.who }}
+        <li>{% if n.chosen %}* {% endif %}{{ n.who }}
         {%- if n.project %},
         {% if n.url %}
         <a href="{{ n.url }}">{{ n.project }}</a>
@@ -55,6 +55,10 @@
         </span>
         {% if (canunvote and n.proposedby == user) or isadmin %}
         <small>(<a href="{{ url_for('delete_nominee', nid=n.id) }}">{{ lang.delete }}</a>)</small>
+        {% endif %}
+        {% if isadmin %}
+        <small>(<a href="{{ url_for('edit_nominee', nid=n.id) }}">edit</a>,
+        <a href="{{ url_for('choose_nominee', nid=n.id) }}">choose</a>)</small>
         {% endif %}
         </li>
         {% endfor %}
