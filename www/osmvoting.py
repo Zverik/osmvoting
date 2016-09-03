@@ -67,6 +67,8 @@ def login():
         return openstreetmap.authorize(callback=url_for('oauth'))
     if config.STAGE in ('call', 'select'):
         return redirect(url_for('edit_nominees'))
+    if config.STAGE == 'voting':
+        return redirect(url_for('voting'))
     return 'Unknown stage: {0}'.format(config.STAGE)
 
 
@@ -249,3 +251,46 @@ def list_chosen():
     return render_template('list.html',
                            nominees=nominees, year=date.today().year,
                            nominations=config.NOMINATIONS, lang=g.lang)
+
+
+@app.route('/voting')
+def voting():
+    """Called from login(), a convenience method."""
+    if 'osm_token' not in session:
+        return redirect(url_for('login'))
+
+    uid = session['osm_uid']
+    isadmin = uid in config.ADMINS
+    nominees = Nominee.select(Nominee, Vote.user.alias('voteuser')).where(Nominee.chosen).join(
+        Vote, JOIN.LEFT_OUTER, on=((Vote.nominee == Nominee.id) & (Vote.user == uid) & (~Vote.preliminary))).naive()
+    if isadmin:
+        votesq = Nominee.select(Nominee.id, fn.COUNT(Vote.id).alias('num_votes')).where(Nominee.chosen).join(
+            Vote, JOIN.LEFT_OUTER, on=((Vote.nominee == Nominee.id) & (~Vote.preliminary))).group_by(Nominee.id)
+        votes = {}
+        for v in votesq:
+            votes[v.id] = v.num_votes
+    else:
+        votes = None
+    return render_template('voting.html',
+                           nominees=nominees, year=date.today().year,
+                           isadmin=isadmin, votes=votes, stage=config.STAGE,
+                           nominations=config.NOMINATIONS, lang=g.lang)
+
+
+@app.route('/vote/<nid>')
+def vote(nid):
+    if 'osm_token' not in session or config.STAGE != 'voting':
+        return redirect(url_for('login'))
+    uid = session['osm_uid']
+    n = Nominee.get(Nominee.id == nid)
+    try:
+        v = Vote.get((Vote.user == uid) & (Vote.nominee == n) & (~Vote.preliminary))
+        v.delete_instance()
+    except Vote.DoesNotExist:
+        if canvote(uid):
+            v = Vote()
+            v.nominee = n
+            v.user = uid
+            v.preliminary = False
+            v.save()
+    return redirect(url_for('voting'))
