@@ -241,3 +241,11 @@ def prevote(nid):
             v.preliminary = True
             v.save()
     return redirect(url_for('edit_nominees'))
+
+
+@app.route('/list')
+def list_chosen():
+    nominees = Nominee.select().where(Nominee.chosen)
+    return render_template('list.html',
+                           nominees=nominees, year=date.today().year,
+                           nominations=config.NOMINATIONS, lang=g.lang)

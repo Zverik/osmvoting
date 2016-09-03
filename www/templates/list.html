@@ -1,0 +1,27 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>{{ lang.title }} {{ year }}</title>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+<body>
+    <h1>{{ lang.title }} {{ year }}</h1>
+    {% for nom in nominations %}
+    {% set nom_loop = loop %}
+    <h2>{{ lang.nominations[nom].title }}</h2>
+    <p>{{ lang.nominations[nom].description }}</p>
+    <ul>
+        {% for n in nominees %}
+        {% if n.nomination == nom_loop.index0 %}
+        <li>{{ n.who }}
+        {%- if n.project %},
+        {% if n.url %}
+        <a href="{{ n.url }}">{{ n.project }}</a>
+        {% else %}
+        {{ n.project }}
+        {% endif %}
+        {% endif %}
+        </li>
+        {% endif %}
+        {% endfor %}
+    </ul>
+    {% endfor %}
+</body>
