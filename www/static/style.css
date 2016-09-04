@@ -53,3 +53,42 @@ body {
 .vote a.plus {
   color: green;
 }
+
+/* Voting */
+
+h2 {
+  text-align: left;
+}
+
+.nominees-list {
+}
+
+.nomination-who {
+  margin-top: 0.5em;
+  padding: 0.2em 0;
+  font-size: 14pt;
+}
+
+.nomination-who.voted {
+  background-color: #efe;
+}
+
+.nomination-who.voted.novote {
+  background-color: #fee;
+}
+
+.novote {
+  color: #444;
+}
+
+.nomination-why {
+  padding-left: 2em;
+}
+
+.submitvote {
+  margin-top: 2em;
+}
+
+.submitvote input {
+  font-size: 20pt;
+}

@@ -6,27 +6,38 @@
     <h1>{{ lang.title }} {{ year }}</h1>
     <p>{{ lang.description }}</p>
     <p><b>{{ lang.stages[stage].title }}:</b> {{ lang.stages[stage].description }}</p>
+    <form action="{{ url_for('vote_all') }}" method="post">
     {% for nom in nominations %}
     {% set nom_loop = loop %}
     <h2>{{ lang.nominations[nom].title }}</h2>
-    <p>{{ lang.nominations[nom].description }}</p>
-    <ul>
+    <div class="nominees-list">
+        {% set voted = { 'v': False } %}
         {% for n in nominees %}
         {% if n.nomination == nom_loop.index0 %}
-        <li>{{ n.who }}
-        {%- if n.project %},
-        {% if n.url %}
-        <a href="{{ n.url }}">{{ n.project }}</a>
-        {% else %}
-        {{ n.project }}
-        {% endif %}
-        {% endif %}
-        {% if isadmin %}
-        <small>[{{ votes[n.id] }}]</small>
-        {% endif %}
-        </li>
+        <div class="nomination-who{% if n.voteuser %} voted{% endif %}">
+            <input type="radio" id="r{{ n.id }}" name="vote{{ n.nomination }}" value="{{ n.id }}" {% if n.voteuser %}checked{% if voted.update({'v': True}) %}{% endif %}{% endif %}>
+            <label for="r{{ n.id }}">{{ n.who }}</label>
+            {% if isadmin %}
+            <small>[{{ votes[n.id] }}]</small>
+            {% endif %}
+        </div>
+        <div class="nomination-why">
+            {{ n.project }}
+            {% if n.url %}
+            (<a href="{{ n.url }}" target="_blank">{{ lang.link }}</a>)
+            {% endif %}
+        </div>
         {% endif %}
         {% endfor %}
-    </ul>
+        <div class="nomination-who novote{% if not voted.v %} voted{% endif %}">
+            <input type="radio" id="rn{{ nom_loop.index0 }}" name="vote{{ nom_loop.index0 }}" value="0" {% if not voted.v %}checked{% endif %}>
+            <label for="rn{{ nom_loop.index0 }}">{{ lang.novote }}</label>
+        </div>
+    </div>
     {% endfor %}
+    <div class="submitvote">
+        <input type="submit" value="{{ lang.savevotes }}">
+    </div>
+    </form>
+<script type="text/javascript" src="{{ url_for('static', filename='voting.js') }}"></script>
 </body>

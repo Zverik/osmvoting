@@ -7,6 +7,7 @@ from wtforms import StringField, HiddenField
 from wtforms.validators import DataRequired, Optional, URL
 from playhouse.shortcuts import model_to_dict
 from datetime import date
+from random import Random
 from peewee import JOIN, fn
 import yaml
 import os
@@ -261,8 +262,14 @@ def voting():
 
     uid = session['osm_uid']
     isadmin = uid in config.ADMINS
-    nominees = Nominee.select(Nominee, Vote.user.alias('voteuser')).where(Nominee.chosen).join(
+    nominees_list = Nominee.select(Nominee, Vote.user.alias('voteuser')).where(Nominee.chosen).join(
         Vote, JOIN.LEFT_OUTER, on=((Vote.nominee == Nominee.id) & (Vote.user == uid) & (~Vote.preliminary))).naive()
+    # Shuffle the nominees
+    nominees = [n for n in nominees_list]
+    rnd = Random()
+    rnd.seed(uid)
+    rnd.shuffle(nominees)
+    # For admin, populate the dict of votes
     if isadmin:
         votesq = Nominee.select(Nominee.id, fn.COUNT(Vote.id).alias('num_votes')).where(Nominee.chosen).join(
             Vote, JOIN.LEFT_OUTER, on=((Vote.nominee == Nominee.id) & (~Vote.preliminary))).group_by(Nominee.id)
@@ -271,10 +278,36 @@ def voting():
             votes[v.id] = v.num_votes
     else:
         votes = None
+    # Yay, done
     return render_template('voting.html',
                            nominees=nominees, year=date.today().year,
                            isadmin=isadmin, votes=votes, stage=config.STAGE,
                            nominations=config.NOMINATIONS, lang=g.lang)
+
+
+@app.route('/votes', methods=['POST'])
+def vote_all():
+    if 'osm_token' not in session or config.STAGE != 'voting':
+        return redirect(url_for('login'))
+    uid = session['osm_uid']
+    for nom in range(len(config.NOMINATIONS)):
+        vote = request.form.get('vote{}'.format(nom), -1, type=int)
+        if vote < 0:
+            continue
+        try:
+            # Delete votes from the same category by this voter
+            v = Vote.select().where((Vote.user == uid) & (~Vote.preliminary)).join(Nominee).where(
+                Nominee.nomination == nom).get()
+            v.delete_instance()
+        except Vote.DoesNotExist:
+            pass
+        if vote > 0:
+            v = Vote()
+            v.nominee = Nominee.get(Nominee.id == vote)
+            v.user = uid
+            v.preliminary = False
+            v.save()
+    return redirect(url_for('voting'))
 
 
 @app.route('/vote/<nid>')
@@ -284,13 +317,15 @@ def vote(nid):
     uid = session['osm_uid']
     n = Nominee.get(Nominee.id == nid)
     try:
-        v = Vote.get((Vote.user == uid) & (Vote.nominee == n) & (~Vote.preliminary))
+        # Delete votes from the same category by this voter
+        v = Vote.select().where((Vote.user == uid) & (~Vote.preliminary)).join(Nominee).where(
+            Nominee.nomination == n.nomination).get()
         v.delete_instance()
     except Vote.DoesNotExist:
-        if canvote(uid):
-            v = Vote()
-            v.nominee = n
-            v.user = uid
-            v.preliminary = False
-            v.save()
+        pass
+    v = Vote()
+    v.nominee = n
+    v.user = uid
+    v.preliminary = False
+    v.save()
     return redirect(url_for('voting'))

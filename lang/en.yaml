@@ -89,3 +89,6 @@ en:
   delete: delete
   addnominee: Add a nominee
   listnominees: List of nominees
+  novote: Do not vote in this category
+  link: link
+  savevotes: Submit my votes
