@@ -62,11 +62,11 @@ en:
     voting:
       title: Голосование
       description: >
-        We are voting for nominees! Choose a single nominee for each category, that
-        you think should receive an award. You can come back and change your vote
-        any time before the voting ends. The nominee with most votes wins.
-        The voting ends on 22th of September, right before the State of the Map 2016
-        conference, on which winners will be announced.
+        Время голосовать за номинантов! Выберите по одному в каждой категории, кому
+        вы хотели бы вручить премию. Вы сможете вернуться и поменять выбор в любое время,
+        пока голосование открыто. Номинант с наибольшим числом голосов победит.
+        Голосование закончится 22 сентября, как раз перед конференцией State of the Map
+        2016, на которой объявят победителей.
 
     processing:
       title: Обработка голосов
