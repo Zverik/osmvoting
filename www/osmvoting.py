@@ -114,6 +114,8 @@ class AddNomineeForm(Form):
 @app.route('/nominees/<n>')
 def edit_nominees(n=None, form=None):
     """Called from login(), a convenience method."""
+    # Temporary redirect to voting
+    return redirect(url_for('voting'))
     if 'osm_token' not in session:
         return redirect(url_for('login'))
     if 'nomination' not in session:
