@@ -1,6 +1,6 @@
 from www import app
 from db import database, Nominee, Vote
-from flask import session, url_for, redirect, request, render_template, g
+from flask import session, url_for, redirect, request, render_template, g, flash
 from flask_oauthlib.client import OAuth
 from flask_wtf import Form
 from wtforms import StringField, HiddenField
@@ -278,10 +278,13 @@ def voting():
             votes[v.id] = v.num_votes
     else:
         votes = None
+    # Count total number of voters
+    total = Vote.select(fn.Distinct(Vote.user)).where(~Vote.preliminary).count()
     # Yay, done
     return render_template('voting.html',
                            nominees=nominees, year=date.today().year,
                            isadmin=isadmin, votes=votes, stage=config.STAGE,
+                           total=total,
                            nominations=config.NOMINATIONS, lang=g.lang)
 
 
@@ -307,6 +310,7 @@ def vote_all():
             v.user = uid
             v.preliminary = False
             v.save()
+    flash(g.lang['thanksvoted'])
     return redirect(url_for('voting'))
 
 

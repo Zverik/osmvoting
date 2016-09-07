@@ -4,6 +4,13 @@
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 <body>
     <h1>{{ lang.title }} {{ year }}</h1>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for message in messages %}
+    <div class="message">{{ message }}</div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
     <p>{{ lang.description }}</p>
     <p><b>{{ lang.stages[stage].title }}:</b> {{ lang.stages[stage].description }}</p>
     <form action="{{ url_for('vote_all') }}" method="post">
@@ -37,6 +44,9 @@
     {% endfor %}
     <div class="submitvote">
         <input type="submit" value="{{ lang.savevotes }}">
+    </div>
+    <div class="total">
+        {{ lang.peoplevoted }}: {{ total }}.
     </div>
     </form>
 <script type="text/javascript" src="{{ url_for('static', filename='voting.js') }}"></script>

@@ -92,3 +92,7 @@ h2 {
 .submitvote input {
   font-size: 20pt;
 }
+
+.message {
+  color: green;
+}
