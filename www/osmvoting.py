@@ -279,7 +279,7 @@ def voting():
     else:
         votes = None
     # Count total number of voters
-    total = Vote.select(fn.Distinct(Vote.user)).where(~Vote.preliminary).count()
+    total = Vote.select(fn.Distinct(Vote.user)).where(~Vote.preliminary).group_by(Vote.user).count()
     # Yay, done
     return render_template('voting.html',
                            nominees=nominees, year=date.today().year,
