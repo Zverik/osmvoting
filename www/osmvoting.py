@@ -63,6 +63,8 @@ def load_user_language():
 
 @app.route('/')
 def login():
+    if config.STAGE == 'processing':
+        return redirect(url_for('wait'))
     if 'osm_token' not in session:
         session['objects'] = request.args.get('objects')
         return openstreetmap.authorize(callback=url_for('oauth'))
@@ -335,3 +337,27 @@ def vote(nid):
     v.preliminary = False
     v.save()
     return redirect(url_for('voting'))
+
+
+@app.route('/wait')
+def wait():
+    uid = session['osm_uid'] if 'osm_uid' in session else 0
+    isadmin = uid in config.ADMINS
+    nominees = Nominee.select().where(Nominee.chosen)
+    # For admin, populate the dict of votes
+    if isadmin:
+        votesq = Nominee.select(Nominee.id, fn.COUNT(Vote.id).alias('num_votes')).where(Nominee.chosen).join(
+            Vote, JOIN.LEFT_OUTER, on=((Vote.nominee == Nominee.id) & (~Vote.preliminary))).group_by(Nominee.id)
+        votes = {}
+        for v in votesq:
+            votes[v.id] = v.num_votes
+    else:
+        votes = None
+    # Count total number of voters
+    total = Vote.select(fn.Distinct(Vote.user)).where(~Vote.preliminary).group_by(Vote.user).count()
+    # Yay, done
+    return render_template('wait.html',
+                           nominees=nominees, year=date.today().year,
+                           isadmin=isadmin, votes=votes, stage=config.STAGE,
+                           total=total,
+                           nominations=config.NOMINATIONS, lang=g.lang)

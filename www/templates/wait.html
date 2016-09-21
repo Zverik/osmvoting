@@ -1,0 +1,34 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>{{ lang.title }} {{ year }}</title>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+<body>
+    <h1>{{ lang.title }} {{ year }}</h1>
+    <p>{{ lang.description }}</p>
+    <p><b>{{ lang.stages[stage].title }}:</b> {{ lang.stages[stage].description }}</p>
+    {% for nom in nominations %}
+    {% set nom_loop = loop %}
+    <h2>{{ lang.nominations[nom].title }}</h2>
+    <div class="nominees-list">
+        {% for n in nominees %}
+        {% if n.nomination == nom_loop.index0 %}
+        <div class="nomination-who">
+            {{ n.who }}
+            {% if isadmin %}
+            <small>[{{ votes[n.id] }}]</small>
+            {% endif %}
+        </div>
+        <div class="nomination-why">
+            {{ n.project }}
+            {% if n.url %}
+            (<a href="{{ n.url }}" target="_blank">{{ lang.link }}</a>)
+            {% endif %}
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+    {% endfor %}
+    <div class="total">
+        {{ lang.peoplevoted }}: {{ total }}.
+    </div>
+</body>
