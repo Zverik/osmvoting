@@ -117,7 +117,8 @@ class AddNomineeForm(Form):
 def edit_nominees(n=None, form=None):
     """Called from login(), a convenience method."""
     # Temporary redirect to voting
-    return redirect(url_for('voting'))
+    if config.STAGE not in ('call', 'select'):
+        return redirect(url_for('login'))
     if 'osm_token' not in session:
         return redirect(url_for('login'))
     if 'nomination' not in session:
@@ -262,6 +263,8 @@ def list_chosen():
 def voting():
     """Called from login(), a convenience method."""
     if 'osm_token' not in session:
+        return redirect(url_for('login'))
+    if config.STAGE != 'voting':
         return redirect(url_for('login'))
 
     uid = session['osm_uid']
