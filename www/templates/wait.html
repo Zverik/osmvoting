@@ -5,7 +5,7 @@
 <body>
     <h1>{{ lang.title }} {{ year }}</h1>
     <p>{{ lang.description }}</p>
-    <p><b>{{ lang.stages[stage].title }}:</b> {{ lang.stages[stage].description }}</p>
+    <p><b>{{ lang.stages[stage].title }}:</b> {{ description | safe }}</p>
     {% for nom in nominations %}
     {% set nom_loop = loop %}
     <h2>{{ lang.nominations[nom].title }}</h2>

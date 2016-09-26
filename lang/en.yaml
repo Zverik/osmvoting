@@ -73,7 +73,10 @@ en:
 
     results:
       title: Results
-      description: Here are results of the OSM Awards. 
+      description: Here are results of the OSM Awards. The number of votes is printed inside
+        square brackets, your vote is marked with an asterisk. {Here is the raw list of votes}
+        if you want to run some analysis. Thanks to everyone who voted and especially to
+        these who were nominated! See you next year!
 
   title: OSM Awards
   description: >

@@ -363,9 +363,13 @@ def wait():
         votes = None
     # Count total number of voters
     total = Vote.select(fn.Distinct(Vote.user)).where(~Vote.preliminary).group_by(Vote.user).count()
+    # Update a link in the description
+    desc = g.lang['stages'][config.STAGE]['description']
+    desc = desc.replace('{', '<a href="{}">'.format(url_for('static', filename='osmawards2016.txt'))).replace('}', '</a>')
     # Yay, done
     return render_template('wait.html',
                            nominees=nominees, year=date.today().year,
+                           description=desc,
                            isadmin=isadmin, votes=votes, stage=config.STAGE,
                            total=total, winners=winners, isresults=config.STAGE == 'results',
                            nominations=config.NOMINATIONS, lang=g.lang)
