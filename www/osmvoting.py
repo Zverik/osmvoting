@@ -63,7 +63,7 @@ def load_user_language():
 
 @app.route('/')
 def login():
-    if config.STAGE == 'processing':
+    if config.STAGE in ('processing', 'results'):
         return redirect(url_for('wait'))
     if 'osm_token' not in session:
         session['objects'] = request.args.get('objects')
@@ -343,17 +343,22 @@ def vote(nid):
 
 
 @app.route('/wait')
+@app.route('/results')
 def wait():
     uid = session['osm_uid'] if 'osm_uid' in session else 0
     isadmin = uid in config.ADMINS
-    nominees = Nominee.select().where(Nominee.chosen)
+    nominees = Nominee.select(Nominee, Vote.user.alias('voteuser')).where(Nominee.chosen).join(
+        Vote, JOIN.LEFT_OUTER, on=((Vote.nominee == Nominee.id) & (Vote.user == uid) & (~Vote.preliminary))).naive()
     # For admin, populate the dict of votes
-    if isadmin:
-        votesq = Nominee.select(Nominee.id, fn.COUNT(Vote.id).alias('num_votes')).where(Nominee.chosen).join(
+    winners = [[0, 0] for x in range(len(config.NOMINATIONS))]
+    if isadmin or config.STAGE == 'results':
+        votesq = Nominee.select(Nominee.id, Nominee.nomination, fn.COUNT(Vote.id).alias('num_votes')).where(Nominee.chosen).join(
             Vote, JOIN.LEFT_OUTER, on=((Vote.nominee == Nominee.id) & (~Vote.preliminary))).group_by(Nominee.id)
         votes = {}
         for v in votesq:
             votes[v.id] = v.num_votes
+            if v.num_votes > winners[v.nomination][1]:
+                winners[v.nomination] = (v.id, v.num_votes)
     else:
         votes = None
     # Count total number of voters
@@ -362,5 +367,5 @@ def wait():
     return render_template('wait.html',
                            nominees=nominees, year=date.today().year,
                            isadmin=isadmin, votes=votes, stage=config.STAGE,
-                           total=total,
+                           total=total, winners=winners, isresults=config.STAGE == 'results',
                            nominations=config.NOMINATIONS, lang=g.lang)
