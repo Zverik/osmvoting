@@ -12,7 +12,7 @@
     <div class="nominees-list">
         {% for n in nominees %}
         {% if n.nomination == nom_loop.index0 %}
-        <div class="nomination-who{% if n.id == winners[nom][0] %} voted{% endif %}">
+        <div class="nomination-who{% if n.id == winners[nom_loop.index0][0] %} voted{% endif %}">
             {{ n.who }}
             {% if isadmin or isresults %}
             <small>[{{ votes[n.id] }}]</small>
