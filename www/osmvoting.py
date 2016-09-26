@@ -342,7 +342,6 @@ def vote(nid):
     return redirect(url_for('voting'))
 
 
-@app.route('/wait')
 @app.route('/results')
 def wait():
     uid = session['osm_uid'] if 'osm_uid' in session else 0
