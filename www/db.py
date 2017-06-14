@@ -1,4 +1,4 @@
-from peewee import *
+from peewee import Model, CharField, IntegerField, ForeignKeyField, TextField, BooleanField
 from playhouse.db_url import connect
 import config
 
@@ -11,17 +11,36 @@ class BaseModel(Model):
 
 
 class Nominee(BaseModel):
-    nomination = IntegerField(index=True)
     who = CharField(max_length=250)
     project = TextField(null=True)
     url = CharField(max_length=1000)
     proposedby = IntegerField(index=True)
-    chosen = BooleanField(default=False)
+    category = CharField(max_length=20, index=True)
+    status = IntegerField(choices=(
+        (0, 'submitted'),
+        (1, 'accepted'),
+        (2, 'chosen'),
+        (-1, 'duplicate'),
+        (-2, 'outoftime'),
+        (-3, 'vague'),
+        (-4, 'committee'),
+        (-5, 'other')
+    ), index=True)
+
+    class Status:
+        SUBMITTED = 0
+        ACCEPTED = 1
+        CHOSEN = 2
+        DUPLICATE = -1
+        OUTOFTIME = -2
+        VAGUE = -3
+        COMMITTEE = -4
+        OTHER = -5
 
 
 class Vote(BaseModel):
     user = IntegerField(index=True)
-    nominee = ForeignKeyField(Nominee)
+    nominee = ForeignKeyField(Nominee, related_name='votes')
     preliminary = BooleanField(index=True)
 
 

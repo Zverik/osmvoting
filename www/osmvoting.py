@@ -3,7 +3,7 @@ from db import database, Nominee, Vote
 from flask import session, url_for, redirect, request, render_template, g, flash
 from flask_oauthlib.client import OAuth
 from flask_wtf import Form
-from wtforms import StringField, HiddenField
+from wtforms import StringField, HiddenField, TextAreaField, SelectMultipleField, SelectField
 from wtforms.validators import DataRequired, Optional, URL
 from playhouse.shortcuts import model_to_dict
 from datetime import date
@@ -37,6 +37,15 @@ def teardown(exception):
         database.close()
 
 
+def merge_dict(target, other):
+    for k, v in other.items():
+        if isinstance(v, dict):
+            node = target.setdefault(k, {})
+            merge_dict(node, v)
+        else:
+            target[k] = v
+
+
 def load_user_language():
     supported = set([x[:x.index('.')].decode('utf-8') for x in os.listdir(
         os.path.join(config.BASE_DIR, 'lang')) if '.yaml' in x])
@@ -56,9 +65,14 @@ def load_user_language():
             break
 
     # Load language
-    with codecs.open(os.path.join(config.BASE_DIR, 'lang', lang + '.yaml'), 'r', 'utf-8') as f:
+    with codecs.open(os.path.join(config.BASE_DIR, 'lang', 'en.yaml'), 'r', 'utf-8') as f:
         data = yaml.load(f)
-        g.lang = data[data.keys()[0]]
+        data = data[data.keys()[0]]
+    with codecs.open(os.path.join(config.BASE_DIR, 'lang', lang + '.yaml'), 'r', 'utf-8') as f:
+        lang_data = yaml.load(f)
+        merge_dict(data, lang_data[lang_data.keys()[0]])
+    g.lang = data
+    g.category_choices = [('', data['choose_category'] + '...')] + [(c, data['nominations'][c]['title']) for c in config.NOMINATIONS]
 
 
 @app.route('/')
@@ -68,10 +82,10 @@ def login():
     if 'osm_token' not in session:
         session['objects'] = request.args.get('objects')
         return openstreetmap.authorize(callback=url_for('oauth'))
-    if config.STAGE in ('call', 'select'):
-        return redirect(url_for('edit_nominees'))
+    if config.STAGE in ('call', 'callvote', 'select'):
+        return edit_nominees()
     if config.STAGE == 'voting':
-        return redirect(url_for('voting'))
+        return voting()
     return 'Unknown stage: {0}'.format(config.STAGE)
 
 
@@ -107,8 +121,9 @@ def logout():
 
 class AddNomineeForm(Form):
     who = StringField('Who', validators=[DataRequired()])
-    project = StringField('For what')
+    project = TextAreaField('For what')
     url = StringField('URL', validators=[Optional(), URL()])
+    category = SelectField('Category', validators=[DataRequired()])
     nomid = HiddenField('Nominee IS', validators=[Optional()])
 
 
@@ -121,49 +136,48 @@ def edit_nominees(n=None, form=None):
         return redirect(url_for('login'))
     if 'osm_token' not in session:
         return redirect(url_for('login'))
-    if 'nomination' not in session:
-        session['nomination'] = 0
-    if n is not None:
-        if len(n) == 1 and n.isdigit() and int(n) < len(config.NOMINATIONS):
-            session['nomination'] = int(n)
-        elif n in config.NOMINATIONS:
-            session['nomination'] = config.NOMINATIONS.index(n)
-    nom = session['nomination']
+    if n == 'all':
+        n = None
+    if n in config.NOMINATIONS or n is None or n == 'mine':
+        session['nomination'] = n
+    nom = session.get('nomination', n)
 
     tmp_obj = None
     if 'tmp_nominee' in session:
         tmp_obj = session['tmp_nominee']
         del session['tmp_nominee']
     form = AddNomineeForm(data=tmp_obj)
+    form.category.choices = g.category_choices
     uid = session['osm_uid']
     isadmin = uid in config.ADMINS
-    nominees = Nominee.select(Nominee, Vote.user.alias('voteuser')).where(Nominee.nomination == nom).join(
-        Vote, JOIN.LEFT_OUTER, on=((Vote.nominee == Nominee.id) & (Vote.user == uid) & (Vote.preliminary))).naive()
-    canadd = isadmin or (config.STAGE == 'call' and Nominee.select().where(
-        (Nominee.proposedby == uid) & (Nominee.nomination == nom)).count() < 10)
+    nominees = Nominee.select(Nominee, Vote.user.alias('voteuser')).join(
+        Vote, JOIN.LEFT_OUTER, on=(
+            (Vote.nominee == Nominee.id) & (Vote.user == uid) & (Vote.preliminary)
+        )).order_by(Nominee.id.desc())
+    if nom in config.NOMINATIONS:
+        nominees = nominees.where(Nominee.category == nom)
+    elif nom == 'mine':
+        nominees = nominees.where(Nominee.proposedby == uid)
+    if nom != 'mine':
+        nominees = nominees.where(Nominee.status >= 0)
+    canadd = isadmin or (config.STAGE.startswith('call') and Nominee.select().where(
+        Nominee.proposedby == uid).count() < config.MAX_NOMINEES_PER_USER)
     if isteam(uid):
         votesq = Nominee.select(Nominee.id, fn.COUNT(Vote.id).alias('num_votes')).join(
             Vote, JOIN.LEFT_OUTER, on=((Vote.nominee == Nominee.id) & (Vote.preliminary))).group_by(Nominee.id)
         votes = {}
         for v in votesq:
             votes[v.id] = v.num_votes
-        # Now for the team votes
-        votesq = Nominee.select(Nominee.id, fn.COUNT(Vote.id).alias('num_votes')).join(Vote, JOIN.LEFT_OUTER, on=(
-                (Vote.nominee == Nominee.id) & (Vote.preliminary) & (Vote.user << list(config.TEAM)))).group_by(Nominee.id)
-        teamvotes = {}
-        if isadmin:
-            for v in votesq:
-                teamvotes[v.id] = v.num_votes
     else:
         votes = None
-        teamvotes = None
+    filterables = ['all', 'mine'] + config.NOMINATIONS
     return render_template('index.html',
-                           form=form, nomination=config.NOMINATIONS[nom],
-                           nominees=nominees, user=uid, isadmin=isadmin, canvote=canvote(uid),
-                           canunvote=config.STAGE == 'call' or isteam(uid),
-                           votes=votes, teamvotes=teamvotes,
-                           year=date.today().year, stage=config.STAGE, canadd=canadd,
-                           nominations=config.NOMINATIONS, lang=g.lang)
+                           form=form, nomination=nom or 'all',
+                           nominees=nominees.naive(), user=uid, isadmin=isadmin, canvote=canvote(uid),
+                           canunvote=config.STAGE == 'callvote' or isteam(uid),
+                           votes=votes,
+                           year=config.YEAR, stage=config.STAGE, canadd=canadd,
+                           nominations=filterables, lang=g.lang)
 
 
 @app.route('/add', methods=['POST'])
@@ -171,13 +185,14 @@ def add_nominee():
     if 'osm_token' not in session or not canvote(session['osm_uid']):
         return redirect(url_for('login'))
     form = AddNomineeForm()
+    form.category.choices = g.category_choices
     if form.validate():
         if form.nomid.data.isdigit():
             n = Nominee.get(Nominee.id == int(form.nomid.data))
         else:
             n = Nominee()
-            n.nomination = session['nomination']
             n.proposedby = session['osm_uid']
+            n.status = Nominee.Status.SUBMITTED
         form.populate_obj(n)
         n.save()
         return redirect(url_for('edit_nominees'))
@@ -187,7 +202,7 @@ def add_nominee():
 @app.route('/delete/<nid>')
 def delete_nominee(nid):
     if 'osm_token' not in session or (
-            config.STAGE != 'call' and session['osm_uid'] not in config.ADMINS):
+            not config.STAGE.startswith('call') and session['osm_uid'] not in config.ADMINS):
         return redirect(url_for('login'))
     n = Nominee.get(Nominee.id == nid)
     session['tmp_nominee'] = model_to_dict(n)
@@ -220,10 +235,10 @@ def choose_nominee(nid):
 def canvote(uid):
     if session['osm_uid'] in config.ADMINS:
         return True
-    if config.STAGE != 'call' and not isteam(uid):
+    if config.STAGE != 'callvote' and not isteam(uid):
         return False
     return Vote.select().join(Nominee).where(
-        (Vote.user == uid) & (Vote.preliminary) & (Nominee.nomination == session['nomination'])).count() < 5
+        (Vote.user == uid) & (Vote.preliminary) & (Nominee.category == session['nomination'])).count() < 5
 
 
 def isteam(uid):

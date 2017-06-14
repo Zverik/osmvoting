@@ -6,13 +6,24 @@
     <h1>{{ lang.title }} {{ year }}</h1>
     <p>{{ lang.description }}</p>
     <p><b>{{ lang.stages[stage].title }}:</b> {{ lang.stages[stage].description }}</p>
+    {% if canadd or isadmin %}
+    <form action="{{ url_for('add_nominee') }}" method="post" class="addform">
+        {{ form.csrf_token }}
+        {{ form.nomid }}
+        {{ lang.who }} {{ form.who(size=60) }}<br>
+        {{ lang.url }} {{ form.url(size=60) }}<br>
+        {{ lang.forwhat }}:<br>{{ form.project(size=60) }}<br>
+        {{ lang.category }} {{ form.category }}<br>
+        <input type="submit" value="{{ lang.addnominee }}">
+    </form>
+    {% endif %}
     <div class="nominations">
     {% for nom in nominations %}
     <div class="nomination">
     {% if nom != nomination %}
-        <div class="ntitle"><a href="{{ url_for('edit_nominees', n=nom) }}">{{ lang.nominations[nom].title }}</a></div>
+        <div class="ntitle"><a href="{{ url_for('edit_nominees', n=nom) }}">{{ lang.nominations[nom].short }}</a></div>
     {% else %}
-        <div class="ntitle current">{{ lang.nominations[nom].title }}</div>
+        <div class="ntitle current">{{ lang.nominations[nom].short }}</div>
     {% endif %}
     </div>
     {% endfor %}
@@ -22,16 +33,6 @@
         <h2>{{ lang.nominations[nomination].title }}</h2>
         <p>{{ lang.nominations[nomination].description }}</p>
     </div>
-    {% if canadd or isadmin %}
-    <form action="{{ url_for('add_nominee') }}" method="post" class="addform">
-        {{ form.csrf_token }}
-        {{ form.nomid }}
-        {{ lang.who }} {{ form.who(size=60) }}<br>
-        {{ lang.forwhat }} {{ form.project(size=60) }}<br>
-        {{ lang.url }} {{ form.url(size=60) }}<br>
-        <input type="submit" value="{{ lang.addnominee }}">
-    </form>
-    {% endif %}
     <ul class="nominees">
         {% for n in nominees %}
         <li>{% if n.chosen %}* {% endif %}{{ n.who }}
@@ -44,7 +45,7 @@
         {% endif %}
         <span class="vote">
         {% if votes %}
-        [{{ votes[n.id] }}{% if teamvotes[n.id] %}/<span class="teamvote">{{ teamvotes[n.id] }}</span>{% endif %}]
+        [{{ votes[n.id] }}]
         {% endif %}
         {% if n.voteuser and canunvote %}
         <a href="{{ url_for('prevote', nid=n.id) }}" class="minus">unvote</a>

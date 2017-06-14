@@ -1,7 +1,15 @@
 en:
   nominations:
+    all:
+      title: All Nominees
+      short: all
+    mine:
+      title: My Nominees
+      short: mine
+
     core:
       title: Core Systems Award
+      short: core
       description: >
         For outstanding contributions to any of the core tools, systems, processes or resources.
         Not limited to systems in OSMF control. The Rails port, osm2pgsql, openstreetmap-carto, iD,
@@ -9,12 +17,14 @@ en:
 
     innovation:
       title: Innovation Award
+      short: innovation
       description: >
         For the best new service or approach. New tools for contributing data, image recognition,
         trace or OSM data analysis, new mapping approach or new perspective on old tools.
 
     writing:
       title: Influential Writing Award
+      short: writing
       description: >
         For the best tutorial, documentation, blog or a blog post. A text or series of texts
         that attracted many new people to OSM, provided an interesting outlook on the project,
@@ -22,18 +32,36 @@ en:
 
     mapping:
       title: Greatness in Mapping Award
+      short: mapping
       description: >
         For significant contributions to the map data, or exemplary mapping: micro-mapping,
         clean-up, mapping towns from scratch, proper imports.
 
     community:
       title: Expanding the Community Award
+      short: community
       description: >
         For efforts in expanding the community. Not only geographically, but also in diversity,
         into humanitarian sector or government.
 
+    latam:
+      title: Improving the Latin America Award
+      short: latam
+      description: todo
+
+    africa:
+      title: Improving the Africa Award
+      short: africa
+      description: todo
+
+    asia:
+      title: Improving the Asia Award
+      short: asia
+      description: todo
+
     ulf:
       title: Ulf Möller Memorial Award
+      short: Ulf
       description: >
         To individual contributors for making a difference to the OpenStreetMap project,
         through good mapping, benefit to the community and other improvements to the OSM.
@@ -78,6 +106,15 @@ en:
         if you want to run some analysis. Thanks to everyone who voted and congratulations to
         our winners and all the nominees! See you next year!
 
+  status:
+    submitted: Submitted
+    accepted: Accepted
+    chosen: Chosen
+    duplicate: Duplicate
+    outoftime: Not in the time frame
+    vague: Too vague
+    other: Other
+
   title: OSM Awards
   description: >
     This year, we are granting the OpenStreetMap Awards! Six nominees will receive awards in
@@ -91,8 +128,9 @@ en:
     six award categories.
 
   who: Whom
-  forwhat: For what
+  forwhat: Describe their work
   url: URL
+  choose_category: Choose a category
   optional: optional
   delete: delete
   addnominee: Add a nominee

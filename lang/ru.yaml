@@ -35,6 +35,18 @@ en:
         в плане культурного и гендерного разнообразия, гуманитарных или правительственных
         инициатив.
 
+    latam:
+      title: За развитие карты в Латинской Америке
+      description: todo
+
+    africa:
+      title: Improving the Africa Award
+      description: todo
+
+    asia:
+      title: Improving the Asia Award
+      description: todo
+
     ulf:
       title: Премия имени Ульфа Мёллера
       description: >
@@ -93,7 +105,7 @@ en:
     Участники сообщества номинировали и проголосовали за пятерых номинантов в шести категориях.
 
   who: Кого
-  forwhat: За что
+  forwhat: Опишите суть их работы
   url: URL
   optional: не обязательно
   delete: удалить
