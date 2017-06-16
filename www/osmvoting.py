@@ -226,8 +226,12 @@ def choose_nominee(nid):
     if 'osm_token' not in session or session['osm_uid'] not in config.ADMINS:
         return redirect(url_for('login'))
     n = Nominee.get(Nominee.id == nid)
-    n.chosen = not n.chosen
-    print n.chosen
+    if n.status == Nominee.Status.CHOSEN:
+        n.status = Nominee.Status.ACCEPTED
+    elif n.status == Nominee.Status.ACCEPTED:
+        n.status = Nominee.Status.CHOSEN
+    else:
+        raise Exception('Cannot choose non-accepted nominee')
     n.save()
     return redirect(url_for('edit_nominees'))
 
@@ -268,7 +272,7 @@ def prevote(nid):
 
 @app.route('/list')
 def list_chosen():
-    nominees = Nominee.select().where(Nominee.chosen)
+    nominees = Nominee.select().where(Nominee.status == Nominee.Status.CHOSEN)
     return render_template('list.html',
                            nominees=nominees, year=date.today().year,
                            nominations=config.NOMINATIONS, lang=g.lang)
@@ -284,7 +288,7 @@ def voting():
 
     uid = session['osm_uid']
     isadmin = uid in config.ADMINS
-    nominees_list = Nominee.select(Nominee, Vote.user.alias('voteuser')).where(Nominee.chosen).join(
+    nominees_list = Nominee.select(Nominee, Vote.user.alias('voteuser')).where(Nominee.status == Nominee.Status.CHOSEN).join(
         Vote, JOIN.LEFT_OUTER, on=((Vote.nominee == Nominee.id) & (Vote.user == uid) & (~Vote.preliminary))).naive()
     # Shuffle the nominees
     nominees = [n for n in nominees_list]
@@ -293,7 +297,7 @@ def voting():
     rnd.shuffle(nominees)
     # For admin, populate the dict of votes
     if isadmin:
-        votesq = Nominee.select(Nominee.id, fn.COUNT(Vote.id).alias('num_votes')).where(Nominee.chosen).join(
+        votesq = Nominee.select(Nominee.id, fn.COUNT(Vote.id).alias('num_votes')).where(Nominee.status == Nominee.Status.CHOSEN).join(
             Vote, JOIN.LEFT_OUTER, on=((Vote.nominee == Nominee.id) & (~Vote.preliminary))).group_by(Nominee.id)
         votes = {}
         for v in votesq:
@@ -315,14 +319,14 @@ def vote_all():
     if 'osm_token' not in session or config.STAGE != 'voting':
         return redirect(url_for('login'))
     uid = session['osm_uid']
-    for nom in range(len(config.NOMINATIONS)):
-        vote = request.form.get('vote{}'.format(nom), -1, type=int)
+    for nom in config.NOMINATIONS:
+        vote = request.form.get('vote_{}'.format(nom), -1, type=int)
         if vote < 0:
             continue
         try:
             # Delete votes from the same category by this voter
             v = Vote.select().where((Vote.user == uid) & (~Vote.preliminary)).join(Nominee).where(
-                Nominee.nomination == nom).get()
+                Nominee.category == nom).get()
             v.delete_instance()
         except Vote.DoesNotExist:
             pass
@@ -345,7 +349,7 @@ def vote(nid):
     try:
         # Delete votes from the same category by this voter
         v = Vote.select().where((Vote.user == uid) & (~Vote.preliminary)).join(Nominee).where(
-            Nominee.nomination == n.nomination).get()
+            Nominee.category == n.category).get()
         v.delete_instance()
     except Vote.DoesNotExist:
         pass
@@ -361,18 +365,18 @@ def vote(nid):
 def wait():
     uid = session['osm_uid'] if 'osm_uid' in session else 0
     isadmin = uid in config.ADMINS
-    nominees = Nominee.select(Nominee, Vote.user.alias('voteuser')).where(Nominee.chosen).join(
+    nominees = Nominee.select(Nominee, Vote.user.alias('voteuser')).where(Nominee.status == Nominee.Status.CHOSEN).join(
         Vote, JOIN.LEFT_OUTER, on=((Vote.nominee == Nominee.id) & (Vote.user == uid) & (~Vote.preliminary))).naive()
     # For admin, populate the dict of votes
     winners = [[0, 0] for x in range(len(config.NOMINATIONS))]
     if isadmin or config.STAGE == 'results':
-        votesq = Nominee.select(Nominee.id, Nominee.nomination, fn.COUNT(Vote.id).alias('num_votes')).where(Nominee.chosen).join(
+        votesq = Nominee.select(Nominee.id, Nominee.category, fn.COUNT(Vote.id).alias('num_votes')).where(Nominee.status == Nominee.Status.CHOSEN).join(
             Vote, JOIN.LEFT_OUTER, on=((Vote.nominee == Nominee.id) & (~Vote.preliminary))).group_by(Nominee.id)
         votes = {}
         for v in votesq:
             votes[v.id] = v.num_votes
-            if v.num_votes > winners[v.nomination][1]:
-                winners[v.nomination] = (v.id, v.num_votes)
+            if v.num_votes > winners[v.category][1]:
+                winners[v.category] = (v.id, v.num_votes)
     else:
         votes = None
     # Count total number of voters
