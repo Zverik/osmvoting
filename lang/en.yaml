@@ -127,13 +127,17 @@ en:
     Map 2016 conference! The community nominated and voted for five nominees for each of the
     six award categories.
 
+  login: Login to submit nominees or vote
   who: Whom
   forwhat: Describe their work
   url: URL
   choose_category: Choose a category
   optional: optional
+  edit: edit
   delete: delete
   addnominee: Add a nominee
+  updatenominee: Update nominee
+  deletenominee: Delete
   listnominees: List of nominees
   novote: Do not vote in this category
   link: link

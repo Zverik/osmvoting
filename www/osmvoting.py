@@ -89,6 +89,14 @@ def login():
     return 'Unknown stage: {0}'.format(config.STAGE)
 
 
+@app.route('/login')
+def login_to_osm():
+    if 'osm_token' not in session:
+        session['objects'] = request.args.get('objects')
+        return openstreetmap.authorize(callback=url_for('oauth'))
+    return login()
+
+
 @app.route('/oauth')
 def oauth():
     resp = openstreetmap.authorized_response()
@@ -132,9 +140,7 @@ class AddNomineeForm(Form):
 def edit_nominees(n=None, form=None):
     """Called from login(), a convenience method."""
     # Temporary redirect to voting
-    if config.STAGE not in ('call', 'select'):
-        return redirect(url_for('login'))
-    if 'osm_token' not in session:
+    if config.STAGE not in ('call', 'callvote', 'select'):
         return redirect(url_for('login'))
     if n == 'all':
         n = None
@@ -148,7 +154,7 @@ def edit_nominees(n=None, form=None):
         del session['tmp_nominee']
     form = AddNomineeForm(data=tmp_obj)
     form.category.choices = g.category_choices
-    uid = session['osm_uid']
+    uid = session.get('osm_uid', None)
     isadmin = uid in config.ADMINS
     nominees = Nominee.select(Nominee, Vote.user.alias('voteuser')).join(
         Vote, JOIN.LEFT_OUTER, on=(
@@ -160,7 +166,7 @@ def edit_nominees(n=None, form=None):
         nominees = nominees.where(Nominee.proposedby == uid)
     if nom != 'mine':
         nominees = nominees.where(Nominee.status >= 0)
-    canadd = isadmin or (config.STAGE.startswith('call') and Nominee.select().where(
+    canadd = isadmin or (uid and config.STAGE.startswith('call') and Nominee.select().where(
         Nominee.proposedby == uid).count() < config.MAX_NOMINEES_PER_USER)
     if isteam(uid):
         votesq = Nominee.select(Nominee.id, fn.COUNT(Vote.id).alias('num_votes')).join(
@@ -170,7 +176,11 @@ def edit_nominees(n=None, form=None):
             votes[v.id] = v.num_votes
     else:
         votes = None
-    filterables = ['all', 'mine'] + config.NOMINATIONS
+    filterables = list(config.NOMINATIONS)
+    if uid:
+        filterables.insert(0, 'mine')
+    if isadmin:
+        filterables.insert(0, 'all')
     return render_template('index.html',
                            form=form, nomination=nom or 'all',
                            nominees=nominees.naive(), user=uid, isadmin=isadmin, canvote=canvote(uid),
