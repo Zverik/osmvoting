@@ -12,8 +12,8 @@ en:
       short: core
       description: >
         For outstanding contributions to any of the core tools, systems, processes or resources.
-        Not limited to systems in OSMF control. The Rails port, osm2pgsql, openstreetmap-carto, iD,
-        JOSM, mapnik and any other tool that mappers use on a daily basis, knowingly or not.
+        Not limited to systems under OSMF control. The Rails port, osm2pgsql, openstreetmap-carto, iD,
+        JOSM, mapnik and any other tool that mappers use on a daily basis, knowingly or not, are eligible.
 
     innovation:
       title: Innovation Award
@@ -71,8 +71,9 @@ en:
     call:
       title: Call For Nominees
       description: >
-        We are collecting nominees. Suggest a person, a group or an organization for
-        an award. Only three fields: a name, a project (what did they do to claim an award),
+        Suggest a person, a group or an organization for
+        an award. We only ask for three pieces of information: a name, a project
+        (what did they do to claim an award),
         and optionally an URL for any web page that describes the project.
         Eligible is everything that was announced after 2016-08-01.
         The call for nominees ends on the 9th of July.
@@ -97,7 +98,7 @@ en:
       title: Processing
       description: >
         Please wait until we process the voting results. They will be published
-        on 19th of August, after the announcement at State of the Map 2017 conference.
+        on 19th of August, after the announcement at the State of the Map 2017 conference.
 
     results:
       title: Results
@@ -118,26 +119,15 @@ en:
     other: other
 
   title: OSM Awards
-  description_2017: >
-    This year, we are granting the OpenStreetMap Awards! Eight nominees will receive awards in
-    eight categories at State of the Map 2017 conference. This is a community award: you decide
-    who nominees are and you vote for them.
+  description: >
+    This year, we are presenting the OpenStreetMap Awards! Eight nominees will receive an award
+    in eight categories at the State of the Map 2017 conference. This is a community award: you decide
+    who nominees are before you vote for them.
 
-  description_after_2017: >
+  description_after: >
     This year, we presented the OpenStreetMap Awards for the first time at the State of the
     Map 2017 conference! The community nominated and voted for eight nominees for each of the
     eight award categories.
-
-  description_2016: >
-    This year, we are granting the OpenStreetMap Awards! Five nominees will receive awards in
-    five categories at State of the Map 2016 conference. This is a community award: you decide
-    who nominees are and you vote for them. Everything that was done since 2015-08-01 is
-    eligible.
-
-  description_after_2016: >
-    This year, we presented the OpenStreetMap Awards for the first time at the State of the
-    Map 2016 conference! The community nominated and voted for five nominees for each of the
-    six award categories.
 
   login: Login to submit nominees or vote
   who: Whom
