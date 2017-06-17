@@ -12,7 +12,7 @@ class BaseModel(Model):
 
 class Nominee(BaseModel):
     who = CharField(max_length=250)
-    project = TextField(null=True)
+    project = TextField()
     url = CharField(max_length=1000)
     proposedby = IntegerField(index=True)
     category = CharField(max_length=20, index=True)
@@ -24,7 +24,8 @@ class Nominee(BaseModel):
         (-2, 'outoftime'),
         (-3, 'vague'),
         (-4, 'committee'),
-        (-5, 'other')
+        (-5, 'deleted'),
+        (-6, 'other'),
     ), index=True)
 
     class Status:
@@ -35,7 +36,8 @@ class Nominee(BaseModel):
         OUTOFTIME = -2
         VAGUE = -3
         COMMITTEE = -4
-        OTHER = -5
+        DELETED = -5
+        OTHER = -6
 
 
 class Vote(BaseModel):

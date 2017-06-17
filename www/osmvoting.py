@@ -78,10 +78,7 @@ def load_user_language():
 @app.route('/')
 def login():
     if config.STAGE in ('processing', 'results'):
-        return redirect(url_for('wait'))
-    if 'osm_token' not in session:
-        session['objects'] = request.args.get('objects')
-        return openstreetmap.authorize(callback=url_for('oauth'))
+        return wait()
     if config.STAGE in ('call', 'callvote', 'select'):
         return edit_nominees()
     if config.STAGE == 'voting':
@@ -124,7 +121,7 @@ def logout():
         del session['osm_token']
     if 'osm_uid' in session:
         del session['osm_uid']
-    return 'Logged out.'
+    return redirect(url_for('login'))
 
 
 class AddNomineeForm(Form):
@@ -136,26 +133,35 @@ class AddNomineeForm(Form):
 
 
 @app.route('/nominees')
-@app.route('/nominees/<n>')
-def edit_nominees(n=None, form=None):
+@app.route('/nominees/<cat>')
+@app.route('/edit/<edit_id>')
+def edit_nominees(cat=None, edit_id=None):
     """Called from login(), a convenience method."""
-    # Temporary redirect to voting
     if config.STAGE not in ('call', 'callvote', 'select'):
         return redirect(url_for('login'))
-    if n == 'all':
-        n = None
-    if n in config.NOMINATIONS or n is None or n == 'mine':
-        session['nomination'] = n
-    nom = session.get('nomination', n)
-
-    tmp_obj = None
-    if 'tmp_nominee' in session:
-        tmp_obj = session['tmp_nominee']
-        del session['tmp_nominee']
-    form = AddNomineeForm(data=tmp_obj)
-    form.category.choices = g.category_choices
     uid = session.get('osm_uid', None)
     isadmin = uid in config.ADMINS
+    if cat == 'all':
+        cat = None
+    if cat is None and not isadmin:
+        cat = 'mine'
+    if cat == 'mine' and not uid:
+        cat = 'core'
+    if cat in config.NOMINATIONS or cat is None or cat == 'mine':
+        session['nomination'] = cat
+    nom = session.get('nomination', cat)
+
+    # Prepare editing form
+    edit_obj = None
+    if edit_id and uid and (isadmin or config.STAGE in ('call', 'callvote')):
+        edit_nom = Nominee.get(Nominee.id == edit_id)
+        if (edit_nom.status == Nominee.Status.SUBMITTED and edit_nom.proposedby == uid) or isadmin:
+            edit_obj = model_to_dict(edit_nom)
+            edit_obj['nomid'] = edit_id
+    form = AddNomineeForm(data=edit_obj)
+    form.category.choices = g.category_choices
+
+    # Select nominees from the database
     nominees = Nominee.select(Nominee, Vote.user.alias('voteuser')).join(
         Vote, JOIN.LEFT_OUTER, on=(
             (Vote.nominee == Nominee.id) & (Vote.user == uid) & (Vote.preliminary)
@@ -164,10 +170,10 @@ def edit_nominees(n=None, form=None):
         nominees = nominees.where(Nominee.category == nom)
     elif nom == 'mine':
         nominees = nominees.where(Nominee.proposedby == uid)
-    if nom != 'mine':
+    if nom != 'mine' and not isadmin:
         nominees = nominees.where(Nominee.status >= 0)
-    canadd = isadmin or (uid and config.STAGE.startswith('call') and Nominee.select().where(
-        Nominee.proposedby == uid).count() < config.MAX_NOMINEES_PER_USER)
+
+    # Calculate the number of votes for the selection team
     if isteam(uid):
         votesq = Nominee.select(Nominee.id, fn.COUNT(Vote.id).alias('num_votes')).join(
             Vote, JOIN.LEFT_OUTER, on=((Vote.nominee == Nominee.id) & (Vote.preliminary))).group_by(Nominee.id)
@@ -176,16 +182,22 @@ def edit_nominees(n=None, form=None):
             votes[v.id] = v.num_votes
     else:
         votes = None
+
+    # Prepare a list of categories
     filterables = list(config.NOMINATIONS)
     if uid:
         filterables.insert(0, 'mine')
     if isadmin:
         filterables.insert(0, 'all')
+
+    # All done, return the template
+    canadd = isadmin or (uid and config.STAGE.startswith('call') and Nominee.select().where(
+        Nominee.proposedby == uid).count() < config.MAX_NOMINEES_PER_USER)
     return render_template('index.html',
                            form=form, nomination=nom or 'all',
                            nominees=nominees.naive(), user=uid, isadmin=isadmin, canvote=canvote(uid),
                            canunvote=config.STAGE == 'callvote' or isteam(uid),
-                           votes=votes,
+                           votes=votes, statuses={k: v for k, v in Nominee.status.choices},
                            year=config.YEAR, stage=config.STAGE, canadd=canadd,
                            nominations=filterables, lang=g.lang)
 
@@ -194,17 +206,26 @@ def edit_nominees(n=None, form=None):
 def add_nominee():
     if 'osm_token' not in session or not canvote(session['osm_uid']):
         return redirect(url_for('login'))
+    uid = session.get('osm_uid', None)
+    isadmin = uid in config.ADMINS
     form = AddNomineeForm()
     form.category.choices = g.category_choices
     if form.validate():
         if form.nomid.data.isdigit():
             n = Nominee.get(Nominee.id == int(form.nomid.data))
+            if n.proposedby != uid and not isadmin:
+                return redirect(url_for('edit_nominees'))
         else:
             n = Nominee()
             n.proposedby = session['osm_uid']
             n.status = Nominee.Status.SUBMITTED
-        form.populate_obj(n)
-        n.save()
+        if request.form.get('submit') == g.lang['deletenominee']:
+            if n.id:
+                n.status = Nominee.Status.DELETED
+                n.save()
+        else:
+            form.populate_obj(n)
+            n.save()
         return redirect(url_for('edit_nominees'))
     return 'Error in fields:\n{}'.format('\n'.join(['{}: {}'.format(k, v) for k, v in form.errors.items()]))
 
@@ -217,17 +238,6 @@ def delete_nominee(nid):
     n = Nominee.get(Nominee.id == nid)
     session['tmp_nominee'] = model_to_dict(n)
     n.delete_instance(recursive=True)
-    return redirect(url_for('edit_nominees'))
-
-
-@app.route('/edit/<nid>')
-def edit_nominee(nid):
-    if 'osm_token' not in session or session['osm_uid'] not in config.ADMINS:
-        return redirect(url_for('login'))
-    n = Nominee.get(Nominee.id == nid)
-    n2 = model_to_dict(n)
-    n2['nomid'] = nid
-    session['tmp_nominee'] = n2
     return redirect(url_for('edit_nominees'))
 
 
@@ -247,6 +257,8 @@ def choose_nominee(nid):
 
 
 def canvote(uid):
+    if 'osm_token' not in session:
+        return False
     if session['osm_uid'] in config.ADMINS:
         return True
     if config.STAGE != 'callvote' and not isteam(uid):

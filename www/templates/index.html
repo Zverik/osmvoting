@@ -24,7 +24,7 @@
     </form>
     {% endif %}
     {% if not user %}
-    <form action="{{ url_for('login') }}" method="get" class="addform login">
+    <form action="{{ url_for('login_to_osm') }}" method="get" class="addform login">
         <input type="submit" value="{{ lang.login }}">
     </form>
     {% endif %}
@@ -32,7 +32,7 @@
     {% for nom in nominations %}
     <div class="nomination">
     {% if nom != nomination %}
-        <div class="ntitle"><a href="{{ url_for('edit_nominees', n=nom) }}">{{ lang.nominations[nom].short }}</a></div>
+        <div class="ntitle"><a href="{{ url_for('edit_nominees', cat=nom) }}">{{ lang.nominations[nom].short }}</a></div>
     {% else %}
         <div class="ntitle current">{{ lang.nominations[nom].short }}</div>
     {% endif %}
@@ -46,7 +46,10 @@
     </div>
     <div class="nominees">
         {% for n in nominees %}
-        <div class="nominee">
+        <div class="nominee {% if n.status < 0 %}disabled{% endif %}">
+            {% if n.status < 0 %}
+            <div class="n_cat bad_cat">{{ lang.status[statuses[n.status]] }}</div>
+            {% endif %}
             {% if n.proposedby == user %}
             <div class="n_cat">{{ lang.nominations['mine'].short }}</div>
             {% endif %}
@@ -55,7 +58,7 @@
             <span class="n_who">{% if n.chosen %}* {% endif %}{{ n.who }}</span>
 
             {% if (canunvote and n.proposedby == user) or isadmin %}
-            <small>(<a href="{{ url_for('edit_nominee', nid=n.id) }}">{{ lang.edit }}</a>)</small>
+            <small>(<a href="{{ url_for('edit_nominees', edit_id=n.id) }}">{{ lang.edit }}</a>)</small>
             {% endif %}
             {% if isadmin %}
             <small><a href="{{ url_for('choose_nominee', nid=n.id) }}">choose</a></small>
@@ -74,7 +77,9 @@
             </span>
 
             <div class="n_desc">
-                {{ n.project }}
+                {% for line in n.project.splitlines() %}
+                {{ line }}<br>
+                {% endfor %}
                 {% if n.url %}
                 (<a href="{{ n.url }}">{{ lang.link }}</a>)
                 {% endif %}

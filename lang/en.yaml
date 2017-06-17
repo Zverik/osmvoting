@@ -47,17 +47,17 @@ en:
     latam:
       title: Improving the Latin America Award
       short: latam
-      description: todo
+      description: For building the community and improving the map in South and Central Americas, from Mexico to Chile and Argentina.
 
     africa:
       title: Improving the Africa Award
       short: africa
-      description: todo
+      description: For building the community and improving the map in African countries.
 
     asia:
       title: Improving the Asia Award
       short: asia
-      description: todo
+      description: For building the community and improving the map in Asian countries, from Arabian Peninsula to Japan and Indonesia.
 
     ulf:
       title: Ulf Möller Memorial Award
@@ -65,6 +65,7 @@ en:
       description: >
         To individual contributors for making a difference to the OpenStreetMap project,
         through good mapping, benefit to the community and other improvements to the OSM.
+        Any member who's been active at any time since 2004 is eligible for this award.
 
   stages:
     call:
@@ -72,17 +73,16 @@ en:
       description: >
         We are collecting nominees. Suggest a person, a group or an organization for
         an award. Only three fields: a name, a project (what did they do to claim an award),
-        an optionally an URL for any web page that describes the project. You can
-        submit up to 10 nominees for each category, same people can stand for multiple
-        awards. Also do vote for existing and new nominees, there is a limit of 5 votes
-        for each category. The call for nominees ends on 27th of August (that's Saturday).
+        and optionally an URL for any web page that describes the project.
+        Eligible is everything that was announced after 2016-08-01.
+        The call for nominees ends on the 9th of July.
 
     select:
       title: Selecting Nominees
       description: >
-        The team consisting of the Board members, CWG and SOTMWG is working on filtering
-        a list of nominees to five for each category, using your submissions and votes.
-        The voting will open on the 3rd of September.
+        The awards committees are working on filtering
+        the list of nominees to five for each category, using your submissions and votes.
+        The voting will open on the 16th of July.
 
     voting:
       title: Voting
@@ -90,14 +90,14 @@ en:
         We are voting for nominees! Choose a single nominee for each category, that
         you think should receive an award. You can come back and change your vote
         any time before the voting ends. The nominee with most votes wins.
-        The voting ends on 22th of September, right before the State of the Map 2016
+        The voting ends on 16th of August, right before the State of the Map 2017
         conference, on which winners will be announced.
 
     processing:
       title: Processing
       description: >
         Please wait until we process the voting results. They will be published
-        on 25th of September, after the announcement at State of the Map 2016 conference.
+        on 19th of August, after the announcement at State of the Map 2017 conference.
 
     results:
       title: Results
@@ -107,22 +107,34 @@ en:
         our winners and all the nominees! See you next year!
 
   status:
-    submitted: Submitted
-    accepted: Accepted
-    chosen: Chosen
-    duplicate: Duplicate
-    outoftime: Not in the time frame
-    vague: Too vague
-    other: Other
+    submitted: submitted
+    accepted: accepted
+    chosen: chosen
+    duplicate: duplicate
+    outoftime: not in the time frame
+    vague: too vague
+    committee: member of the committee
+    deleted: deleted
+    other: other
 
   title: OSM Awards
-  description: >
-    This year, we are granting the OpenStreetMap Awards! Six nominees will receive awards in
-    six categories at State of the Map 2016 conference. This is a community award: you decide
+  description_2017: >
+    This year, we are granting the OpenStreetMap Awards! Eight nominees will receive awards in
+    eight categories at State of the Map 2017 conference. This is a community award: you decide
+    who nominees are and you vote for them.
+
+  description_after_2017: >
+    This year, we presented the OpenStreetMap Awards for the first time at the State of the
+    Map 2017 conference! The community nominated and voted for eight nominees for each of the
+    eight award categories.
+
+  description_2016: >
+    This year, we are granting the OpenStreetMap Awards! Five nominees will receive awards in
+    five categories at State of the Map 2016 conference. This is a community award: you decide
     who nominees are and you vote for them. Everything that was done since 2015-08-01 is
     eligible.
 
-  description_after: >
+  description_after_2016: >
     This year, we presented the OpenStreetMap Awards for the first time at the State of the
     Map 2016 conference! The community nominated and voted for five nominees for each of the
     six award categories.

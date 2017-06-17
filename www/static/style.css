@@ -8,13 +8,13 @@ body {
 
 .nominations {
   text-align: center;
-  font-size: 10px;
+  font-size: 11px;
 }
 
 .nomination {
   display: inline-block;
-  background: #cdf;
-  margin: 0.5em 1em;
+  background: #fd9;
+  margin: 0.5em 0.7em;
   padding: 4px 8px;
 }
 
@@ -59,16 +59,25 @@ body {
     margin: 1em 0;
 }
 
+.nominee.disabled {
+    background-color: #f7e7e7;
+}
+
 .n_cat {
   float: right;
-  background: #cdf;
-  margin: 0 1em;
-  padding: 4px 8px;
+  background: #ddd;
+  margin-left: 1em;
+  padding: 2px 4px;
   font-size: 10px;
+}
+
+.n_cat.bad_cat {
+    background: #ecc;
 }
 
 .n_desc {
     margin-top: 0.5em;
+    font-size: 80%;
     font-style: italic;
 }
 
