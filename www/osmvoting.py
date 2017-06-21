@@ -204,10 +204,10 @@ def edit_nominees(cat=None, edit_id=None):
 
 @app.route('/add', methods=['POST'])
 def add_nominee():
-    if 'osm_token' not in session or not canvote(session['osm_uid']):
-        return redirect(url_for('login'))
     uid = session.get('osm_uid', None)
     isadmin = uid in config.ADMINS
+    if not uid or not (config.STAGE.startswith('call') or isadmin):
+        return redirect(url_for('login'))
     form = AddNomineeForm()
     form.category.choices = g.category_choices
     if form.validate():
