@@ -1,0 +1,132 @@
+pt:
+  nominations:
+    all:
+      title: Todos os nomeados
+      short: todos
+    mine:
+      title: As minhas nomeações
+      short: meu
+    core:
+      title: Prémio de Sistemas Centrais
+      short: centrais
+      description: >
+          Por contribuições excepcionais na criação e/ou desenvolvimento de ferramentas,
+          sistemas, processos ou recursos que têm carácter central para o OSM. Inclui
+          ferramentas que estejam fora do controlo da OSMF. O port para Rails, osm2pgsql,
+          openstreetmap-carto, iD, JOSM, mapnik e muitas outras ferramentas usadas
+          por mapeadores diariamente, activamente ou passivamente, são elegíveis.
+    innovation:
+      title: Prémio de Inovação
+      short: inovação
+      description: >
+          Pelo menor serviço. Novas ferramentas para contribuição de dados, reconhecimento
+          de imagem, tracejamento e análise de dados. Também inclui novas perspectivas
+          ou paradigmas relativamente a antigas práticas.
+    writing:
+      title: Prémio por Escrita Influencial
+      short: escrita
+      description: >
+          Pelo melhor guia, documentação, blog ou texto. Um texto ou série de textos
+          que trouxeram muitas pessoas para o OSM, que deram um ponto de vista interessante
+          sobre o projecto ou que inspiraram a comunidade a fazer coisas melhores.
+    mapping:
+      title: Prémio por Grandeza em Mapeamento
+      short: mapeamento
+      description: >
+          Por contribuições significativas de dados, por exemplo: micro-mapeamento,
+          arrumações, mapear sítios que não se encontravam no mapa, importações bem
+          feitas.
+    community:
+      title: Prémio por Expanção da Comunidade
+      short: comunidade
+      description: >
+          Por esforços em expandir a comunidade. Não só geograficamente mas também
+          no sector humanitário e governamental.
+    latam:
+      title: Prémio por Melhoria da América Latina
+      short: latam
+      description: Por ajudar a comunidade e por melhorar o mapa nas Américas do Sul e Central do México ao Chile até à Argentina.
+    africa:
+      title: Prémio por Melhoria da África
+      short: africa
+      description: Por ajudar a comunidade e por melhorar o mapa em países da África.
+    asia:
+      title: Prémio por Melhoria da Ásia
+      short: asia
+      description: Por ajudar a comunidade e por melhorar o mapa em países da Ásia, desde a peninsula arábia ao Japão até à Indonésia.
+    ulf:
+      title: Prémio Memorial de Ulf Möller
+      short: Ulf
+      description: >
+          Para indivíduos cujas contribuições marcaram uma diferença no projecto OpenStreetMap,
+          quer por bom mapeamento, por benefícios à comunidade e outros melhoramentos
+          relevantes. Qualquer membro que tenha estado activo desde 2004 é elegível
+          para este prémio
+  stages:
+    call:
+      title: Nomear uma pessoa/grupo
+      description: >
+          Sugira um indivíduo, um grupo ou uma organização para um prémio. É pedida
+          apenas três dados: um nome, um projecto (o que eles fizeram que esteja relacionado
+          com o prémio) e, opcionalmente, um URL para qualquer site que descreva o
+          projecto. Os nomeados elegíveis serão anunciados depois de 2016-08-01. A
+          fase de nomeação termina a 9 de julho.
+    select:
+      title: Selecionar um nomeado
+      description: >
+          O comité dos prémios terá a função de filtrar a lista de nomeados para um
+          máximo de cinco para cada categoria, usando as suas submissões e votos.
+          Esta votação começa a 16 de julho.
+    voting:
+      title: Votar
+      description: >
+          Estamos a votar nos nomeados! Escolhe um único nomeado em cada categoria
+          que ache que deva receber o prémio. Pode sempre voltar e alterar o seu voto
+          durante o período de voto. O nomeado com mais votos vence. O período de
+          votação acaba a 16 de agosto, imediatamente antes da conferência State of
+          the Map 2017 onde os vencedores serão anunciados.
+    processing:
+      title: Processamento
+      description: >
+          Por favor espere até que esteja concluído o processamento dos votos que
+          serão publicados a 19 de agosto, depois do seu anuncio na conferência State
+          of the Map 2017.
+    results:
+      title: Resultados
+      description: Aqui estão os resultados dos Prémios OSM. O número de votos está dentro de quadrados, o seu voto marcado com um asterisco. {Aqui está a lista bruta dos votos } se quiser correr alguma análise. Obrigado a todos os que votaram e parabéns aos nossos vencedores e aos nomeados. Até ao próximo ano!
+  status:
+    submitted: submetido
+    accepted: aceite
+    chosen: escolhido
+    duplicate: duplicado
+    outoftime: 'fora do intervalo de tempo '
+    vague: demasiado vago
+    committee: membro do comité
+    deleted: eliminado
+    other: outro
+  title: Prémios OSM
+  description: >
+      Este ano apresentamos os Prémios OpenStreetMap! Nove nomeados serão galardoados
+      em nove categorias na conferência State of the Map 2017. Estes são prémios comunitários:
+      você decide quem são os nomeados são e depois vota no seu favorito.
+  description_after: >
+      Este ano apresentamos os Prémios OpenStreetMap pela primeira vez na conferência
+      State of the Map 2017! A comunidade nomeou personalidades/grupos e votou em
+      nove categorias.
+  login: Inicie sessão para sugerir nomeados ou votar
+  who: Quem
+  forwhat: Descreva o seu trabalho
+  url: URL
+  choose_category: Escolha uma categoria
+  optional: opcional
+  edit: editar
+  delete: eliminar
+  addnominee: Sugerir um nomeado
+  updatenominee: Atualizar um nomeado
+  deletenominee: Eliminar
+  listnominees: Lista de Nomeados
+  novote: Não vote nesta categoria
+  link: endereço
+  savevotes: Submeta os meus votos
+  thanksvoted: A sua seleção foi guardada, obrigado por votar!
+  peoplevoted: Numero total de pessoas que votaram

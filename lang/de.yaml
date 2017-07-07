@@ -1,0 +1,88 @@
+de:
+  nominations:
+    all:
+      title: Alle Nominierten
+    mine:
+      title: Meine Vorschläge
+      short: meine
+    core:
+      title: Preis für zentrale Dienste
+      short: zentral
+      description: >
+          für herausragenden Beiträge zu wichtiger, zentraler OSM-Software, -Systemen,
+          -Prozessen oder -Ressourcen. Die Software/das System muss nicht unter der
+          Kontrolle der OSMF stehen. Der Rails Port, osm2pgsql, OSM Carto, iD, JOSM,
+          Mapnik und all die anderen Werkzeuge, die Mapper wissentlich oder unwissentlich
+          tagtäglich nutzen, sind qualifiziert.
+    innovation:
+      title: Innovationspreis
+      short: Innovation
+      description: >
+          für den besten neuen Dienst oder Ansatz. Neue Werkzeug zum Mappen, Bilderkennung,
+          Digitalisierung oder OSM-Datenanalyse, neue Mappingtechniken oder neue Nutzungsmöglichkeiten
+          für bestehende Werkzeuge.
+    writing:
+      title: Preis für einflussreiches Schreiben
+      short: Schreiben
+      description: >
+          für das beste Tutorial, die beste Anleitung, den besten Blog oder Blogbeitrag.
+          Ein Text oder eine Reihe an Texten, die neue Leute zu OSM bringen, einen
+          interessanten Ausblick auf OSM bringen oder die Community dazu animieren,
+          Sachen besser zu machen.
+    mapping:
+      title: Mappingpreis
+      short: Mapping
+      description: >
+          für signifikante Beiträge zu den Daten oder vorbildliches Mapping: Mikromapping,
+          Aufräumarbeiten, Ersterfassung von Städten, vernünftige Importe.
+    community:
+      title: Communitywachstumspreis
+      short: Community
+      description: >
+          für Anstrengungen zur Erweiterung der Community, nicht nur in räumlich Hinsicht,
+          sondern auch zur Verbesserung der Vielfalt sowie zur Integration des humanitären
+          Sektors sowie der öffentlichen Verwaltung.
+    latam:
+      title: Preis für Engagement in Lateinamerika
+      short: Lateinamerika
+    africa:
+      title: Preis für Engagement in Afrika
+      short: Afrika
+      description: für den Aufbau der Community und Verbesserung der OSM-Daten in Afrika
+    asia:
+      title: Preis für Engagement in Asien
+      short: Asien
+      description: für den Aufbau der Community und Verbesserung der OSM-Daten in Asien von der Arabischen Halbinsel bis Japan und Indonesien
+    ulf:
+      title: Ulf-Möller-Gedächtnispreis
+      short: Ulf
+  stages:
+    call:
+      title: Kandidatensuche
+    results:
+      title: Ergebnisse
+  status:
+    submitted: abgesendet
+    accepted: angenommen
+    chosen: ausgewählt
+    duplicate: Duplikat
+    outoftime: nicht im Zeitraum
+    vague: zu ungenau
+    committee: Mitglied des Komitees
+    deleted: gelöscht
+  title: OSM-Awards
+  login: Melde dich an, um vorzuschlagen oder zu wählen
+  forwhat: Beschreibe deren Werk
+  url: URL
+  choose_category: Wähle eine Kategorie
+  optional: optional
+  edit: Bearbeiten
+  delete: Löschen
+  addnominee: Vorschlag hinzufügen
+  deletenominee: Löschen
+  listnominees: Liste der Vorgeschlagenen
+  novote: in dieser Kategorie nicht wählen
+  link: Link
+  savevotes: Stimmabgabe absenden
+  thanksvoted: Deine Auswahl wurde gespeichert. Vielen Dank für deine Stimmabgabe!
+  peoplevoted: Gesamtzahl der Wähler
