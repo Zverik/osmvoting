@@ -1,0 +1,133 @@
+fr:
+  nominations:
+    all:
+      title: Toutes les nominations
+      short: Tous
+    mine:
+      title: Mes nominations
+      short: les miennes
+    core:
+      title: Systèmes centraux
+      short: systèmes
+      description: >
+          Pour des contributions remarquables à l'un des systèmes centraux, outils,
+          processus ou ressources. Sous contrôle de OSMF ou non. Les projets et outils
+          tels que Rails port, osm2pgsql, openstreetmap-carto, iD, JOSM, mapnik ou
+          tout autre que les contributeurs utilisent quotidiennement, consciemment
+          ou non, sont éligibles.
+    innovation:
+      title: Innovation
+      short: innovation
+      description: >
+          Pour le meilleur nouveau service ou projet. Nouveaux outils pour contribuer
+          en données, reconnaissance d'images, analyses de traces ou données, nouvelle
+          approche de cartographie ou nouvelle perspective sur des outils existants.
+    writing:
+      title: Meilleurs écrits
+      short: écrits
+      description: >
+          Pour le meilleur écrit, tutorial, documentation, blog. Un texte ou une série
+          de textes qui ont attiré de nouvelles personnes vers OSM, ont offert une
+          perspective intéressante sur le projet, ou inspiré la communauté pour faire
+          des progrès.
+    mapping:
+      title: Excellence cartographique
+      short: cartographie
+      description: >
+          Pour des contributions remarquables en données cartographiques ou une contribution
+          cartographique exemplaire : cartographie de détail, nettoyage, villes ajoutées
+          à partir de rien, imports de données corrects.
+    community:
+      title: Développement de la communauté
+      short: communauté
+      description: >
+          Pour les efforts pour le développement de la communauté. Géographiquement,
+          mais pas seulement, aussi en diversité, ou dans les secteurs humanitaires
+          et gouvernementaux.
+    latam:
+      title: En Amérique latine
+      short: amér. latine
+      description: Pour le développement de la communauté et l'amélioration de la carte en Amérique centrale et du Sud, du Mexique au Chili et à l'Argentine.
+    africa:
+      title: En Afrique
+      short: afrique
+      description: Pour le développement de la communauté et l'amélioration de la carte dans les pays du continent africain.
+    asia:
+      title: En Asie
+      short: asie
+      description: Pour le développement de la communauté et l'amélioration de la carte dans les pays asiatiques, de la péninsule arabique au Japon et à l'Indonésie.
+    ulf:
+      title: Prix Ulf Möller
+      short: Ulf
+      description: >
+          Pour des individus, qui ont contribué et amélioré de manière notable le
+          projet OpenStreetMap, par la cartographie, le service à la communauté et
+          d'autres améliorations au profit d'OSM. Les membres de 2004 à aujourd'hui,
+          pour toutes leurs activités, sont éligibles pour ce prix.
+  stages:
+    call:
+      title: Appel à nominations
+      description: >
+          Proposez une personne, un groupe ou une organisation pour une récompense.
+          Seulement 3 éléments sont nécessaires : un nom, un projet (leurs actions
+          qui méritent une nomination) et un lien URL facultatif vers une page internet
+          qui décrit le projet. Tout ce qui est annoncé après le 1er août 2016 est
+          éligible. L'appel à nominations est ouvert jusqu'au 9 juillet 2017.
+    select:
+      title: Sélection des nominations
+      description: >
+          Les comités de sélection étudient les nominations proposées et réduisent
+          la liste à 5 nominations pour chaque catégorie, sur la base des propositions
+          et votes de la communauté. Le vote sera ouvert le 16 juillet 2017.
+    voting:
+      title: Votes
+      description: >
+          Vous votez pour les prix ! Choisissez une seule candidature parmi la liste
+          des nominations dans chaque catégorie, qui mérite selon vous la récompense.
+          Vous pouvez modifier votre vote à tout moment jusqu'à la clôture du vote,
+          le 16 août 2017. Les prix seront décernés le 19 août pendant la conférence
+          State of the Map 2017.
+    processing:
+      title: En cours…
+      description: >
+          Veuillez s'il vous plaît patienter pendant le dépouillement des votes. Les
+          résultats seront annoncés le 19 août pendant la conférence State of the
+          Map 2017 puis publiés.
+    results:
+      title: Résultats
+      description: Voici les résultats des prix "OSM Awards". Le nombre de votes est indiqué entre crochets, l'astérisque marque votre vote. {Voici les votes bruts} à disposition si vous voulez effectuer une analyse. Merci à tous les votants, félicitations à toutes les personnes nominées et à nos vainqueurs ! Rendez-vous l'année prochaine !
+  status:
+    submitted: proposé
+    accepted: accepté
+    chosen: sélectionné
+    duplicate: doublon
+    outoftime: hors de la période de temps
+    vague: trop vague
+    committee: membre du comité
+    deleted: effacé
+    other: autre
+  title: Prix "OSM Awards"
+  description: >
+      Les prix "OSM Awards" sont de retour cette année ! Dans 9 catégories, 9 récompenses
+      seront décernées pendant la conférence State of the Map 2017. La communauté
+      décide : vous proposez les nominations et vous votez.
+  description_after: >
+      Les prix "OSM Awards" ont été décernés pour la première fois pendant la conférence
+      State of the Map 2016.
+  login: S'identifier pour proposer une nomination ou voter
+  who: Qui
+  forwhat: Décrivez leur travail
+  url: lien URL
+  choose_category: Choisissez une catégorie
+  optional: facultatif
+  edit: modifier
+  delete: effacer
+  addnominee: Ajoutez une nomination
+  updatenominee: Mettre à jour une nomination
+  deletenominee: Effacer
+  listnominees: Liste des nominations
+  novote: Ne pas voter dans cette catégorie
+  link: lien
+  savevotes: Soumettre mes votes
+  thanksvoted: Votre sélection est enregistrée, merci d'avoir voté !
+  peoplevoted: Nombre total de votants
