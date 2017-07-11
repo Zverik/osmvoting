@@ -84,6 +84,15 @@
                 (<a href="{{ n.url }}">{{ lang.link }}</a>)
                 {% endif %}
             </div>
+
+            <div class="n_status">
+                <select onchange="javascript:window.location='{{ url_for('set_status', nid=n.id) }}/'+this.value">
+                    {% for k in statuses|sort %}
+                    <option value="{{ k }}" {% if k == n.status %}selected{% endif %}>{{ lang.status[statuses[k]] }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
         </div>
         {% endfor %}
     </div>

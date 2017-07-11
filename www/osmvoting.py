@@ -255,6 +255,15 @@ def choose_nominee(nid):
     n.save()
     return redirect(url_for('edit_nominees'))
 
+@app.route('/setstatus/<nid>')
+@app.route('/setstatus/<nid>/<status>')
+def set_status(nid, status=None):
+    if 'osm_token' not in session or session['osm_uid'] not in config.ADMINS or status is None:
+        return redirect(url_for('login'))
+    n = Nominee.get(Nominee.id == nid)
+    n.status = status
+    n.save()
+    return redirect(url_for('edit_nominees'))
 
 def canvote(uid):
     if 'osm_token' not in session:
