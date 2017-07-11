@@ -142,7 +142,7 @@ def edit_nominees(cat=None, edit_id=None):
     uid = session.get('osm_uid', None)
     isadmin = uid in config.ADMINS
     if cat is None:
-        cat = 'core'
+        cat = session.get('nomination', 'core')
     if cat == 'all':
         cat = None if isadmin else 'mine'
     if cat == 'mine' and not uid:
