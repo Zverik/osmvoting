@@ -171,7 +171,10 @@ def edit_nominees(cat=None, edit_id=None):
     elif nom == 'mine':
         nominees = nominees.where(Nominee.proposedby == uid)
     if nom != 'mine' and not isadmin:
-        nominees = nominees.where(Nominee.status >= 0)
+        min_status = (Nominee.Status.SUBMITTED
+                      if config.STAGE.startswith('call')
+                      else Nominee.Status.ACCEPTED)
+        nominees = nominees.where(Nominee.status >= min_status)
 
     # Calculate the number of votes for the selection team
     if isteam(uid):
