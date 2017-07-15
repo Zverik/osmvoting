@@ -1,0 +1,85 @@
+in:
+  nominations:
+    base:
+      title: Core Systems Award
+      description: >
+        Per contributi di nota a qualsiasi di uno degli strumenti di base, sistemi, processi o risorse.
+	Non ci si limita solo a quelli sotto controllo della OSMF. 
+	Il port Rails, osm2pgsql, oenstreetmap-carto, iD, JOSM, mapnik e qualsiasi altro strumento che 
+	un mapper usa quotidianamente consapevole o meno.
+
+    innovation:
+      title: Innovation Award
+      description: >
+        Per il miglior nuovo servizio o approccio. Nuovi strumenti per contribuire ai dati, riconoscere
+	immagini, disegnare o analizzare dati di per OSM, nuovi approcci di mappatura  nuove prospettive
+	sui vecchi strumenti.
+
+    writing:
+      title: Influential Writing Award
+      description: >
+        Per il miglior tutorial, documentazione, blog o articolo di blog. Un testo o serie di testi
+        che attraggono molte nuove pesone in OSM, fornendo un interessante aspetto al progetto, o che
+        ispirano la comunità a fare meglio 
+
+    mapping:
+      title: Greatness in Mapping Award
+      description: >
+        Per contributi significativi ai dati della mappa, o mappature esemplari: micro-mapping,
+        pulizia, mappatura di città dal nulla, importazione di dati fatti bene.
+
+    community:
+      title: Expanding the Community Award
+      description: >
+        Per gli sforzi di espansione della comunità. Non solo geografica, ma anche nella diversità,
+        nel settore umanitario o governativo.
+
+    ulf:
+      title: Ulf Möller Memorial Award
+      description: >
+        A contributori individuali che fanno la differenza dentro il progetto OpenStreetMap,
+        attraverso una buona mappatura, benefici per la comunità e altri miglioramenti a OSM.
+
+  stages:
+    call:
+      title: Candidature
+      description: >
+        Noi stiamo raccogliendo candidature. Suggerisci una persona, un gruppo o una organizzazione
+	per un premio. Riempi solo tre campi: un nome, un progetto (cosa hanno fatto per meritarselo),
+        opzionalmente una URL a una pagina che descrive il progetto. Puoi inserire un massimo di 10
+        candidature per categorie, alcune persone possono essere presentate per diversi premi. 
+        Puoi anche votare per una candidature esistente e una nuova, il limite è di 5 voti per categoria.
+        La data ultima per le candidature è sabato 27 Agosto 2016.
+
+    voting:
+      title: Votazione
+      description: >
+        Stiamo votando le candidature! Seleziona una sola candidatura per categoria, che, secondo te
+        dovrebbe ricevere un riconoscimento. Puoi anche tornare e cambiare la tua idea tutte le volte
+        che vuoi fino alla chiusura delle votazioni. La nomina con maggiori voti vince.
+	La scadenza per le votazioni è al 22 Settembre, poco prima della conferenza State of the Map 2016,
+        dove saranno premiati i vincitori.
+
+    processing:
+      title: Elaborazione
+      description: >
+        Ti preghiamo di attendere fino a che non sarà concluso il processo di votazione. I risultati saranno
+	pubblicati al 25 Settembre, dopo l´annuncio alla conferenza State of the Map 2016.
+
+    results:
+      title: Risultati
+      description: questi sono i risultati degli OSM Awards. 
+
+  title: OSM Awards
+  description: >
+    Quest'anno, abbiamo indetto gli OpenStreetMap Awards! Sei candidati saranno premiati in sei categorie
+    durante la conferenza State of the Map 2016. Si tratta di un riconoscimento della comunità: tu decidi
+    chi candidare e tu voti. Qualsiasi cadndidature che sarà presentata dal 01-08-2016 è eleggibile.
+
+  who: Chi
+  forwhat: Per cosa?
+  url: URL
+  optional: opzionale
+  delete: cancella
+  addnominee: aggiungi una candidatura
+  listnominees: Lista dei candidati
