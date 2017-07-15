@@ -19,7 +19,7 @@ pt:
       title: Prémio de Inovação
       short: inovação
       description: >
-          Pelo menor serviço. Novas ferramentas para contribuição de dados, reconhecimento
+          Pelo melhor serviço. Novas ferramentas para contribuição de dados, reconhecimento
           de imagem, tracejamento e análise de dados. Também inclui novas perspectivas
           ou paradigmas relativamente a antigas práticas.
     writing:
@@ -53,7 +53,7 @@ pt:
     asia:
       title: Prémio por Melhoria da Ásia
       short: asia
-      description: Por ajudar a comunidade e por melhorar o mapa em países da Ásia, desde a peninsula arábia ao Japão até à Indonésia.
+      description: Por ajudar a comunidade e por melhorar o mapa em países da Ásia, desde a peninsula arábica ao Japão até à Indonésia.
     ulf:
       title: Prémio Memorial de Ulf Möller
       short: Ulf
@@ -66,7 +66,7 @@ pt:
     call:
       title: Nomear uma pessoa/grupo
       description: >
-          Sugira um indivíduo, um grupo ou uma organização para um prémio. É pedida
+          Sugira um indivíduo, um grupo ou uma organização para um prémio. É pedido
           apenas três dados: um nome, um projecto (o que eles fizeram que esteja relacionado
           com o prémio) e, opcionalmente, um URL para qualquer site que descreva o
           projecto. Os nomeados elegíveis serão anunciados depois de 2016-08-01. A
@@ -79,12 +79,6 @@ pt:
           Esta votação começa a 16 de julho.
     voting:
       title: Votar
-      description: >
-          Estamos a votar nos nomeados! Escolhe um único nomeado em cada categoria
-          que ache que deva receber o prémio. Pode sempre voltar e alterar o seu voto
-          durante o período de voto. O nomeado com mais votos vence. O período de
-          votação acaba a 16 de agosto, imediatamente antes da conferência State of
-          the Map 2017 onde os vencedores serão anunciados.
     processing:
       title: Processamento
       description: >
@@ -108,7 +102,7 @@ pt:
   description: >
       Este ano apresentamos os Prémios OpenStreetMap! Nove nomeados serão galardoados
       em nove categorias na conferência State of the Map 2017. Estes são prémios comunitários:
-      você decide quem são os nomeados são e depois vota no seu favorito.
+      você decide quem são os nomeados e depois vota no seu favorito.
   description_after: >
       Este ano apresentamos os Prémios OpenStreetMap pela primeira vez na conferência
       State of the Map 2017! A comunidade nomeou personalidades/grupos e votou em

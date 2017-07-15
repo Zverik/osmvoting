@@ -350,20 +350,15 @@ def vote_all():
     if 'osm_token' not in session or config.STAGE != 'voting':
         return redirect(url_for('login'))
     uid = session['osm_uid']
+    # Delete current votes to replace by with the new ones
+    q = Vote.delete().where((Vote.user == uid) & (~Vote.preliminary))
+    q.execute()
     for nom in config.NOMINATIONS:
-        vote = request.form.get('vote_{}'.format(nom), -1, type=int)
-        if vote < 0:
-            continue
-        try:
-            # Delete votes from the same category by this voter
-            v = Vote.select().where((Vote.user == uid) & (~Vote.preliminary)).join(Nominee).where(
-                Nominee.category == nom).get()
-            v.delete_instance()
-        except Vote.DoesNotExist:
-            pass
-        if vote > 0:
+        votes = request.form.getlist('vote_{}'.format(nom))
+        for vote in votes:
+            print('{}: {}'.format(nom, vote))
             v = Vote()
-            v.nominee = Nominee.get(Nominee.id == vote)
+            v.nominee = Nominee.get(Nominee.id == int(vote))
             v.user = uid
             v.preliminary = False
             v.save()
