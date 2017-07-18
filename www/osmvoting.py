@@ -316,7 +316,7 @@ def list_chosen():
 def voting():
     """Called from login(), a convenience method."""
     if 'osm_token' not in session:
-        return redirect(url_for('login'))
+        return redirect(url_for('login_to_osm'))
     if config.STAGE != 'voting':
         return redirect(url_for('login'))
 
