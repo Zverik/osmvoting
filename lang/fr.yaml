@@ -81,6 +81,13 @@ fr:
           et votes de la communauté. Le vote sera ouvert le 16 juillet 2017.
     voting:
       title: Votes
+      description: >
+          Nous votons pour les prix ! Choisissez la ou les candidatures parmi la liste
+          des nominations dans chaque catégorie, qui méritent selon vous la récompense.
+          Vous pouvez modifier votre vote à tout moment jusqu'à la clôture du vote,
+          le 16 août 2017. Les prix seront décernés le 19 août pendant la conférence
+          State of the Map 2017 à celles et ceux qui auront récolté le plus grand
+          nombre de votes dans leur catégorie.
     processing:
       title: En cours…
       description: >
