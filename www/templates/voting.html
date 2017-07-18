@@ -16,7 +16,7 @@
     <p><b>{{ lang.stages[stage].title }}:</b> {{ lang.stages[stage].description }}</p>
     <form action="{{ url_for('vote_all') }}" method="post">
     {% for nom in nominations %}
-    <h2>{{ lang.nominations[nom].title }}</h2>
+    <h2{% if voted_cats and nom not in voted_cats %} class="novote"{% endif %}>{{ lang.nominations[nom].title }}</h2>
     <div class="nominees-list">
         {% for n in nominees %}
         {% if n.category == nom %}

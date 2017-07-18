@@ -137,10 +137,10 @@ class AddNomineeForm(Form):
 @app.route('/edit/<edit_id>')
 def edit_nominees(cat=None, edit_id=None):
     """Called from login(), a convenience method."""
-    if config.STAGE not in ('call', 'callvote', 'select'):
-        return redirect(url_for('login'))
     uid = session.get('osm_uid', None)
     isadmin = uid in config.ADMINS
+    if config.STAGE not in ('call', 'callvote', 'select') and not isadmin:
+        return redirect(url_for('login'))
     if cat is None:
         cat = session.get('nomination', 'core')
     if cat == 'all':
@@ -329,6 +329,8 @@ def voting():
     rnd = Random()
     rnd.seed(uid)
     rnd.shuffle(nominees)
+    # Make a dict of categories user voted in
+    cats = set([x.category for x in Nominee.select(Nominee.category).join(Vote, JOIN.INNER, on=((Vote.nominee == Nominee.id) & (~Vote.preliminary) & (Vote.user == uid))).distinct()])
     # For admin, populate the dict of votes
     if isadmin:
         votesq = Nominee.select(Nominee.id, fn.COUNT(Vote.id).alias('num_votes')).where(Nominee.status == Nominee.Status.CHOSEN).join(
@@ -344,7 +346,7 @@ def voting():
     return render_template('voting.html',
                            nominees=nominees, year=date.today().year,
                            isadmin=isadmin, votes=votes, stage=config.STAGE,
-                           total=total,
+                           total=total, voted_cats=cats,
                            nominations=config.NOMINATIONS, lang=g.lang)
 
 

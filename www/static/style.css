@@ -119,7 +119,7 @@ h2 {
   background-color: #efe;
 }
 
-.nomination-who.voted.novote {
+.nomination-who.voted.novote, h2.novote {
   background-color: #fee;
 }
 
