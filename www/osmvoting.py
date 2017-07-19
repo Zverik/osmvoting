@@ -306,9 +306,10 @@ def prevote(nid):
 
 @app.route('/list')
 def list_chosen():
+    uid = session.get('osm_uid', None)
     nominees = Nominee.select().where(Nominee.status == Nominee.Status.CHOSEN)
     return render_template('list.html',
-                           nominees=nominees, year=date.today().year,
+                           nominees=nominees, year=config.YEAR, user=uid,
                            nominations=config.NOMINATIONS, lang=g.lang)
 
 
@@ -316,7 +317,7 @@ def list_chosen():
 def voting():
     """Called from login(), a convenience method."""
     if 'osm_token' not in session:
-        return redirect(url_for('login_to_osm'))
+        return redirect(url_for('list_chosen'))
     if config.STAGE != 'voting':
         return redirect(url_for('login'))
 

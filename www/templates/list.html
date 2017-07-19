@@ -4,13 +4,17 @@
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 <body>
     <h1>{{ lang.title }} {{ year }}</h1>
+    {% if not user %}
+    <form action="{{ url_for('login_to_osm') }}" method="get" class="addform login">
+        <input type="submit" value="{{ lang.login }}">
+    </form>
+    {% endif %}
     {% for nom in nominations %}
-    {% set nom_loop = loop %}
     <h2>{{ lang.nominations[nom].title }}</h2>
     <p>{{ lang.nominations[nom].description }}</p>
     <ul>
         {% for n in nominees %}
-        {% if n.nomination == nom_loop.index0 %}
+        {% if n.category == nom %}
         <li>{{ n.who }}
         {%- if n.project %},
         {% if n.url %}
