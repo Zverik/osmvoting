@@ -7,3 +7,10 @@ source_lang = en
 type = yaml
 file_filter = lang/<lang>.yaml
 minimum_perc = 30
+
+[osm-awards.nominees-2017]
+source_file = lang/descriptions/en.yaml
+source_lang = en
+type = yaml
+file_filter = lang/descriptions/<lang>.yaml
+minimum_perc = 20
