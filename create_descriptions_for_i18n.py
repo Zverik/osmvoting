@@ -15,5 +15,5 @@ print 'en:'
 for cat, nominees in result.iteritems():
     print '  {}:'.format(cat)
     for nid, nom in nominees.iteritems():
-        print '    # {}'.format(nom['who'])
+        print '    # {}'.format(nom['who'].encode('utf-8'))
         print '    {}: >\n      {}'.format(nid, nom['desc'].encode('utf-8'))

@@ -1,12 +1,145 @@
 en:
+  core:
+    # Hartmut Holzgraefe
+    88: >
+      For setting up and continually improving the ultimate atlas printing service based on MapOSMatic.
+    # Bryan Housel
+    1: >
+      For a wonderful interactive tutorial complete with an imaginary city map inside the most used OSM editor, iD.
+    # Paul Norman and Matthijs Melissen
+    111: >
+      For major architectural changes in osm-carto 3.x then 4.x, serving as a base for improved rendering.
+    # Andy Allan
+    109: >
+      For upgrading all the tests on OSM website, and joining its development team.
+    # Kevin Bullock
+    89: >
+      For making available two new satellite imagery layers directly from DigitalGlobe, which drastically increased coverage in OSM editors.
+  africa:
+    # Mohamed Marrouchi
+    96: >
+      For helping gather Tunisian community on mapping parties and making the local news feed.
+    # Lamine Ndiaye
+    99: >
+      For training Senegal mappers within the framework of the Sunu Gox project "Our locality/community".
+    # State of the Map Africa Organising Team
+    50: >
+      The organising committee of SOTM Africa have put huge efforts into making SOTM happen in Africa for the very first time. They are bringing together parties interested in improving the map across the whole of Africa, and enabling collaboration to stimulate the further growth and promotion of OpenStreetMap in Africa.
+    # Nathalie Sidibe
+    51: >
+      Nathalie's efforts to grow OpenStreetMap Mali are incredible. She dedicates a huge amount of personal time to promote mapping in Mali. She organises and provides training to new community members to ensure high quality mapping in Mali.
+    # Fatima Ahler
+    31: >
+      For her magnificent continued mapping work in sometimes difficult circumstances in Niger. For being a leader in OSMgirls, and being an example for all (mapping) women and men in Africa and beyond. 
   mapping:
-    # test
-    5: >
-      sdfasfasfasf
+    # Bishal Bhandari
+    25: >
+      From the last 18 months he is mapping in OpenStreetMap and has a contibution type Heavy Mapper(Highly Active).He had mapped mostly the area of Nepal like Pokhara(secondary cities),Kathmandu(capital city),Tikapur and other cities.
+    # Jochen Topf
+    90: >
+      For the global polygon fixing effort, which updated all the old-style multipolygons and continues to fix thousands of errors every day.
+    # Russell Deffner
+    70: >
+      Over the past 6 months, Russ has coordinated a global effort to map more than 4 million buildings across 7 countries to help reduce the spread of Malaria.
+    # katpatuka
+    6: >
+      For his unrelenting mapping of developing countries, especially Turkey and China, and for being the most active editor on OpenStreetMap.
+    # xscvxc
+    85: >
+      Contributed 2.5 million points of highly detalized maps in the rural areas of Novosibirsk region in Russia, over 5 years. He did what a dozen of people usually do, and mapped near small towns and in the areas that few people would care about.
+  asia:
+    # Tokyo Town walk Mapping Party
+    41: >
+      For their continuous mapping party in Tokyo.
+    # PlaneMad
+    26: >
+      For his continuous mapping of India and neighboring countries since 2005 and building OpenStreetMap community in India since the beginning.
+    # Humanitarian OpenStreetMap Team Indonesia
+    55: >
+      The HOT Indonesia Team has trained many disabled people and their carers to map the areas they live. This allows better understanding of access and vulnerability for disabled people in Indonesia, especially in disaster planning. Access for disabled communities is frequently not represented on any map, and this project is a great example of how inclusivity and diversity can by both fostered and supported by OpenStreetMap. Watch this short video to learn more: https://www.youtube.com/watch?v=YI1UmwpVFqw&t=2s
+    # Kathmandu Living Labs
+    102: >
+      For organizing the State of the Map Asia 2017 conference and helping with OSM grows in Asia.
+    # OpenStreetMap Bangladesh
+    49: >
+      The OpenStreetMap Bangladesh Community is an incredible example of a local OSM community at it's best. Often using personal time and resources, the local community (of 250+ members) have mapped huge areas of Dhaka down to road block, and Point of Interest Level. They continue to work with a variety of organisations including local government to promote OSM in Bangladesh. Ahasanul Hoque and Tasauf A Baki Billah have put forward huge efforts to make OSM Bangladesh into what it is today.
   writing:
-    # ANother nominee
+    # Carto'Cité
+    80: >
+      High quality tutorials how to use OSM data in GIS and map making.
+    # BushmanK
+    105: >
+      Many thoughtful posts on various OpenStreetMap aspects, including naming of objects, governance, abstractions, namespaces and so on.
+    # Joost Schouppe
+    106: >
+      For his diary with interesting interviews, data analysis on local edits, looking into the effect of mapping parties, thought on using government data and so on.
+    # Arun Ganesh (PlaneMad)
+    92: >
+      For the interesting diary with data statistics, rendering excercises, application reviews and funny observations.
+    # Ramani Huria
+    79: >
+      Great blog posts about community, mapping, techniques for OpenStreetMap in Tanzania and Africa
+  community:
+    # Tony Emery & Jean-Louis Zimmermann
+    81: >
+      Tony and Jean-Louis have a impressive track record of expanding the OSM community, especially in South France with local government but also companies, schools, children, associations. Closely related to their long-time efforts, they have been instrumental in organizing a very successful event State of the Map France 2017 in Avignon.
+    # Andrew Braye
+    66: >
+      Andrew leads the British Red Cross GIS unit and is a founding member of MissingMaps. He is pioneering the use of opensteetmap in a humanitarian context. 
+    # Pete Masters aka pedrito1414
+    19: >
+      During his 4 years as Missing Maps project coordinator, Pete has introduced countless contributors to OSM, supported communities in Bangladesh, DRC, CAR and many other countries, produced remarkable outreach for humanitarian mapping & OSM in general, not to mention being a wonderful person liked by all! As he is now moving to a new adventure in OSM by joining the HOT board, this award would be fully deserved for all he brought to the community.
+    # John Sturdy
+    28: >
+      John has been a very important element for the development of the Albanian Speaking OSM community during the last years. Since he visited our Hackerspace the first time he has helped us by sharing his technical knowledge of OSM something very important for new community members as us. He has continued to help us and share his knowledge not only during his next visits, but also by dedicating a lot of time for knowledge-sharing with us online. A true mentor for us and a contributor with an important role for every new community out there. 
+    # Jessica Salo
+    97: >
+      For organizing mapathons in Colorado, US.
+  innovation:
+    # Sajjad Anwar
+    107: >
+      Creating a changeset data cache and overcoming many issues with our replication in the process. It has allowed OSMCha to visualize changesets almost instantly, and it has a potential to improve the way we work with changes.
+    # Tobias Zwick
     2: >
-      Whatever he makes Double take!
-    # Anybody
-    4: >
-      ы составляем список номинантов. Предложите к награде человека, группу или организацию. Всего три поля: имя, проект (что они сделали, чтобы заслужить почёт) и не обязательное поле ссылки на страницу с описанием проекта. Вы можете добавить до 10 номинантов в каждой категории, одних и тех же можно записывать в разные категории. Также голосуйте за новых и уже добавленных номинантов: у вас есть 5 голосов в каждой категории. Сбор номинантов завершается 27 августа (это суббота). Вводите номинантов латиницей и описания на английском языке. fix
+      For the StreetComplete android application, which drives thousands of attribute edits to OSM .
+    # Yuri Astrakhan
+    95: >
+      A big SPARQL database combining OSM and Wikidata data for cross-referencing.
+    # OpenTopoMap maintainers
+    58: >
+      For a great topographic map project with similar style to the old TK50 official German map and with excellent integration of OSM and SRTM data.
+    # Michael Straßburger
+    93: >
+      For MapSCII, "The Whole World In Your Console". A server-side application that utilises vector tiles to produce an symbol-only map of the world base on OSM data.
+  latam:
+    # Fundación Openstreetmap Colombia
+    65: >
+      Response of the OpenStreetMap Colombia community to the emergency that occurred in Mocoa, Putumayo, Colombia during the night of March 31 and April 1, 2017. Knowing the importance of maps as an indispensable input for emergency management and subsequent reconstruction, This work was available in search of coordination with other communities and volunteers in order to have a greater impact and relevance in the citizen mobilization in an organized way than in Colombia and other latitudes.
+    # Marco Antonio
+    43: >
+      Marco has done a great work editing and translating the wiki pages to Spanish and mobilizing the OpenStreetMap community in Bolivia
+    # Peru Flood response team
+    45: >
+      After the tragic flooding in Peru this year, a local team of community members led the organised mapping of the affected areas. They created several projects using the HOT Tasking Manager and managed their mapping and full validation. The team was led by Johnattan Rupire.
+    # Miriam Gonzalez - mapanauta
+    46: >
+      Miriam is actively involved in growing and nurturing the OSM community in Latin America. She led the HOT Activation response to Hurricane Patricia in Mexico, and since then has travelled around Latin America providing training for people to improve the map, including in Peru and Ecuador.
+    # GeoChicas
+    63: >
+      GeoChicas has been working against sexism and making projects to integrate OSM's users
+  ulf:
+    # Martin Raifer
+    16: >
+      For the Overpass turbo web based data mining tool 
+    # Richard Fairhurst
+    24: >
+      Besides an endless row of contributions to both OpenStreetMap data and software, for the development of Potlatch 1 and 2, without OpenStreetMap as we know it today would likely not exists. As they provided the easy entry to OpenStreetMap that previously was missing.
+    # Miriam Gonzalez
+    62: >
+      Miriam's work to help lower the barrier for entry to the world of OSM and to make the community more accessible and diverse is appreciated not just in her home country of Mexico, but all across the Americas. She has worked hard to grow mapping access across Latin America through her work with Telenav and by sharing her trainings and teaching lessons learned to others in the community. In addition to leading HOT's response to Hurricane Patricia, her institutional knowledge has set many of us off on a path to success! 
+    # Christoph Hormann (aka imagico)
+    5: >
+      For his untiring support of mappers in enhancing the quality of planned imports and mechanical edits
+    # Dr Nama Budhathoki
+    22: >
+      For his work in developing the OSM community in Nepal.
