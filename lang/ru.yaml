@@ -85,6 +85,8 @@ ru:
           в любое время, пока голосование открыто. Номинант с наибольшим числом голосов
           победит. Голосование закончится 16 августа, как раз перед конференцией State
           of the Map 2017, на которой объявят победителей.
+      readmore: Узнайте больше про каждого из номинантов в {блоге OpenStreetMap}.
+      readmore_link: https://blog.openstreetmap.org/tag/awards2017ru/?lang=ru
     processing:
       title: Обработка голосов
       description: >
