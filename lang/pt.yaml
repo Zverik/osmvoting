@@ -79,6 +79,13 @@ pt:
           Esta votação começa a 16 de julho.
     voting:
       title: Votar
+      description: >
+          Nós estamos escolhendo entre os candidatos nomeados! Escolha qualquer número
+          de candidatos de cada categoria, que você pensa que merece receber um prêmio.
+          Você pode retornar e mudar seus votos em qualquer momento até o fim da votação.
+          O candidato com mais votos ganhará. A votação se encerra em 16 de agosto,
+          logo antes da conferência State of the Map 2017, na qual os vencedores serão
+          anunciados.
     processing:
       title: Processamento
       description: >
