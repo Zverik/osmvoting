@@ -15,14 +15,15 @@ import config
 import codecs
 
 oauth = OAuth()
-openstreetmap = oauth.remote_app('OpenStreetMap',
-                                 base_url='https://api.openstreetmap.org/api/0.6/',
-                                 request_token_url='https://www.openstreetmap.org/oauth/request_token',
-                                 access_token_url='https://www.openstreetmap.org/oauth/access_token',
-                                 authorize_url='https://www.openstreetmap.org/oauth/authorize',
-                                 consumer_key=app.config['OAUTH_KEY'] or '123',
-                                 consumer_secret=app.config['OAUTH_SECRET'] or '123'
-                                 )
+openstreetmap = oauth.remote_app(
+    'OpenStreetMap',
+    base_url='https://api.openstreetmap.org/api/0.6/',
+    request_token_url='https://www.openstreetmap.org/oauth/request_token',
+    access_token_url='https://www.openstreetmap.org/oauth/access_token',
+    authorize_url='https://www.openstreetmap.org/oauth/authorize',
+    consumer_key=app.config['OAUTH_KEY'] or '123',
+    consumer_secret=app.config['OAUTH_SECRET'] or '123'
+)
 
 
 @app.before_request
@@ -46,6 +47,18 @@ def merge_dict(target, other):
             target[k] = v
 
 
+def load_language(path, lang):
+    with codecs.open(os.path.join(config.BASE_DIR, path, 'en.yaml'), 'r', 'utf-8') as f:
+        data = yaml.load(f)
+        data = data[data.keys()[0]]
+    lang_file = os.path.join(config.BASE_DIR, path, lang + '.yaml')
+    if os.path.exists(lang_file):
+        with codecs.open(lang_file, 'r', 'utf-8') as f:
+            lang_data = yaml.load(f)
+            merge_dict(data, lang_data[lang_data.keys()[0]])
+    return data
+
+
 def load_user_language():
     supported = set([x[:x.index('.')].decode('utf-8') for x in os.listdir(
         os.path.join(config.BASE_DIR, 'lang')) if '.yaml' in x])
@@ -64,15 +77,13 @@ def load_user_language():
             lang = pieces[0].lower()
             break
 
-    # Load language
-    with codecs.open(os.path.join(config.BASE_DIR, 'lang', 'en.yaml'), 'r', 'utf-8') as f:
-        data = yaml.load(f)
-        data = data[data.keys()[0]]
-    with codecs.open(os.path.join(config.BASE_DIR, 'lang', lang + '.yaml'), 'r', 'utf-8') as f:
-        lang_data = yaml.load(f)
-        merge_dict(data, lang_data[lang_data.keys()[0]])
+    data = load_language('lang', lang)
+    descs = load_language('lang/descriptions', lang)
+    print descs
+    data['desc'] = descs
     g.lang = data
-    g.category_choices = [('', data['choose_category'] + '...')] + [(c, data['nominations'][c]['title']) for c in config.NOMINATIONS]
+    g.category_choices = ([('', data['choose_category'] + '...')] +
+                          [(c, data['nominations'][c]['title']) for c in config.NOMINATIONS])
 
 
 @app.route('/')
@@ -198,7 +209,8 @@ def edit_nominees(cat=None, edit_id=None):
         Nominee.proposedby == uid).count() < config.MAX_NOMINEES_PER_USER)
     return render_template('index.html',
                            form=form, nomination=nom or 'all',
-                           nominees=nominees.naive(), user=uid, isadmin=isadmin, canvote=canvote(uid),
+                           nominees=nominees.naive(), user=uid, isadmin=isadmin,
+                           canvote=canvote(uid),
                            canunvote=config.STAGE == 'callvote' or isteam(uid),
                            votes=votes, statuses={k: v for k, v in Nominee.status.choices},
                            year=config.YEAR, stage=config.STAGE, canadd=canadd,
@@ -230,7 +242,8 @@ def add_nominee():
             form.populate_obj(n)
             n.save()
         return redirect(url_for('edit_nominees'))
-    return 'Error in fields:\n{}'.format('\n'.join(['{}: {}'.format(k, v) for k, v in form.errors.items()]))
+    return 'Error in fields:\n{}'.format(
+        '\n'.join(['{}: {}'.format(k, v) for k, v in form.errors.items()]))
 
 
 @app.route('/delete/<nid>')
@@ -258,6 +271,7 @@ def choose_nominee(nid):
     n.save()
     return redirect(url_for('edit_nominees'))
 
+
 @app.route('/setstatus/<nid>')
 @app.route('/setstatus/<nid>/<status>')
 def set_status(nid, status=None):
@@ -268,6 +282,7 @@ def set_status(nid, status=None):
     n.save()
     return redirect(url_for('edit_nominees'))
 
+
 def canvote(uid):
     if 'osm_token' not in session:
         return False
@@ -276,7 +291,8 @@ def canvote(uid):
     if config.STAGE != 'callvote' and not isteam(uid):
         return False
     return Vote.select().join(Nominee).where(
-        (Vote.user == uid) & (Vote.preliminary) & (Nominee.category == session['nomination'])).count() < 5
+        (Vote.user == uid) & (Vote.preliminary) &
+        (Nominee.category == session['nomination'])).count() < 5
 
 
 def isteam(uid):
@@ -343,11 +359,15 @@ def voting():
         votes = None
     # Count total number of voters
     total = Vote.select(fn.Distinct(Vote.user)).where(~Vote.preliminary).group_by(Vote.user).count()
+    readmore = (g.lang['stages']['voting']['readmore']
+                .replace('{', '<a href="{}">'.format(
+                    g.lang['stages']['voting']['readmore_link']))
+                .replace('}', '</a>'))
     # Yay, done
     return render_template('voting.html',
                            nominees=nominees, year=date.today().year,
                            isadmin=isadmin, votes=votes, stage=config.STAGE,
-                           total=total, voted_cats=cats,
+                           total=total, voted_cats=cats, readmore=readmore,
                            nominations=config.NOMINATIONS, lang=g.lang)
 
 
@@ -415,7 +435,8 @@ def wait():
     total = Vote.select(fn.Distinct(Vote.user)).where(~Vote.preliminary).group_by(Vote.user).count()
     # Update a link in the description
     desc = g.lang['stages'][config.STAGE]['description']
-    desc = desc.replace('{', '<a href="{}">'.format(url_for('static', filename='osmawards2016.txt'))).replace('}', '</a>')
+    desc = desc.replace('{', '<a href="{}">'.format(
+        url_for('static', filename='osmawards2016.txt'))).replace('}', '</a>')
     # Yay, done
     return render_template('wait.html',
                            nominees=nominees, year=date.today().year,

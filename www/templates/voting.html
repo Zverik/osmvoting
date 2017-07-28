@@ -14,6 +14,7 @@
     {% endwith %}
     <p>{{ lang.description }}</p>
     <p><b>{{ lang.stages[stage].title }}:</b> {{ lang.stages[stage].description }}</p>
+    <p>{{ readmore | safe }}</p>
     <form action="{{ url_for('vote_all') }}" method="post">
     {% for nom in nominations %}
     <h2{% if voted_cats and nom not in voted_cats %} class="novote"{% endif %}>{{ lang.nominations[nom].title }}</h2>
@@ -28,7 +29,7 @@
             {% endif %}
         </div>
         <div class="nomination-why">
-            {{ n.project }}
+            {{ lang.desc[nom][n.id] or n.project }}
             {% if n.url %}
             (<a href="{{ n.url }}" target="_blank">{{ lang.link }}</a>)
             {% endif %}

@@ -93,6 +93,8 @@ en:
         any time before the voting ends. The nominee with most votes wins.
         The voting ends on 16th of August, right before the State of the Map 2017
         conference, on which winners will be announced.
+      readmore: Read more about the nominees in the {OpenStreetMap Blog}.
+      readmore_link: https://blog.openstreetmap.org/tag/awards2017/
 
     processing:
       title: Processing
