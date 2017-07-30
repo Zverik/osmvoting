@@ -88,6 +88,8 @@ fr:
           le 16 août 2017. Les prix seront décernés le 19 août pendant la conférence
           State of the Map 2017 à celles et ceux qui auront récolté le plus grand
           nombre de votes dans leur catégorie.
+      readmore: Plus d'informations à propos des nominations sur le {blog d'OpenStreetMap}.
+      readmore_link: https://blog.openstreetmap.org/tag/awards2017/
     processing:
       title: En cours…
       description: >

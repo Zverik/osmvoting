@@ -1,0 +1,71 @@
+fr:
+  core:
+    88: >
+        Pour l'installation et l'amélioration en continu du meilleur service d'impression
+        d'atlas sur la base de MapOSMatic.
+    1: >
+        Pour un merveilleux tutoriel interactif, très complet avec la carte d'une
+        ville imaginaire, dans l'éditeur OSM le plus utilisé, iD.
+    111: >
+        Pour des changements d'architecture majeurs dans osm-carto (versions 3.x et
+        4.x) qui ouvrent la voie à des améliorations du rendu.
+    109: >
+        Pour la mise à jour de tous les tests sur le site internet d'OpenStreetMap
+        et pour avoir rejoint cette équipe de développement.
+    89: >
+        Pour la mise à disposition de deux nouvelles couches d'imagerie satellitaire
+        directement par DigitalGlobe et ainsi l'amélioration considérable de la couverture
+        dans les éditeurs OSM.
+  africa:
+    96: >
+        Pour son renforcement de la communauté tunisienne avec des carto-parties et
+        son apparition dans les informations locales.
+    99: >
+        Pour la formation de contributeurs sénégalais dans le cadre du projet Sunu
+        Gox pour les communautés locales.
+    50: >
+        Le comité d'organisation de la conférence State of the Map Afrique a réalisé
+        des efforts considérables pour construire cette première édition continentale.
+        Ils ont rassemblé des communautés diverses, unies dans leur intérêt pour améliorer
+        la carte à travers l'Afrique entière et en permettant des collaborations pour
+        stimuler la croissance future et la promotion d'OpenStreetMap en Afrique.
+    51: >
+        Les efforts de Nathalie pour la croissance d'OpenStreetMap sont incroyables.
+        Elle dédie un temps personnel immense pour promouvoir la cartographie au Mali.
+        Elle organise et propose des formations aux nouveaux membres de la communauté
+        pour garantir des contributions de qualité au Mali.
+    31: >
+        Pour son travail magnifique et sans relâche de cartographie dans des conditions
+        parfois difficiles au Niger. Pour ses qualités de meneuse de OSMgirls et pour
+        incarner un exemple pour toutes et tous les cartographes en Afrique et au-delà.
+  writing:
+    80: >
+        Pour leur tutoriaux de grande qualité sur l'utilisation de données OpenStreetMap
+        dans les SIGs et pour la réalisation de cartes personnalisées.
+    105: >
+        Pour de nombreux billets réfléchis sur divers aspects d'OpenStreetMap, notamment
+        l'appellation des objets, la gouvernance, les abstractions, les espaces de
+        noms, etc.
+    106: >
+        Pour son journal d'utilisateur avec des entretiens intéressants, des analyses
+        de données sur les éditions locales, son regard sur les effets des mapping
+        parties, ses pensées sur l'utilisation des données gouvernementales, etc.
+    92: >
+        Pour son journal d'utilisateur intéressant avec des statistiques sur les données,
+        des exercices de rendu, des essais critiques d'applications et des observations
+        amusantes.
+    79: >
+        De superbes billets de blog à propos de la communauté, de la cartographie,
+        des techniques pour OpenStreetMap en Tanzanie et en Afrique.
+  community:
+    81: >
+        Tony et Jean-Louis montrent un historique impressionnant pour le développement
+        de la communauté OSM, en particulier dans le Sud de la France vers les collectivités
+        locales mais également les entreprises, les écoles, les enfants et les associations.
+        Dans la droite lignée de ces efforts de long terme, ils ont joué un rôle clé
+        dans l'organisation d'une édition très réussie de State of the Map France
+        2017 à Avignon.
+    66: >
+        Andrew dirige le service SIG de la Croix-Rouge Britannique et est un membre
+        fondateur du projet MissingMaps. Il participe à l'innovation des usages d'OpenStreetMap
+        dans un contexte humanitaire.
