@@ -49,12 +49,14 @@ el:
       title: Αποτελέσματα
   status:
     outoftime: εκτός χρονικού περιθωρίου
+  title: Βραβεία OSM
   forwhat: Περιγράψτε τη δουλειά τους
   url: URL
   choose_category: Επέλεξε κατηγορία
   addnominee: Πρόσθεσε μια/έναν υποψήφιο
   deletenominee: 'Διαγραφή '
   listnominees: Λίστα υποψηφίων
+  novote: Δεν ψηφίζω σε αυτή την κατηγορία
   link: σύνδεσμος
   thanksvoted: Η επιλογή σας έχει αποθηκευτεί, ευχαριστούμε που ψηφίσατε!
   peoplevoted: Συνολικός αριθμός ανθρώπων που ψήφισαν
