@@ -7,12 +7,11 @@
     <p>{{ lang.description_after }}</p>
     <p><b>{{ lang.stages[stage].title }}:</b> {{ description | safe }}</p>
     {% for nom in nominations %}
-    {% set nom_loop = loop %}
     <h2>{{ lang.nominations[nom].title }}</h2>
     <div class="nominees-list">
         {% for n in nominees %}
-        {% if n.nomination == nom_loop.index0 %}
-        <div class="nomination-who{% if isresults and n.id == winners[nom_loop.index0][0] %} voted{% endif %}">
+        {% if n.category == nom %}
+        <div class="nomination-who{% if isresults and n.id == winners[nom][0] %} voted{% endif %}">
             {{ n.who }}
             {% if isadmin or isresults %}
             <small>[{{ votes[n.id] }}]</small>
