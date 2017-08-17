@@ -79,7 +79,6 @@ def load_user_language():
 
     data = load_language('lang', lang)
     descs = load_language('lang/descriptions', lang)
-    print descs
     data['desc'] = descs
     g.lang = data
     g.category_choices = ([('', data['choose_category'] + '...')] +
@@ -382,7 +381,6 @@ def vote_all():
     for nom in config.NOMINATIONS:
         votes = request.form.getlist('vote_{}'.format(nom))
         for vote in votes:
-            print('{}: {}'.format(nom, vote))
             v = Vote()
             v.nominee = Nominee.get(Nominee.id == int(vote))
             v.user = uid
