@@ -418,7 +418,7 @@ def wait():
     nominees = Nominee.select(Nominee, Vote.user.alias('voteuser')).where(Nominee.status == Nominee.Status.CHOSEN).join(
         Vote, JOIN.LEFT_OUTER, on=((Vote.nominee == Nominee.id) & (Vote.user == uid) & (~Vote.preliminary))).naive()
     # For admin, populate the dict of votes
-    winners = [[0, 0] for x in range(len(config.NOMINATIONS))]
+    winners = {x: [0, 0] for x in config.NOMINATIONS}
     if isadmin or config.STAGE == 'results':
         votesq = Nominee.select(Nominee.id, Nominee.category, fn.COUNT(Vote.id).alias('num_votes')).where(Nominee.status == Nominee.Status.CHOSEN).join(
             Vote, JOIN.LEFT_OUTER, on=((Vote.nominee == Nominee.id) & (~Vote.preliminary))).group_by(Nominee.id)
