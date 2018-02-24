@@ -67,12 +67,6 @@ fr:
   stages:
     call:
       title: Appel à nominations
-      description: >
-          Proposez une personne, un groupe ou une organisation pour une récompense.
-          Seulement 3 éléments sont nécessaires : un nom, un projet (leurs actions
-          qui méritent une nomination) et un lien URL facultatif vers une page internet
-          qui décrit le projet. Tout ce qui est annoncé après le 1er août 2016 est
-          éligible. L'appel à nominations est ouvert jusqu'au 9 juillet 2017.
     select:
       title: Sélection des nominations
       description: >
@@ -81,21 +75,10 @@ fr:
           et votes de la communauté. Le vote sera ouvert le 16 juillet 2017.
     voting:
       title: Votes
-      description: >
-          Nous votons pour les prix ! Choisissez la ou les candidatures parmi la liste
-          des nominations dans chaque catégorie, qui méritent selon vous la récompense.
-          Vous pouvez modifier votre vote à tout moment jusqu'à la clôture du vote,
-          le 16 août 2017. Les prix seront décernés le 19 août pendant la conférence
-          State of the Map 2017 à celles et ceux qui auront récolté le plus grand
-          nombre de votes dans leur catégorie.
       readmore: Plus d'informations à propos des nominations sur le {blog d'OpenStreetMap}.
       readmore_link: https://blog.openstreetmap.org/tag/awards2017/
     processing:
       title: En cours…
-      description: >
-          Veuillez s'il vous plaît patienter pendant le dépouillement des votes. Les
-          résultats seront annoncés le 19 août pendant la conférence State of the
-          Map 2017 puis publiés.
     results:
       title: Résultats
       description: Voici les résultats des prix "OSM Awards". Le nombre de votes est indiqué entre crochets, l'astérisque marque votre vote. {Voici les votes bruts} à disposition si vous voulez effectuer une analyse. Merci à tous les votants, félicitations à toutes les personnes nominées et à nos vainqueurs ! Rendez-vous l'année prochaine !
@@ -109,14 +92,6 @@ fr:
     committee: membre du comité
     deleted: effacé
     other: autre
-  title: Prix "OSM Awards"
-  description: >
-      Les prix "OSM Awards" sont de retour cette année ! Dans 9 catégories, 9 récompenses
-      seront décernées pendant la conférence State of the Map 2017. La communauté
-      décide : vous proposez les nominations et vous votez.
-  description_after: >
-      Les prix "OSM Awards" ont été décernés pour la première fois pendant la conférence
-      State of the Map 2016.
   login: S'identifier pour proposer une nomination ou voter
   who: Qui
   forwhat: Décrivez leur travail

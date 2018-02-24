@@ -65,12 +65,6 @@ pt:
   stages:
     call:
       title: Nomear uma pessoa/grupo
-      description: >
-          Sugira um indivíduo, um grupo ou uma organização para um prémio. É pedido
-          apenas três dados: um nome, um projecto (o que eles fizeram que esteja relacionado
-          com o prémio) e, opcionalmente, um URL para qualquer site que descreva o
-          projecto. Os nomeados elegíveis serão anunciados depois de 2016-08-01. A
-          fase de nomeação termina a 9 de julho.
     select:
       title: Selecionar um nomeado
       description: >
@@ -79,19 +73,8 @@ pt:
           Esta votação começa a 16 de julho.
     voting:
       title: Votar
-      description: >
-          Nós estamos escolhendo entre os candidatos nomeados! Escolha qualquer número
-          de candidatos de cada categoria, que você pensa que merece receber um prêmio.
-          Você pode retornar e mudar seus votos em qualquer momento até o fim da votação.
-          O candidato com mais votos ganhará. A votação se encerra em 16 de agosto,
-          logo antes da conferência State of the Map 2017, na qual os vencedores serão
-          anunciados.
     processing:
       title: Processamento
-      description: >
-          Por favor espere até que esteja concluído o processamento dos votos que
-          serão publicados a 19 de agosto, depois do seu anuncio na conferência State
-          of the Map 2017.
     results:
       title: Resultados
       description: Aqui estão os resultados dos Prémios OSM. O número de votos está dentro de quadrados, o seu voto marcado com um asterisco. {Aqui está a lista bruta dos votos } se quiser correr alguma análise. Obrigado a todos os que votaram e parabéns aos nossos vencedores e aos nomeados. Até ao próximo ano!
@@ -105,15 +88,6 @@ pt:
     committee: membro do comité
     deleted: eliminado
     other: outro
-  title: Prémios OSM
-  description: >
-      Este ano apresentamos os Prémios OpenStreetMap! Nove nomeados serão galardoados
-      em nove categorias na conferência State of the Map 2017. Estes são prémios comunitários:
-      você decide quem são os nomeados e depois vota no seu favorito.
-  description_after: >
-      Este ano apresentamos os Prémios OpenStreetMap pela primeira vez na conferência
-      State of the Map 2017! A comunidade nomeou personalidades/grupos e votou em
-      nove categorias.
   login: Inicie sessão para sugerir nomeados ou votar
   who: Quem
   forwhat: Descreva o seu trabalho

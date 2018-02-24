@@ -41,15 +41,10 @@ el:
       readmore_link: https://blog.openstreetmap.org/tag/awards2017/
     processing:
       title: Επεξεργασία
-      description: >
-          Παρακαλούμε περιμένετε μέχρι να επεξεργαστούμε τα αποτελέσματα της ψηφοφορίας.
-          Θα δημοσιευτούν στις 19 Αυγούστου, μετά την ανακοίνωση στο συνέδριο State
-          of the Map 2017.
     results:
       title: Αποτελέσματα
   status:
     outoftime: εκτός χρονικού περιθωρίου
-  title: Βραβεία OSM
   forwhat: Περιγράψτε τη δουλειά τους
   url: URL
   choose_category: Επέλεξε κατηγορία

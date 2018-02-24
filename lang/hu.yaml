@@ -66,12 +66,6 @@ hu:
   stages:
     call:
       title: Felhívás jelöltek ajánlására
-      description: >
-          Javasolj egy személyt, egy csoportot vagy egy szervezetet valamelyik díjra.
-          Ehhez csupán három adatot kérünk: név, projekt (mit tett azért, hogy kiérdemelje
-          a díjat) és esetleg egy URL egy olyan weboldalhoz, amely bemutatja a projektet.
-          Mindennel lehet nevezni, amelyet 2016. augusztus 1. után jelentettek be.
-          A nevezés július 9-én zárul.
     select:
       title: Jelöltek kiválasztása
       description: >
@@ -80,20 +74,10 @@ hu:
           tart.
     voting:
       title: Szavazás
-      description: >
-          Jelöltekre szavazunk! Válassz ki kategóriánként bárhány jelöltet, akik véleményed
-          szerint megérdemlik adíjat. A szavazás lezárultáig bármikor visszatérhetsz
-          és módosíthatsz a szavazataidon. A legtöbb szavazatot kapó jelölt győz.
-          A szavazás augusztus 16-án zárul, közvetlenül a 2017-es State of the Map
-          konferencia előtt, ugyanis itt fogják bejelenteni a győzteseket.
       readmore: A jelöltekről az {OpenStreetMap Blog}on olvashatsz.
       readmore_link: https://blog.openstreetmap.org/tag/awards2017/
     processing:
       title: Feldolgozás
-      description: >
-          Kérjük, légy türelemmel, amíg feldolgozzuk a szavazás eredményeit. Augusztus
-          19-én fognak megjelenni, a State of the Map 2017 konferencián történő bejelentés
-          után.
     results:
       title: Eredmények
       description: Íme az OSM-díjak eredményei. A szavazatk száma a szögletes zárójelben van, a te szavazatodat egy csillag jelöli. {Itt a szavazatok nyers listája}, ha szeretnél valamilyen elemzést lefuttatni. Köszönjük mindenkinek, aki szavazott, és gratulálunk a győzteseknek és az összes jelöltnek. Találkozunk jövőre!
@@ -107,15 +91,6 @@ hu:
     committee: a bizottság tagja
     deleted: törölve
     other: egyéb
-  title: OSM-díjak
-  description: >
-      Idén bemutatjuk az OpenStreetMap-díjakat. A 2017-es State of the Map konferencián
-      9 kategóriában 9 nevezett fog díjat kapni. Ez egy közösségi esemény: ti döntitek
-      el, hogy kik legyenek a jelöltek, majd ti szavaztok rájuk.
-  description_after: >
-      Idén először mutattuk be az OpenStreetMap-díjakat a State of the Map 2017 konferencián.
-      A közösség jelölteket nevezett, majd közülük mind a kilenc kategóriában megszavazott
-      egy-egy győztest.
   login: Belépés jelöltek nevezéséhez vagy szavazáshoz
   who: Kinek
   forwhat: A munkásság leírása
