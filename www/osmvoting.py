@@ -364,7 +364,7 @@ def voting():
                 .replace('}', '</a>'))
     # Yay, done
     return render_template('voting.html',
-                           nominees=nominees, year=date.today().year,
+                           nominees=nominees, year=config.YEAR,
                            isadmin=isadmin, votes=votes, stage=config.STAGE,
                            total=total, voted_cats=cats, readmore=readmore,
                            nominations=config.NOMINATIONS, lang=g.lang)
@@ -437,7 +437,7 @@ def wait():
         url_for('static', filename='osmawards2017.txt'))).replace('}', '</a>')
     # Yay, done
     return render_template('wait.html',
-                           nominees=nominees, year=date.today().year,
+                           nominees=nominees, year=config.YEAR,
                            description=desc,
                            isadmin=isadmin, votes=votes, stage=config.STAGE,
                            total=total, winners=winners, isresults=config.STAGE == 'results',
