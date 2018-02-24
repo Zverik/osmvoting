@@ -75,8 +75,8 @@ en:
         an award. We only ask for three pieces of information: a name, a project
         (what did they do to claim an award),
         and optionally an URL for any web page that describes the project.
-        Eligible is everything that was announced after 2016-08-01.
-        The call for nominees ends on the 9th of July.
+        Eligible is everything that was announced after 2017-07-01.
+        The call for nominees ends on the 31th of May.
 
     select:
       title: Selecting Nominees
@@ -91,7 +91,7 @@ en:
         We are voting for nominees! Choose any number of nominees for each category, that
         you think should receive an award. You can come back and change your votes
         any time before the voting ends. The nominee with most votes wins.
-        The voting ends on 16th of August, right before the State of the Map 2017
+        The voting ends on 26th of July, right before the State of the Map 2018
         conference, on which winners will be announced.
       readmore: Read more about the nominees in the {OpenStreetMap Blog}.
       readmore_link: https://blog.openstreetmap.org/tag/awards2017/
@@ -100,7 +100,7 @@ en:
       title: Processing
       description: >
         Please wait until we process the voting results. They will be published
-        on 19th of August, after the announcement at the State of the Map 2017 conference.
+        on 29th of July, after the announcement at the State of the Map 2018 conference.
 
     results:
       title: Results
@@ -120,15 +120,15 @@ en:
     deleted: deleted
     other: other
 
-  title: OSM Awards
+  title: OSM Awards 2018
   description: >
-    This year, we are presenting the OpenStreetMap Awards! Nine nominees will receive an award
-    in nine categories at the State of the Map 2017 conference. This is a community award: you decide
+    This year, we are again presenting the OpenStreetMap Awards! Nine nominees will receive an award
+    in nine categories at the State of the Map 2018 conference. This is a community award: you decide
     who the nominees are, before you vote for them.
 
   description_after: >
-    This year, we presented the OpenStreetMap Awards for the first time at the State of the
-    Map 2017 conference! The community nominated and voted for nine nominees for each of the
+    This year, we presented the OpenStreetMap Awards for the third time at the State of the
+    Map 2018 conference! The community nominated and voted for nine nominees for each of the
     nine award categories.
 
   login: Login to submit nominees or vote

@@ -1,17 +1,5 @@
-<!doctype html>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{{ lang.title }} {{ year }}</title>
-<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
-<body>
-    <h1>{{ lang.title }} {{ year }}</h1>
-    {% with messages = get_flashed_messages() %}
-    {% if messages %}
-    {% for message in messages %}
-    <div class="message">{{ message }}</div>
-    {% endfor %}
-    {% endif %}
-    {% endwith %}
+{% extends "layout.html" %}
+{% block content %}
     <p>{{ lang.description }}</p>
     <p><b>{{ lang.stages[stage].title }}:</b> {{ lang.stages[stage].description }}</p>
     <p>{{ readmore | safe }}</p>
@@ -46,4 +34,4 @@
     </div>
     </form>
 <script type="text/javascript" src="{{ url_for('static', filename='voting.js') }}"></script>
-</body>
+{% endblock %}

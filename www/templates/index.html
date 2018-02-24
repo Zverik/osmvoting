@@ -1,10 +1,5 @@
-<!doctype html>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{{ lang.title }} {{ year }}</title>
-<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
-<body>
-    <h1>{{ lang.title }} {{ year }}</h1>
+{% extends "layout.html" %}
+{% block content %}
     <p>{{ lang.description }}</p>
     <p><b>{{ lang.stages[stage].title }}:</b> {{ lang.stages[stage].description }}</p>
     {% if canadd or isadmin %}
@@ -98,4 +93,4 @@
         </div>
         {% endfor %}
     </div>
-</body>
+{% endblock %}

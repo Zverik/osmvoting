@@ -212,7 +212,7 @@ def edit_nominees(cat=None, edit_id=None):
                            canvote=canvote(uid),
                            canunvote=config.STAGE == 'callvote' or isteam(uid),
                            votes=votes, statuses={k: v for k, v in Nominee.status.choices},
-                           year=config.YEAR, stage=config.STAGE, canadd=canadd,
+                           stage=config.STAGE, canadd=canadd,
                            nominations=filterables, lang=g.lang)
 
 
@@ -324,7 +324,7 @@ def list_chosen():
     uid = session.get('osm_uid', None)
     nominees = Nominee.select().where(Nominee.status == Nominee.Status.CHOSEN)
     return render_template('list.html',
-                           nominees=nominees, year=config.YEAR, user=uid,
+                           nominees=nominees, user=uid,
                            nominations=config.NOMINATIONS, lang=g.lang)
 
 
@@ -364,7 +364,7 @@ def voting():
                 .replace('}', '</a>'))
     # Yay, done
     return render_template('voting.html',
-                           nominees=nominees, year=config.YEAR,
+                           nominees=nominees,
                            isadmin=isadmin, votes=votes, stage=config.STAGE,
                            total=total, voted_cats=cats, readmore=readmore,
                            nominations=config.NOMINATIONS, lang=g.lang)
@@ -437,7 +437,7 @@ def wait():
         url_for('static', filename='osmawards2017.txt'))).replace('}', '</a>')
     # Yay, done
     return render_template('wait.html',
-                           nominees=nominees, year=config.YEAR,
+                           nominees=nominees,
                            description=desc,
                            isadmin=isadmin, votes=votes, stage=config.STAGE,
                            total=total, winners=winners, isresults=config.STAGE == 'results',
