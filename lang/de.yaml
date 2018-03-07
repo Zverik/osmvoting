@@ -45,6 +45,7 @@ de:
     latam:
       title: Preis für Engagement in Lateinamerika
       short: Lateinamerika
+      description: für den Aufbau der Community und das Verbessern der Karte in Süd- und Mittelamerika von Mexiko bis Chile und Argentinien
     africa:
       title: Preis für Engagement in Afrika
       short: Afrika
@@ -56,11 +57,36 @@ de:
     ulf:
       title: Ulf-Möller-Gedächtnispreis
       short: Ulf
+      description: >
+          Für einzelne Mitwirkende, die das OpenStreetMap-Projekt erheblich vorangebracht
+          haben, sei es durch gutes Mapping, Arbeit für die Community oder andere
+          Verbesserungen von OSM. Jedes Mitglied, das irgendwann seit 2004 aktiv war,
+          kann vorgeschlagen werden.
   stages:
     call:
       title: Kandidatensuche
+      description: >
+          Schlage eine Einzelperson, eine Gruppe oder eine Organsiation für den Preis
+          vor. Wir bitten nur um drei Informationen: den Namen, das Projekt (was getan
+          wurde, um geehrt zu werden) und optional die URL einer Website, die das
+          Projekt beschreibt. Vorgeschlagen werden kann, was nach dem 1. Juli 2017
+          veröffentlicht wurde. Der Vorschlagszeitraum endet am 31. Mai.
+    select:
+      description: >
+          Die Preisauswahlkomitees sind mit der Sortierung und Sichtung unter Berücksichtigung
+          der Abstimmungsergebnisse der Liste der Vorschläge für alle fünf Kategorien
+          beschäftigt. Die Abstimmungsphase beginnt am 16. Juli.
+    voting:
+      readmore: Lies mehr über die Nominierten im {OpenStreetMap-Blog}.
+      readmore_link: https://blog.openstreetmap.org/tag/awards2017/
+    processing:
+      description: >
+          Bitte warte, bis wir die Wahlergebnisse ausgewertet haben. Diese werden
+          am 29. Juli nach der Bekanntgabe auf der State of the Map 2018 veröffentlicht
+          werden.
     results:
       title: Ergebnisse
+      description: Hier sind die Ergebnisse der OSM-Awards. Die Anzahl der Stimmen steht in den eckigen Klammern, deine Auswahl ist mit einem Sternchen markiert. {Hier findest du die Rohdaten der Stimmabgabe}, wenn du eigene Analysen durchführen möchtest. Vielen Dank an alle, die abgestimmt haben, und Gratulation an alle Gewinner und Nominierten. Bis nächstes Jahr!
   status:
     submitted: abgesendet
     accepted: angenommen
@@ -70,6 +96,12 @@ de:
     vague: zu ungenau
     committee: Mitglied des Komitees
     deleted: gelöscht
+  title: OSM-Awards 2018
+  description: >
+      Dieses Jahr gibt es erneut die OpenStreetMap-Awards! Neun Ausgewählte werden
+      in neun Kategorien einen Preis auf der State of the Map 2018 verliehen bekommen.
+      Dies ist ein Preis der Community. Ihr entscheidet, wer nominiert wird, bevor
+      ihr darüber abstimmt.
   login: Melde dich an, um vorzuschlagen oder zu wählen
   forwhat: Beschreibe deren Werk
   url: URL
