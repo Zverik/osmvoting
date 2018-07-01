@@ -176,13 +176,14 @@ def edit_nominees(cat=None, edit_id=None):
         Vote, JOIN.LEFT_OUTER, on=(
             (Vote.nominee == Nominee.id) & (Vote.user == uid) & (Vote.preliminary)
         )).order_by(Nominee.id.desc())
+
     if nom in config.NOMINATIONS:
         nominees = nominees.where(Nominee.category == nom)
     elif nom == 'mine':
         nominees = nominees.where(Nominee.proposedby == uid)
     if nom != 'mine' and not isadmin:
         min_status = (Nominee.Status.SUBMITTED
-                      if config.STAGE.startswith('call')
+                      if config.STAGE in ('call', 'callvote', 'select')
                       else Nominee.Status.ACCEPTED)
         nominees = nominees.where(Nominee.status >= min_status)
 
