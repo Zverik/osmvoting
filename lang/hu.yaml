@@ -7,7 +7,7 @@ hu:
       title: Saját jelöltjeim
       short: saját
     core:
-      title: Központi rendszerek-díj
+      title: Központi rendszerek díj
       short: központi
       description: >
           A valamely központi eszköz, rendszer, folyamat vagy erőforrás fejlesztésében
@@ -23,7 +23,7 @@ hu:
           nyomvonalakhoz, OSM-adatelemzéshez, új térképezési megközelítésekhez vagy
           régi eszközök új perspektívájához hozzájáruló új eszközökért adható.
     writing:
-      title: Nagy hatású írás-díj
+      title: Nagy hatású írás díj
       short: írás
       description: >
           A legjobb tanfolyamért (tutorial), dokumentációért, blogért vagy blogbejegyzésért.
@@ -31,32 +31,32 @@ hu:
           érdekes betekintést adott a projektbe vagy a közösséget jobb dolgok elvégzésére
           inspirálta.
     mapping:
-      title: Térképezési kiválóság-díj
+      title: Térképezési kiválóság díj
       short: térképezés
       description: >
           A térképadatokban történő jelentős közreműködésekért vagy a példaértékű
           térképezésért: mikrotérképezés, tisztítás, városok semmiből történő feltérképezése,
           megfelelő importálások.
     community:
-      title: A közösség bővítéséért-díj
+      title: A közösség bővítéséért díj
       short: közösség
       description: >
           A közösség bővítéséért tett erőfeszítésekért. Nem csak földrajzilag, hanem
           a sokszínűség, a humanitárius ágazat vagy a kormányzat terén is.
     latam:
-      title: Latin-Amerika javításáért-díj
+      title: Latin-Amerika javításáért díj
       short: lat-am
       description: A közösség épéítéséért és a térkép javításáért Közép- és Dél-Amerikában, Mexikótól Chiléig és Argentínáig.
     africa:
-      title: Afrika javításáért-díj
+      title: Afrika javításáért díj
       short: afrika
       description: A közösség építéséért és a térkép javításáért az afrikai országokban.
     asia:
-      title: Ázsia javításáért-díj
+      title: Ázsia javításáért díj
       short: ázsia
       description: A közösség építéséért és a térkép javításáért az ázsiai országokban az Arab-félszigettől Japánig és Indonéziáig.
     ulf:
-      title: Ulf Möller-emlékdíj
+      title: Ulf Möller emlékdíj
       short: Ulf
       description: >
           Azoknak az egyéni közreműködőknek, akik jó térképezéssel, a közösség javára
@@ -66,6 +66,12 @@ hu:
   stages:
     call:
       title: Felhívás jelöltek ajánlására
+      description: >
+          Javasolj egy személyt, egy csoportot vagy egy szervezetet valamelyik díjra.
+          Ehhez csupán három adatot kérünk: név, projekt (mit tett azért, hogy kiérdemelje
+          a díjat) és esetleg egy URL egy olyan weboldalhoz, amely bemutatja a projektet.
+          Mindennel lehet nevezni, amelyet 2017. július 1. után jelentettek be. A
+          nevezés május 31-én zárul.
     select:
       title: Jelöltek kiválasztása
       description: >
@@ -74,10 +80,20 @@ hu:
           tart.
     voting:
       title: Szavazás
+      description: >
+          Jelöltekre szavazunk! Válassz ki kategóriánként bárhány jelöltet, akik véleményed
+          szerint megérdemlik adíjat. A szavazás lezárultáig bármikor visszatérhetsz
+          és módosíthatsz a szavazataidon. A legtöbb szavazatot kapó jelölt győz.
+          A szavazás július 26-án zárul, közvetlenül a 2018-as State of the Map konferencia
+          előtt, ugyanis itt fogják bejelenteni a győzteseket.
       readmore: A jelöltekről az {OpenStreetMap Blog}on olvashatsz.
       readmore_link: https://blog.openstreetmap.org/tag/awards2017/
     processing:
       title: Feldolgozás
+      description: >
+          Kérjük, légy türelemmel, amíg feldolgozzuk a szavazás eredményeit. Július
+          29-én fognak megjelenni, a State of the Map 2018 konferencián történő bejelentés
+          után.
     results:
       title: Eredmények
       description: Íme az OSM-díjak eredményei. A szavazatk száma a szögletes zárójelben van, a te szavazatodat egy csillag jelöli. {Itt a szavazatok nyers listája}, ha szeretnél valamilyen elemzést lefuttatni. Köszönjük mindenkinek, aki szavazott, és gratulálunk a győzteseknek és az összes jelöltnek. Találkozunk jövőre!
@@ -91,6 +107,15 @@ hu:
     committee: a bizottság tagja
     deleted: törölve
     other: egyéb
+  title: 2018-as OSM-díjak
+  description: >
+      Idén újra bemutatjuk az OpenStreetMap-díjakat! A 2018-as State of the Map konferencián
+      9 kategóriában 9 nevezett fog díjat kapni. Ez a közösség díja: ti döntitek el,
+      kiket neveztek, és utána ti szavaztok tóluk.
+  description_after: >
+      Az idei 2018-as State of the Map konferencián harmadszor mutattuk be az OpenStreetMap-díjakat.
+      A közösség jelölteket nevezett, majd közülük mind a kilenc kategóriában megszavazott
+      egy-egy győztest.
   login: Belépés jelöltek nevezéséhez vagy szavazáshoz
   who: Kinek
   forwhat: A munkásság leírása

@@ -37,7 +37,7 @@ pt:
           arrumações, mapear sítios que não se encontravam no mapa, importações bem
           feitas.
     community:
-      title: Prémio por Expanção da Comunidade
+      title: Prémio por Expansão da Comunidade
       short: comunidade
       description: >
           Por esforços em expandir a comunidade. Não só geograficamente mas também
@@ -65,6 +65,12 @@ pt:
   stages:
     call:
       title: Nomear uma pessoa/grupo
+      description: >
+          Sugere uma pessoa, um grupo ou uma organização para um prémio. Apenas perguntamos
+          por três peças de informação: o nome, o projeto (o que fizeram para merecerem
+          o prémio), e opcionalmente o URL de qualquer página web que descreva o projeto.
+          Tudo é elegível desde que seja anunciado antes de 2017-07-01. A chamada
+          para os nomeados termina a 31 de Maio.
     select:
       title: Selecionar um nomeado
       description: >
@@ -73,6 +79,8 @@ pt:
           Esta votação começa a 16 de julho.
     voting:
       title: Votar
+      readmore: Lê mais sobre os nomeados em {OpenStreetMap Blog}.
+      readmore_link: https://blog.openstreetmap.org/tag/awards2017/
     processing:
       title: Processamento
     results:
@@ -102,6 +110,6 @@ pt:
   listnominees: Lista de Nomeados
   novote: Não vote nesta categoria
   link: endereço
-  savevotes: Submeta os meus votos
+  savevotes: Enviar os meus votos
   thanksvoted: A sua seleção foi guardada, obrigado por votar!
   peoplevoted: Numero total de pessoas que votaram
