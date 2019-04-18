@@ -38,7 +38,6 @@ el:
       title: Επιλογή Υποψηφίων
     voting:
       title: Ψηφοφορία
-      readmore_link: https://blog.openstreetmap.org/tag/awards2017/
     processing:
       title: Επεξεργασία
     results:

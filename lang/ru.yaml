@@ -67,14 +67,9 @@ ru:
       title: Сбор номинантов
     select:
       title: Отбор номинантов
-      description: >
-          Команда премии, состоящая из членов Совета OSMF и участников рабочих групп,
-          выбирает из списка номинантов по пять для каждой категории. Голосование
-          откроется 16 июля.
     voting:
       title: Голосование
       readmore: Узнайте больше про каждого из номинантов в {блоге OpenStreetMap}.
-      readmore_link: https://blog.openstreetmap.org/tag/awards2017ru/?lang=ru
     processing:
       title: Обработка голосов
     results:

@@ -69,14 +69,9 @@ fr:
       title: Appel à nominations
     select:
       title: Sélection des nominations
-      description: >
-          Les comités de sélection étudient les nominations proposées et réduisent
-          la liste à 5 nominations pour chaque catégorie, sur la base des propositions
-          et votes de la communauté. Le vote sera ouvert le 16 juillet 2017.
     voting:
       title: Votes
       readmore: Plus d'informations à propos des nominations sur le {blog d'OpenStreetMap}.
-      readmore_link: https://blog.openstreetmap.org/tag/awards2017/
     processing:
       title: En cours…
     results:

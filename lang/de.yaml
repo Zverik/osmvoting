@@ -66,35 +66,13 @@ de:
   stages:
     call:
       title: Kandidatensuche
-      description: >
-          Schlage eine Einzelperson, eine Gruppe oder eine Organsiation für den Preis
-          vor. Wir bitten nur um drei Informationen: den Namen, das Projekt (was getan
-          wurde, um geehrt zu werden) und optional die URL einer Website, die das
-          Projekt beschreibt. Vorgeschlagen werden kann, was nach dem 1. Juli 2017
-          veröffentlicht wurde. Der Vorschlagszeitraum endet am 31. Mai.
     select:
       title: Nominierte auswählen
-      description: >
-          Die Preisauswahlkomitees sind mit der Sortierung und Sichtung unter Berücksichtigung
-          der Abstimmungsergebnisse der Liste der Vorschläge für alle fünf Kategorien
-          beschäftigt. Die Abstimmungsphase beginnt am 16. Juli.
     voting:
       title: Abstimmung
-      description: >
-          Es kann jetzt über die Kandidaten abgestimmt werden! Wähle eine beliebige
-          Anzahl an Kandidaten in den einzelnen Kategorien, die einen Preis bekommen
-          sollen. Du kannst bis zum Ende der Abstimmung jederzeit wieder hierher zurückkehren
-          und deine Stimmabgabe ändern. Der Kandidat mit den meisten Stimmen gewinnt.
-          Die Abstimmung endet am 26. Juli direkt vor der Konferenz State of the Map
-          2018, auf der die Gewinner bekanntgegeben werden.
       readmore: Lies mehr über die Nominierten im {OpenStreetMap-Blog}.
-      readmore_link: https://blog.openstreetmap.org/tag/awards2017/
     processing:
       title: verarbeite
-      description: >
-          Bitte warte, bis wir die Wahlergebnisse ausgewertet haben. Diese werden
-          am 29. Juli nach der Bekanntgabe auf der State of the Map 2018 veröffentlicht
-          werden.
     results:
       title: Ergebnisse
       description: Hier sind die Ergebnisse der OSM-Awards. Die Anzahl der Stimmen steht in den eckigen Klammern, deine Auswahl ist mit einem Sternchen markiert. {Hier findest du die Rohdaten der Stimmabgabe}, wenn du eigene Analysen durchführen möchtest. Vielen Dank an alle, die abgestimmt haben, und Gratulation an alle Gewinner und Nominierten. Bis nächstes Jahr!
@@ -108,16 +86,6 @@ de:
     committee: Mitglied des Komitees
     deleted: gelöscht
     other: andere
-  title: OSM-Awards 2018
-  description: >
-      Dieses Jahr gibt es erneut die OpenStreetMap-Awards! Neun Ausgewählte werden
-      in neun Kategorien einen Preis auf der State of the Map 2018 verliehen bekommen.
-      Dies ist ein Preis der Community. Ihr entscheidet, wer nominiert wird, bevor
-      ihr darüber abstimmt.
-  description_after: >
-      Dieses Jahr gibt es die dritte Ausgabe der OpenStreetMap-Awards auf der Konferenz
-      State of the Map 2018. Die Community hat neun Kandiaten für jede Kategorie nominiert
-      und darüber abgestimmt.
   login: Melde dich an, um vorzuschlagen oder zu wählen
   who: Wem
   forwhat: Beschreibe deren Werk

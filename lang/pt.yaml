@@ -65,22 +65,11 @@ pt:
   stages:
     call:
       title: Nomear uma pessoa/grupo
-      description: >
-          Sugere uma pessoa, um grupo ou uma organização para um prémio. Apenas perguntamos
-          por três peças de informação: o nome, o projeto (o que fizeram para merecerem
-          o prémio), e opcionalmente o URL de qualquer página web que descreva o projeto.
-          Tudo é elegível desde que seja anunciado antes de 2017-07-01. A chamada
-          para os nomeados termina a 31 de Maio.
     select:
       title: Selecionar um nomeado
-      description: >
-          O comité dos prémios terá a função de filtrar a lista de nomeados para um
-          máximo de cinco para cada categoria, usando as suas submissões e votos.
-          Esta votação começa a 16 de julho.
     voting:
       title: Votar
       readmore: Lê mais sobre os nomeados em {OpenStreetMap Blog}.
-      readmore_link: https://blog.openstreetmap.org/tag/awards2017/
     processing:
       title: Processamento
     results:
