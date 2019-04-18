@@ -6,7 +6,7 @@ DEBUG = False
 DATABASE_URI = 'sqlite:///' + os.path.join(BASE_DIR, 'osmvoting.db')
 # DATABASE_URI = 'postgresql://localhost/osmvoting'
 
-NOMINATIONS = ['core', 'innovation', 'writing', 'mapping', 'community', 'latam', 'africa', 'asia', 'ulf']
+NOMINATIONS = ['core', 'innovation', 'writing', 'mapping', 'community', 'team', 'ulf']
 STAGE = 'call'  # call -> callvote -> select -> voting -> processing -> results
 ADMINS = set([290271])  # Zverik
 MAX_NOMINEES_PER_USER = 30

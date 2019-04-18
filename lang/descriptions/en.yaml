@@ -1,109 +1,15 @@
 en:
   core:
-    # Matthijs Melissen
-    75: >
-      For a well-researched and accepted effort to make the default map style more readable, by rearranging colours and making roads more prominent. This change alone instantly made our map look more mature and usable.
-    # Simon Poole
-    80: >
-      For bringing many useful features from desktop editors to mobile, with his Vespucci editor: imagery layer directory, tagging presents and validation, taginfo support and many other features.
-    # Andy Allan
-    67: >
-      For finishing the year-long work on the moderation feature for the OSM website.
-    # Sarah Hoffman
-    3: >
-      I feel Nominatim is a core element of the OpenStreetMap infrastructure and as such should be valued. I would like to nominate the nominatim contributors for their great effort and as a stimulans to further develop nominatim as the only true free geocoding facility on the internet.
-  africa:
-    # Samaila Alio and OSM Niger
-    16: >
-      I'd like to nominate Samaila Alio and OSM Niger for their work growing the community in Niger over the past year. With the help of a HOT Microgrant, they have provided OSM training to 143 people, and improved gender balance in their community, mapping 177506 edits in OSM.
-    # tshedy
-    40: >
-      Dedicated to mapping Lesotho and improving the future of her country. She has taught students in secondary school in Ireland to map and at home to help bring a country that hasn't been properly mapped into the 21st century. She is also studying planning to extend her skills and will be using open data to both train locals and keep the data accessible and customized for for the needs of the people. 
-    # Crowd2Map Tanzania
-    14: >
-      Crowd2Map is a volunteer-run mapping project that unites over 2,000 remote mappers worldwide with over 600 community mappers on the ground in Tanzania. Their mission is to put rural Tanzania on the map! Since 2015, they have been adding schools, hospitals, roads, buildings and villages to OpenStreetMap. They have experiences and approaches that the wider OSM community should celebrate and learn from!
-  mapping:
-    # Zors1843
-    55: >
-      Zors has mapped the Belgium road network since the beginning. For all his work, he deserves a big thanks; I wanted to do this in the form of this nomination.
-    # DGerveno
-    27: >
-      The extensive and precisely mapping he has done in the Huesca and Pyrenees area. Including all the buildings in Huesca in 3D, sidewalks kerbs, trees, lamps, benches... The amount of detail the city now has thanks to him is incredible.
-    # katpatuka
-    54: >
-      For his unrelenting mapping of developing countries, especially Turkey and China, and for being the most active editor on OpenStreetMap.
-    # tshedy
-    7: >
-      Tshedy's (Mats’eliso Thobei) work should be well known in the OSM Community: she has been the most active mapper in Lesotho more or less since she started mapping 3 years ago, and has long since had the nickname of the "Lesotho Mapping Queen". In addition to her commitment to mapping she has has written blog posts, trained other mappers. More recently she has been actively mapping in Ireland, contributing Mapillary traces and taking a leading role in the establishment of the OSM-Ireland chapter.
+    0: placeholder
   community:
-    # Seppe Santens
-    81: >
-      Passion of using OpenStreetMap both personally and for the benefit of Ghent citizens.
-    # Rory McCann
-    76: >
-      For constantly trying to make the community more diverse, and warning about potential issues for minorities. He is very active in the diversity mailing list, that he revived, offering advice and coming up with ideas on improving the diversity.
-    # Andrew Braye
-    22: >
-      Andrew has been key in ensuring the Missing Maps community evolves in a sustainable way, and ensuring operational use of map data and improving mapping quality is key to the Missing Maps mission. Through Missing Maps we are able to engage large volumes of people, and new types of contributors to OpenStreetMap, for example the Missing Maps community has a near even gender balance. Growing Missing Maps = growing diversity in OpenStreetMap, and empowering local communities to contribute to the map. Thanks Andrew for driving positive evolution for Missing Maps!
-    # Christine Karch
-    6: >
-      Christine puts a lot of work into organising events that gather OpenStreetMap communities across borders. She organises hack weekends so that developers can come together to finish of essential code for OpenStreetMap. She's been on the working group for State of the Map for many years, including times when it needed a strong core team to make difficult decisions. Christine has expanded botyh the developer OpenStreetMap community and the general OpenStreetMap community, both in Europe and worldwide.
+    0: placeholder
+  mapping:
+    0: placeholder
   writing:
-    # Serge Wroclawski
-    8: >
-      Serge has contributed to OSM in manifold ways over the years. However, it is in his writing that he has shown an uncanny ability to say important things about OSM in a way which is accessible to a very broad section of the tech community. He has quit mapping in 2015 but reached a large audience in the English speaking tech community this year with his blog article "OSM is in Serious Trouble"
-    # Anonymaps
-    9: >
-      For pricking the pomposity of the geo industry in general and OpenStreetMap in particular, faithfully recording the screwups of Google Maps, and tirelessly reminding us all why we shouldn't use what3words.
-    # Marc Gemis (escada)
-    4: >
-      He's been the driving force of the Mapper of the Month and Mapper in the Spotlight for several years.
-    # Christoph Hormann (imagico)
-    65: >
-      For examining many mapping style choices, enlightening us on satellite imagery processing and generally sharing his opinion on mailing lists and the blog.
-  asia:
-    # indigomc
-    35: >
-      For being a long-time contributor to India, Bangladesh, Nepal and their neighbouring countries. His work on translating name tags to Kannada is outstanding. https://taginfo.openstreetmap.in/keys/name:kn#map He helped other contributors and newbies. 
-    # State of the Map Asia 2017 organizing team
-    28: >
-      The organizing team successfully brought nearly 200 open mapping enthusiasts from Asia and beyond to 2017 SotM Asia held in Nepal. The event provided an opportunity to share knowledge and experience among mappers; expand their network; and generate ideas to expand map coverage and effective use of OSM data in the Asian continent. The team also brought a government panel from several different countries and opened up the conversation about government buy-in into the OSM movement. Overall, there was representation from over 20 countries and for many of them it was the first time representing their country in an OSM conference. 
-    # Eugene Alvin Villar
-    47: >
-      Eugene has been contributing to OSM since 2007 and helped to grow the local community and promote OSM in the Philippines by organizing mapping parties, conducting workshops, and giving presentations since 2009. Also part of the core group of OSM volunteers in the Philippines (they help maintain/moderate the various communication channels, wiki pages, and online presence of the community). In addition to OSM, Eugene is also an active Wikimedian and is keen to build more bridges between the OSM and Wikimedia communities. Gave presentations about OSM at Wikimania 2014 and WikidataCon 2017.
+    0: placeholder
   innovation:
-    # Wikimedia Foundation Collaboration team
-    24: >
-      Improving the mapping stack in the Wikimedia projects, adding new features like the map internationalization.
-    # WhatIsWhere
-    72: >
-      For an alternative way to query OpenStreetMap, that is accessible to non-technical users.
-    # OpenTripMap
-    73: >
-      For linking OSM with many open datasets to create the best tourist map of Russia.
-    # Telenav
-    71: >
-      For open-sourcing their traffic sign detection code and the learning dataset, prompting more advancements in the ML technology with regard to improving OSM. And for leading innovations in other areas, like using OSM data in Apache Spark, or the Metrics portal to view stats by region.
-  latam:
-    # Luis Miguel Sánchez Zoque
-    41: >
-      A sociologist and human rights defender with OSM at core of all daily work. Started participating at humanitarian projects with OSM, first using OSM over ushahidi (data at https://data.humdata.org/organization/redhumus-org). Also used OSM to improve the map of Urabá region of Colombia, top of most affected by armed conflict. Learned how to use OSM to register and visualise all traces (see field work examples at http://redhumus.org/redhumus/default/betawiki/cartografias and http://mapas.redhumus.org/memoria/comunicacioneschilapastrackmap.html). Used OSM for social research of Embera indigenous displacement with INCCA University. Helped communities to empower and use their own maps: Salgar Antioquia and Mocoa with not only mapping, leading workshops also http://blog.openstreetmap.co/2017/05/07/taller-mapeo-mocoa/ . Present projects: https://www.youtube.com/watch?v=okMhDhwUy4I and Mapping Rionegro using fieldpapers and Mapillary, a truly affected by armed conflict rural village http://transhuman.redhumus.org/2017/08/10/iv-festival-riopaz-mapeando-a-rionegro-caqueta/ 
-    # Natalia da Silveira Arruda
-    42: >
-      Professor at the University of Antioquia (UdeA), and coordinator of the UdeA Youthmappers’ chapter, which was created in August 2016. Became interest to work with open data and humanitarian mapping at the University via initial coordination of an informal community in the city of Cartagena de Indias/ Colombia (http://mapcartagena.wixsite.com/map-cartagena). Trains students in OSM, and coordinates the chapter’s participation in different mapathons. So far has trained more than 200 students. Was also a co-investigators of the project selected by HOT Microgrants 2017: “Humanitarian mapping of coastal wetlands and fishing livelihoods for resilience to climate change and variability (Urabá Gulf, Southern Caribbean, Colombia)” (https://www.hotosm.org/updates/2017-04-20_hot_microgrants_2017_results) 
-    # OpenstreetMap Mexico
-    5: >
-      The Mexican OSM Community, led by Miriam González and Celine Jacquin has worked hard to generate projects that bring close the academy, the students, and also very strongly to the humanitarian community to their mapping activities. Also, they've built a strong response team for the earthquake in Mexico and have conducted massive mapathons with universities.
+    0: placeholder
+  team:
+    0: placeholder
   ulf:
-    # Richard Fairhurst
-    63: >
-      Besides an endless row of contributions to both OpenStreetMap data and software, for the development of Potlatch 1 and 2, without OpenStreetMap as we know it today would likely not exists. As they provided the easy entry to OpenStreetMap that previously was missing.
-    # Russell Deffner
-    20: >
-      For leading the Humanitarian OSM Activation Working Group. Russ led the response to Hurricane Maria mapping in Puerto Rico, supported 5 other disaster activations, and coordinated 5000 mappers to join the efforts to support vulnerable communities through mapping in OSM. Russ gives a huge amount of his personal time to grow OSM to support communities vulnerable to or affected by disasters worldwide, and really deserves this recognition.
-    # Ralph Aytoun
-    21: >
-      I'd like to nominate Ralph who is a legendary OSM contributor. Ralph has mapped in 93 countries, mapping extensively in his local area as well as contributing to Humanitarian tasks mainly through validation. Ralph also trains new validators at regular mapathons in the UK to grow the validation community, and travels all over the UK to support new mapathon leaders get set up. He also gives a lot of free time to support community building activities e.g. microgrants. Thanks Ralph!
-    # Simon Poole
-    61: >
-      Simon is a very active mapper, main developer of Vespucci (OSM editor for Android), a very active member of the Licensing Working Group and has served as chairman of the OpenStreetMap Foundation.
+    0: placeholder
