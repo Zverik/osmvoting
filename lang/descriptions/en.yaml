@@ -1,15 +1,92 @@
 en:
   core:
-    0: placeholder
-  community:
-    0: placeholder
-  mapping:
-    0: placeholder
-  writing:
-    0: placeholder
+    # Bryan Housel and Quincy Morgan
+    16: >
+      For the constant work on the iD editor and having guts to make some controversial decisions with it in the past year.
+    # Andy Allan
+    56: >
+      For maintaining the code of our website, and for keeping searching for new contributors with his articles, presentations and other work.
+    # Tigerfell
+    14: >
+      For adding a "Thanks" button to wiki edits history, helping editors express their gratitude towards other people.
+    # Walter Nordmann (Wambacher)
+    65: >
+      For the Postcode Map, Admin Boundaries map and exporter, Software Watchlist and many smaller tools that helps using OSM data and software.
   innovation:
-    0: placeholder
+    # Raymond Inzitari
+    73: >
+      For turning his passion for maps to a profitable business: making beautiful wooden maps with laser engraving and OpenStreetMap data.
+    # acsd
+    74: >
+      For creating a modern overpass-based viewer and editor for parking lanes.
+    # Adrien Pavie
+    3: >
+      Adrien hosts a tool which conflate some OSM objects (coming from Overpass or directly Osmose) to nearests Mapillary pictures. Pic4Review allows contributors to fix errors or add missing information with user friendly interface and relevent options. Users may setup their own quests with custom Overpass queries and options. Mappers then use the quest and review items as often as mapillary got completed around selected osm features. This is a great add to available tools and improve data on even complex situations with clear directions on how to do so.
+    # Grigory Rechistov
+    62: >
+      For a truly stunning preparation for the landcover import in Sweden. Grigory has started several discussions on the mailing list, developed a complex tool for conflating geometry and writes long and clear blog articles about the process that would surely help future landcover imports go smoothly.
+  mapping:
+    # Feye Andal
+    8: >
+      Feye is an active OSM mapper, trainer and volunteer since 2013. She has led/is leading various projects in the Philippines to help increase, improve and clean OSM map data in the country for disaster management and resiliency. She also helped form the University of the Philippines’ Resilience Institute (UP-RI) Youthmappers in 2018 and mentors the young mappers.
+    # Joseph Eisenberg
+    66: >
+      For proposing and following through with his proposals of many useful tags, always listening to comments and not leaving the tagging mailing list because of these.
+    # literan
+    45: >
+      Moscow is the capital of Russia, and Literan is the most visible mapper in the city for years, constantly monitoring ALL the edits and fixing errors after novice mappers and vandals. He is kind and great to work with; helps mappers understand the OSM and speed up their mapping by creating localized presets. Actively participates on the forum and in the telegram chat.
+    # Allan Mustard (apm-wa)
+    6: >
+      Retired U.S. diplomat previously assigned to Ashgabat, Turkmenistan. Turkmenistan is closed country with poor access to the internet. apm-wa did a great job to improve a Turkmenistan in OSM, having made thousands of edits. In addition he wrote a perfect description about country in OSM wiki, and improved other resources as well, always being open to the OSM community.
+  community:
+    # Brian Prangle
+    34: >
+      Continued work in the nitty-gritty of communities. Brian helped setup the West Midlands OSM group in then UK. Brian helped set up the OSM UK local chapter, and served as chair of the board for the first 3 years. When nobody else is replying to organisations and representing the OpenStreetMap community, Brian often steps up to the plate. Brian uses his time to get in touch with a lot of big organisations and local authorities, so that they know about OpenStreetMap and so that the local chapter has some money to work with and pay it's small bills with. Yet in all of this, you still see Brian's love for the mapping when he sits talking to a couple of people and showing them how to map, encouraging them to use tools like the map editors and street-level cameras, regardless of their age or technical confidence.
+    # Brian Hollinshead
+    27: >
+      Brian Hollinshead has been a tireless OSM mapper for years. He's helped extensivly with heritage mapping in Ireland, and with the multi-year townland project. He has often gone to historical societies and events to speak about, and promote, OSM to people who've never heard of it before. ( e.g. https://www.youtube.com/watch?v=7pxfnD4aQTg ). This can help bring new mappers into OSM.
+    # Nathalie Sidibe
+    60: >
+      Nathalie has been a fantastic advocate of the entire OSM project but particularly the local community in Mali.
+    # Severin Menard 
+    29: >
+      Severin has been active in humanitarian mapping in OSM for many years, being an early volunteer with HOT, and co-founding Project EOF. Bringing OSM to developing parts of the world is definitly expanding the community!
+  writing:
+    # Edoardo Neerhut (eneerhut)
+    9: >
+      Ed writes about how OpenStreetMap is becoming the world's mapping standard and chainging the way we collect and consume map data.
+    # Christopher Beddow and Daniela Waltersdorfer
+    10: >
+      Chris (cbeddow) and Dani (dani) summarized the current state of curbs on OpenStreetMap and made a call for the community to further embrace curbs as an important piece of data for mobility, infrastructure, and transportation. 
+    # Valeriy Trubin
+    63: >
+      He started translating WeeklyOSM into Russian this April, but did not stop at that. He also has been taking interviews with many OSM members, more or less prominent, transcribing and editing them for the most popular Russian tech website. He is very active in the community, and thanks to him, the Russian community does not feel stagnant.
+    # Steve Friedl, Guillaume Rischard
+    15: >
+      For the very extensive and in-depth report about unusual signups to OSMF before the elections; and for constant active work in the Membership Working Group.
   team:
-    0: placeholder
+    # Kaart
+    25: >
+      For traveling across the world, gathering ground truth data and improving map data based on that. Fast growing team of now over 150 mapping enthusiasts.
+    # OSM DRC/RDC
+    11: >
+      The Democratic Republic of the Congo/République Démocratique du Congo OpenStreetMap community has done remarkable work in coordinating the multiple humanitarian mapping responses in their country, outreach to both official stakeholders and potential contributors, and are playing an important role in the overall geographic information infrastructure of their country. While they are still growing and developing new activities, they already provide a great example of a local community who managed to become a leader in their country both towards local and international actors, and to me are a model for the empowerment of local communities in the "global South".
+    # Data Working Group
+    5: >
+      For their help against the vandalism and constant daily work on keeping the map clean.
+    # Kontur Inc
+    69: >
+      For the live OpenStreetMap mappedness map that links object count on OSM and population density maps by facebook.
   ulf:
-    0: placeholder
+    # Simon Poole
+    51: >
+      Simon is a prolific mapper, the main developer of Vespucci (OSM editor for Android), a very active member of the Licensing Working Group and has served as chairman of the OpenStreetMap Foundation.
+    # Miriam Gonzalez
+    76: >
+      Miriam's work to help lower the barrier for entry to the world of OSM and to make the community more accessible and diverse is appreciated not just in her home country of Mexico, but all across the Americas. She has worked hard to grow mapping access across Latin America through her work with Telenav and by sharing her trainings and teaching lessons learned to others in the community.
+    # Minh Nguyen
+    61: >
+      Minh always goes out of his way to help other mappers. If he doesn't know the answer to a question you can be sure he will after some short research - and a detailed explanation to boot.  Minh embodies the collaborative spirit of the OSM project and we are lucky to have him.
+    # Victor Scherb
+    71: >
+      For creating OsmAnd application and supporting it over the years, keeping it the only major OSM-based app with no corporate influence, and constantly imagining ways to expand user-facing side of open data.

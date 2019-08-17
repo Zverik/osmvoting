@@ -1,0 +1,142 @@
+es:
+  nominations:
+    all:
+      title: Todos los nominados
+      short: todo
+    mine:
+      title: Mis nominados
+      short: mios
+    core:
+      title: Premio Sistema Central
+      short: núcleo
+      description: >
+          Por contribuciones destacadas a cualquiera de las herramientas, sistemas,
+          procesos o recursos básicos. No limitado a los sistemas bajo control OSMF.
+          The Rails port, osm2pgsql, openstreetmap-carto, iD, JOSM, mapnik y cualquier
+          otra herramienta que los mapeadores utilicen diariamente, con conocimiento
+          o no, son elegibles.
+    innovation:
+      title: Premio Innovación
+      short: innovación
+      description: >
+          Por el mejor nuevo servicio o enfoque. Nuevas herramientas para aportar
+          datos, reconocimiento de imágenes, rastreo o análisis de datos OSM, nuevo
+          enfoque de mapeo o nuevas perspectivas sobre antiguas herramientas.
+    writing:
+      title: Premio Escritura Influyente
+      short: escritura
+      description: >
+          Por el mejor tutorial, documentación, blog o entrada de blog. Un texto o
+          serie de textos que atrajeron a muchas personas nuevas a OSM, proporcionar
+          una perspectiva interesante sobre el proyecto o inspirar a la comunidad
+          a hacer cosas mejores.
+    mapping:
+      title: Premio Grandeza en Mapeo
+      short: mapeo
+      description: >
+          Por contribuciones significativas a los datos de mapa, o mapeo ejemplar:
+          micro-mapeo, limpieza, mapeo de ciudades desde cero, importaciones apropiadas.
+    community:
+      title: Premio Expandiendo la Comunidad
+      short: comunidad
+      description: >
+          Por los esfuerzos en la expansión de la comunidad. No solo geográficamente,
+          sino también en la diversidad, en el sector humanitario o el gobierno.
+    team:
+      title: Premio Logro en Equipo
+      short: equipo
+      description: Para obtener logros sobresalientes en el mapeo, proporcionar datos o reunir a la comunidad de OpenStreetMap. Otorgado a empresas comerciales, organizaciones sin fines de lucro, organizaciones gubernamentales y grupos de voluntarios.
+    latam:
+      title: Premio Mejorando Latinoamérica
+      short: latinoamérica
+      description: Por construir la comunidad y mejorar los mapas en America del Sur y Central, desde México a Chile y Argentina.
+    africa:
+      title: Premio Mejorando Africa
+      short: africa
+      description: Por construir la comunidad y mejorar los mapas en países Africanos.
+    asia:
+      title: Premio Mejorando Asia
+      short: asia
+      description: Por construir la comunidad y mejorar los mapas en países Asiáticos, desde la Península Arábica hasta Japón e Indonesia.
+    ulf:
+      title: Premio Memorial Ulf Möller
+      short: Ulf
+      description: >
+          A contribuyentes individuales por hacer una diferencia en el proyecto OpenStreetMap,
+          a través de un buen mapeo, beneficiar a la comunidad y otras mejoras a la
+          OSM. Cualquier miembro que haya estado activo en algún momento desde 2004
+          es elegible para este premio.
+  stages:
+    call:
+      title: Llamar a los Nominados
+      description: >
+          Sugiere a una persona de cualquiera de las categorías de premios. Solo necesitamos
+          tres piezas de información: el nombre de uno o dos individuos, un proyecto
+          (que es lo que hicieron para reclamar un premio), y opcionalmente una URL
+          de cualquier sitio web que describa el proyecto. Equipos, grupos y compañías,
+          comerciales o no, pueden competir solo en la categoría "Equipo". Elegible
+          es todo lo que se anunció después del 2018-06-01. La convocatoria de nominados
+          finaliza el 15 de julio.
+    select:
+      title: Seleccionando Nominados
+      description: >
+          El comité de premios está trabajando en filtrar la lista de nominados a
+          cuatro o cinco candidatos para cada categoría, usando tus nominados y votos.
+          La votación empezará el 28 de Julio.
+    voting:
+      title: Votando
+      description: >
+          ¡Estamos votando por los nominados! Elige cualquier número de nominados
+          por categoría, que tú creas que debería ser premiado. Puedes volver y cambiar
+          tu voto en cualquier momento antes de que termine el periodo de votación.
+          Los candidatos con más votos ganan. La votación termina el 18 de Septiembre,
+          justo antes de la conferencia State of the Map 2019, en la cual anunciaremos
+          a los ganadores.
+      readmore: Lee más sobre los nominados en {OpenStreetMap Blog}.
+      readmore_link: https://blog.openstreetmap.org/tag/awards2019/
+    processing:
+      title: Procesando
+      description: >
+          Por favor espera hasta que procesemos los resultados de la votación. Estarán
+          publicados el 23 de Septiembre, antes del anuncio en la conferencia State
+          of the Map 2019
+    results:
+      title: Resultados
+      description: Aquí están los resultados de los Premios OSM. El número de votos está dentro de los cuadros de corchetes, tu voto está marcado con un asterisco. {Aquí está la lista de votos} si la quieres analizar. ¡Gracias a todos los que votaron y felicitaciones a nuestros ganadores y a todos los nominados! ¡Nos vemos el próximo año!
+  status:
+    submitted: enviado
+    accepted: aceptado
+    chosen: elegido
+    duplicate: duplicar
+    outoftime: fuera de tiempo
+    vague: demasiado vago
+    committee: miembro del comité
+    deleted: borrado
+    other: otro
+  title: Premios OSM 2019
+  description: >
+      ¡Este año, nuevamente presentamos los Premios OpenStreetMap! Siete nominados
+      recibirán un premio en siete categorías en la conferencia State of the Map 2019.
+      Este es un premio de la comunidad: ustedes deciden cuales son los nominados,
+      antes de votar por ellos.
+  description_after: >
+      ¡Este año, presentamos los Premios OpenStreetMap por cuarta vez en la conferencia
+      State of the Map 2019! La comunidad nominó y votó por siete nominados para cada
+      una de las siete categorías de premios.
+  login: Inicia sesión para enviar nominados o votar
+  who: Quién
+  forwhat: Describe su trabajo
+  url: URL
+  choose_category: Selecciona una categoría
+  optional: opcional
+  edit: editar
+  delete: borrar
+  addnominee: Añade un candidato
+  updatenominee: Actualizar candidato
+  deletenominee: Borrar
+  listnominees: Lista de nominados
+  novote: No votar en esta categoría
+  link: enlace
+  savevotes: Enviar mis votos
+  thanksvoted: Su selección se ha guardado, ¡gracias por votar!
+  peoplevoted: Número total de personas que votaron

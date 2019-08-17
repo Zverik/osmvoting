@@ -43,6 +43,10 @@ de:
           für Anstrengungen zur Erweiterung der Community, nicht nur in räumlich Hinsicht,
           sondern auch zur Verbesserung der Vielfalt sowie zur Integration des humanitären
           Sektors sowie der öffentlichen Verwaltung.
+    team:
+      title: Team-Leistungs-Preis
+      short: Team
+      description: Für herausragende Leistungen beim Mappen, der Datenbereitstellung oder der Zusammenführung der OpenStreetMap-Community. Für Firmen, nicht gewinnorientierte Organisationen, öffentliche Stellen und Gruppen von Freiwilligen.
     latam:
       title: Preis für Engagement in Lateinamerika
       short: Lateinamerika
@@ -66,13 +70,37 @@ de:
   stages:
     call:
       title: Kandidatensuche
+      description: >
+          Schlage eine Person für eine Kategorie des Preises vor. Wir bitten nur um
+          drei Informationen: den Namen von ein oder zwei Einzelpersonen, das Projekt
+          (was getan wurde, um geehrt zu werden) und optional eine URL einer Website,
+          die das Projekt beschreibt. Teams, Gruppen und Firmen, gewerblich oder nicht
+          gewerblich, können nur in der Kategorie "Team" teilnehmen. Gewählt werden
+          kann alles, was nach dem 1. Juni 2018 veröffentlicht wurde. Der Vorschlagszeitraum
+          endet am 15. Juli.
     select:
       title: Nominierte auswählen
+      description: >
+          Die Preisauswahlkomitees sind unter Berücksichtigung eurer Einreichungen
+          und Stimmen mit der Auswahl von vier oder fünf Kandidaten je Kategorie beschäftigt.
+          Die Abstimmungsphase beginnt am 28. Juli.
     voting:
       title: Abstimmung
+      description: >
+          Es kann jetzt über die Kandidaten abgestimmt werden! Wähle eine beliebige
+          Anzahl an Kandidaten in den einzelnen Kategorien, die einen Preis bekommen
+          sollen. Du kannst bis zum Ende der Abstimmung jederzeit wieder hierher zurückkehren
+          und deine Stimmabgabe ändern. Der Kandidat mit den meisten Stimmen gewinnt.
+          Die Abstimmung endet am 18. September direkt vor der State of the Map 2019,
+          auf der die Gewinner bekanntgegeben werden.
       readmore: Lies mehr über die Nominierten im {OpenStreetMap-Blog}.
+      readmore_link: https://blog.openstreetmap.org/tag/awards2019/
     processing:
       title: verarbeite
+      description: >
+          Bitte warte, bis wir die Wahlergebnisse ausgewertet haben. Diese werden
+          am 23. September nach der Bekanntgabe auf der State of the Map 2019 veröffentlicht
+          werden.
     results:
       title: Ergebnisse
       description: Hier sind die Ergebnisse der OSM-Awards. Die Anzahl der Stimmen steht in den eckigen Klammern, deine Auswahl ist mit einem Sternchen markiert. {Hier findest du die Rohdaten der Stimmabgabe}, wenn du eigene Analysen durchführen möchtest. Vielen Dank an alle, die abgestimmt haben, und Gratulation an alle Gewinner und Nominierten. Bis nächstes Jahr!
@@ -86,6 +114,16 @@ de:
     committee: Mitglied des Komitees
     deleted: gelöscht
     other: andere
+  title: OSM-Awards 2019
+  description: >
+      Dieses Jahr gibt es erneut die OpenStreetMap-Awards! Sieben Ausgewählte werden
+      in sieben Kategorien einen Preis auf der State of the Map 2019 verliehen bekommen.
+      Dies ist ein Preis der Community. Ihr entscheidet, wer nominiert wird, bevor
+      ihr darüber abstimmt.
+  description_after: >
+      Dieses Jahr gibt es die vierte Ausgabe der OpenStreetMap-Awards auf der State-of-the-Map-Konferenz
+      2019. Die Community hat sieben Kandidaten für je eine Kategorie nominiert und
+      über sie abgestimmt.
   login: Melde dich an, um vorzuschlagen oder zu wählen
   who: Wem
   forwhat: Beschreibe deren Werk
