@@ -4,6 +4,10 @@
     <form action="{{ url_for('login_to_osm') }}" method="get" class="addform login">
         <input type="submit" value="{{ lang.login }}">
     </form>
+    {% else %}
+    <div class="submitvote">
+        <input type="submit" onclick="window.location = '{{ url_for('voting') }}'" value="{{ lang.savevotes }}">
+    </div>
     {% endif %}
     {% for nom in nominations %}
     <h2>{{ lang.nominations[nom].title }}</h2>
