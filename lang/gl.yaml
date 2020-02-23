@@ -1,0 +1,142 @@
+gl:
+  nominations:
+    all:
+      title: Tódolos nomeados
+      short: todo
+    mine:
+      title: Os meus nomeados
+      short: os meus
+    core:
+      title: Premio Sistema Central
+      short: núcleo
+      description: >
+          Por contribucións destacadas a calquera das ferramentas, sistemas, procesos
+          ou recursos básicos. Non limitado ós sistemas baixo control do OSMF. The
+          Rails port, osm2pgsql, openstreetmap-carto, iD, JOSM, mapnik e calquera
+          outra ferramenta que os cartógrafos empreguen de xeito diario, con coñecemento
+          ou non, son elixíbeis.
+    innovation:
+      title: Premio pola innovación
+      short: innovación
+      description: >
+          Polo mellor novo servicio ou enfoque. Novas ferramentas para aportar datos,
+          recoñecemento de imaxes, rastrexo ou análise de datos do OSM, novo enfoque
+          de cartografado ou novas perspectivas sobre antigas ferramentas.
+    writing:
+      title: Premio pola escrita influínte
+      short: escrita
+      description: >
+          Polo mellor titorial, documentación, blogue ou entrada de blogue. Un texto
+          ou feixe de textos que atraeron a moitas persoas novas ó OSM, fornecer unha
+          perspectiva interesante sobre o proxecto ou inspirar á comunidade a facer
+          cousas mellores.
+    mapping:
+      title: Premio pola grandeza en cartografado
+      short: cartografado
+      description: >
+          Por contribucións significativas ós datos de mapa, ou cartografado exemplar:
+          micro-cartografado (con moito detalle), limpeza, cartografado de cidades
+          dende cero, importacións apropiadas.
+    community:
+      title: Premio polo espallamento da comunidade
+      short: comunidade
+      description: >
+          Polos esforzos no espallamento da comunidade. Non só xeográficamente, senón
+          tamén na diversidade, no sector humanitario ou no goberno.
+    team:
+      title: Premio polo logro en equipa
+      short: equipa
+      description: Por obter logros sobresaíntes no cartografado, fornecer datos ou xuntar á comunidade do OpenStreetMap. Outorgado a empresas comerciais, organizacións sen fins de lucro, organizacións gobernamentais e grupos de voluntarios.
+    latam:
+      title: Premio pola mellora da Latinoamérica
+      short: latinoamérica
+      description: Por construír a comunidade e mellorar os mapas na América do Sur e Central, dende México a Chile e Arxentina.
+    africa:
+      title: Premio pola mellora da África
+      short: áfrica
+      description: Por construír a comunidade e mellorar os mapas nos países Africanos.
+    asia:
+      title: Premio pola mellora da Asia
+      short: asia
+      description: Por construír a comunidade e mellorar os mapas nos países Asiáticos, dende a Península Arábiga até o Xapón e Indonesia.
+    ulf:
+      title: Premio polo Memorial Ulf Möller
+      short: Ulf
+      description: >
+          A contribuíntes individuais por facer unha diferenza no proxecto do OpenStreetMap,
+          a través dun bo cartografado, beneficiar á comunidade e outras melloras
+          ó OSM. Calquera membro que estivera activo nalgún intre dende 2004 é elixíbel
+          para este premio.
+  stages:
+    call:
+      title: Chamar ós nomeados
+      description: >
+          Suxire a unha persoa de calquera das categorías de premios. Só precisamos
+          tres pezas de información: o nome dun ou dous individuos, un proxecto (que
+          é o que fixeron para reclamar un premio), e de xeito opcional unha ligazón
+          URL de calquera sitio web que describa o proxecto. Equipas, grupos e compañías,
+          comerciais ou non, poden competir só na categoría "Equipa". Elixíbel é todo
+          o que se anunciou após o 2018-06-01. A convocatoria de nomeados remata o
+          15 de xullo.
+    select:
+      title: Escollendo nomeados
+      description: >
+          O comité de premios está a traballar en filtrar a listaxe de nomeados a
+          catro ou cinco candidatos para cada categoría, empregando os teus nomeados
+          e votos. A votación comezará o 28 de xullo.
+    voting:
+      title: Votando
+      description: >
+          Estamos a votar polos nomeados! Escolle calquera número de nomeados por
+          categoría que ti creas que tería que ser premiado. Podes voltar e mudar
+          o teu voto en calquera intre antes de que remate o período de votación.
+          Os candidatos con máis votos gañan. A votación remata o 18 de setembro,
+          xusto antes da xuntanza do State of the Map 2019, na cal anunciaremos ós
+          gañadores.
+      readmore: Le máis sobre os nomeados no {OpenStreetMap Blog}.
+      readmore_link: https://blog.openstreetmap.org/tag/awards2019/
+    processing:
+      title: Procesando
+      description: >
+          Por favor agarda até que procesemos os resultados da votación. Estarán publicados
+          o 23 de Setembro, antes do anuncio na xuntanza do State of the Map 2019
+    results:
+      title: Resultados
+      description: Eiquí están os resultados dos Premios do OSM. O número de votos está dentro dos cadros de corchetes, o teu voto está marcado cun asterisco. {Eiquí está a listaxe de votos} se a desexas analizar. Grazas a todos os que votaron e parabéns ós nosos gañadores e a tódolos nomeados! Vémonos no seguinte ano!
+  status:
+    submitted: enviado
+    accepted: aceptado
+    chosen: escollido
+    duplicate: duplicar
+    outoftime: fóra de tempo
+    vague: demasiado vago
+    committee: membro do comité
+    deleted: eliminado
+    other: outro
+  title: Premios do OSM 2019
+  description: >
+      Este ano, novamente presentamos os Premios do OpenStreetMap! Sete nomeados recibirán
+      un premio en sete categorías na xuntanza do State of the Map 2019. Este é un
+      premio da comunidade: vós decidides cales son os nomeados, antes de votar por
+      eles.
+  description_after: >
+      Este ano, presentamos os Premios do OpenStreetMap por cuarta vez na xuntanza
+      do State of the Map 2019! A comunidade nomeou e votou por sete nomeados para
+      cada unha das sete categorías de premios.
+  login: Inicia a sesión para enviar os nomeados ou votar
+  who: Quen
+  forwhat: Describe o seu traballo
+  url: Ligazón URL
+  choose_category: Escolle unha categoría
+  optional: opcional
+  edit: editar
+  delete: eliminar
+  addnominee: Engade un nomeado
+  updatenominee: Actualizar nomeado
+  deletenominee: Eliminar
+  listnominees: Listaxe de nomeados
+  novote: Non votar nesta categoría
+  link: ligazón
+  savevotes: Enviar os meus votos
+  thanksvoted: Gardouse a túa escolla, grazas por votar!
+  peoplevoted: Número total de persoas que votaron

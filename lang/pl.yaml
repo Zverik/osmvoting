@@ -1,0 +1,70 @@
+pl:
+  nominations:
+    all:
+      title: Wszystkie Nominacje
+      short: wszystkie
+    mine:
+      title: Moje Nominacje
+      short: moje
+    innovation:
+      title: Nagroda Innowacyjności
+      short: innowacyjność
+    mapping:
+      title: Nagroda za Doskonałość w Mapowaniu
+      short: mapowanie
+    community:
+      title: Nagroda za Rozwijanie Społeczności
+      short: społeczność
+    latam:
+      title: Nagroda za Rozwijanie Ameryki Łacińskiej
+      short: latam
+    africa:
+      title: Nagroda za Rozwijanie Afryki
+      short: afryka
+    asia:
+      title: Nagroda za Rozwijanie Azji
+      short: azja
+    ulf:
+      title: Nagroda Pamięci Ulfa Möllera
+      short: Ulf
+  stages:
+    call:
+      title: Zgłaszanie Nominacji
+    select:
+      title: Wybieranie Nominacji
+    voting:
+      title: Głosowanie
+      readmore: Przeczytaj więcej o nominacjach na  {Blogu OpenStreetMap}.
+      readmore_link: https://blog.openstreetmap.org/tag/awards2019/
+    processing:
+      title: Przetwarzanie
+    results:
+      title: Wyniki
+  status:
+    submitted: zgłoszone
+    accepted: zaakceptowane
+    chosen: wybrane
+    duplicate: duplikat
+    outoftime: poza terminem
+    vague: zbyt niejasne
+    committee: członek komitetu
+    deleted: usunięte
+    other: inne
+  title: OSM Awards 2019
+  login: Zaloguj się, aby zgłosić nominację lub głosować
+  who: Kogo
+  forwhat: Opisz ich pracę
+  url: URL
+  choose_category: Wybierz kategorię
+  optional: opcjonalne
+  edit: edytuj
+  delete: usuń
+  addnominee: Dodaj nominację
+  updatenominee: Uaktualnij nominację
+  deletenominee: Usuń
+  listnominees: Lista nominacji
+  novote: Proszę nie głosować w tej kategorii
+  link: link
+  savevotes: Prześlij moje głosy
+  thanksvoted: Twój wybór został zapisany, dziękujemy za głosowanie!
+  peoplevoted: Całkowita liczba głosujących
