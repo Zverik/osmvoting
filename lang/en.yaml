@@ -83,15 +83,15 @@ en:
         a project (what did they do to claim an award),
         and optionally an URL for any web page that describes the project.
         Teams, groups and companies, commercial or not, can compete only in the "Team"
-        category. Eligible is everything that was announced after 2018-06-01.
-        The call for nominees ends on the 15th of July.
+        category. Eligible is everything that was announced after 2019-07-01.
+        The call for nominees ends on the 10th of May.
 
     select:
       title: Selecting Nominees
       description: >
         The awards committees are working on filtering
         the list of nominees to four or five for each category, using your submissions and votes.
-        The voting will open on the 28th of July.
+        The voting will open on the 1st of June.
 
     voting:
       title: Voting
@@ -99,16 +99,16 @@ en:
         We are voting for nominees! Choose any number of nominees for each category, that
         you think should receive an award. You can come back and change your votes
         any time before the voting ends. The nominee with the most votes wins.
-        The voting ends on 18th of September, right before the State of the Map 2019
+        The voting ends on 1st of July, right before the State of the Map 2020
         conference, on which winners will be announced.
       readmore: Read more about the nominees in the {OpenStreetMap Blog}.
-      readmore_link: https://blog.openstreetmap.org/tag/awards2019/
+      readmore_link: https://blog.openstreetmap.org/tag/awards/
 
     processing:
       title: Processing
       description: >
         Please wait until we process the voting results. They will be published
-        on 23th of September, after the announcement at the State of the Map 2019 conference.
+        on 5th of July, after the announcement at the State of the Map 2020 conference.
 
     results:
       title: Results
@@ -128,15 +128,15 @@ en:
     deleted: deleted
     other: other
 
-  title: OSM Awards 2019
+  title: OSM Awards 2020
   description: >
     This year, we are again presenting the OpenStreetMap Awards! Seven nominees will receive an award
-    in seven categories at the State of the Map 2019 conference. This is a community award: you decide
+    in seven categories at the State of the Map 2020 conference. This is a community award: you decide
     who the nominees are, before you vote for them.
 
   description_after: >
-    This year, we presented the OpenStreetMap Awards for the fourth time at the State of the
-    Map 2019 conference! The community nominated and voted for seven nominees for each of the
+    This year, we presented the OpenStreetMap Awards for the fifth time at the State of the
+    Map 2020 conference! The community nominated and voted for seven nominees for each of the
     seven award categories.
 
   login: Login to submit nominees or vote
