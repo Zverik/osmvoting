@@ -76,14 +76,14 @@ de:
           (was getan wurde, um geehrt zu werden) und optional eine URL einer Website,
           die das Projekt beschreibt. Teams, Gruppen und Firmen, gewerblich oder nicht
           gewerblich, können nur in der Kategorie "Team" teilnehmen. Gewählt werden
-          kann alles, was nach dem 1. Juni 2018 veröffentlicht wurde. Der Vorschlagszeitraum
-          endet am 15. Juli.
+          kann alles, was nach dem 1. Juli 2019 veröffentlicht wurde. Der Vorschlagszeitraum
+          endet am 10. Mai.
     select:
       title: Nominierte auswählen
       description: >
           Die Preisauswahlkomitees sind unter Berücksichtigung eurer Einreichungen
           und Stimmen mit der Auswahl von vier oder fünf Kandidaten je Kategorie beschäftigt.
-          Die Abstimmungsphase beginnt am 28. Juli.
+          Die Abstimmungsphase beginnt am 1. Juni.
     voting:
       title: Abstimmung
       description: >
@@ -91,15 +91,15 @@ de:
           Anzahl an Kandidaten in den einzelnen Kategorien, die einen Preis bekommen
           sollen. Du kannst bis zum Ende der Abstimmung jederzeit wieder hierher zurückkehren
           und deine Stimmabgabe ändern. Der Kandidat mit den meisten Stimmen gewinnt.
-          Die Abstimmung endet am 18. September direkt vor der State of the Map 2019,
-          auf der die Gewinner bekanntgegeben werden.
+          Die Abstimmung endet am 1. Juli direkt vor der State of the Map 2020, auf
+          der die Gewinner bekanntgegeben werden.
       readmore: Lies mehr über die Nominierten im {OpenStreetMap-Blog}.
       readmore_link: https://blog.openstreetmap.org/tag/awards2019/
     processing:
       title: verarbeite
       description: >
           Bitte warte, bis wir die Wahlergebnisse ausgewertet haben. Diese werden
-          am 23. September nach der Bekanntgabe auf der State of the Map 2019 veröffentlicht
+          am 5. Juli nach der Bekanntgabe auf der State of the Map 2020 veröffentlicht
           werden.
     results:
       title: Ergebnisse
@@ -114,15 +114,15 @@ de:
     committee: Mitglied des Komitees
     deleted: gelöscht
     other: andere
-  title: OSM-Awards 2019
+  title: OSM-Awards 2020
   description: >
       Dieses Jahr gibt es erneut die OpenStreetMap-Awards! Sieben Ausgewählte werden
-      in sieben Kategorien einen Preis auf der State of the Map 2019 verliehen bekommen.
+      in sieben Kategorien einen Preis auf der State of the Map 2020 verliehen bekommen.
       Dies ist ein Preis der Community. Ihr entscheidet, wer nominiert wird, bevor
       ihr darüber abstimmt.
   description_after: >
-      Dieses Jahr gibt es die vierte Ausgabe der OpenStreetMap-Awards auf der State-of-the-Map-Konferenz
-      2019. Die Community hat sieben Kandidaten für je eine Kategorie nominiert und
+      Dieses Jahr gibt es die fünfte Ausgabe der OpenStreetMap-Awards auf der State-of-the-Map-Konferenz
+      2020. Die Community hat sieben Kandidaten für je eine Kategorie nominiert und
       über sie abgestimmt.
   login: Melde dich an, um vorzuschlagen oder zu wählen
   who: Wem

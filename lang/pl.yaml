@@ -35,7 +35,6 @@ pl:
     voting:
       title: Głosowanie
       readmore: Przeczytaj więcej o nominacjach na  {Blogu OpenStreetMap}.
-      readmore_link: https://blog.openstreetmap.org/tag/awards2019/
     processing:
       title: Przetwarzanie
     results:
@@ -50,7 +49,6 @@ pl:
     committee: członek komitetu
     deleted: usunięte
     other: inne
-  title: OSM Awards 2019
   login: Zaloguj się, aby zgłosić nominację lub głosować
   who: Kogo
   forwhat: Opisz ich pracę

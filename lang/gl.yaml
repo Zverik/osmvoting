@@ -70,36 +70,13 @@ gl:
   stages:
     call:
       title: Chamar ós nomeados
-      description: >
-          Suxire a unha persoa de calquera das categorías de premios. Só precisamos
-          tres pezas de información: o nome dun ou dous individuos, un proxecto (que
-          é o que fixeron para reclamar un premio), e de xeito opcional unha ligazón
-          URL de calquera sitio web que describa o proxecto. Equipas, grupos e compañías,
-          comerciais ou non, poden competir só na categoría "Equipa". Elixíbel é todo
-          o que se anunciou após o 2018-06-01. A convocatoria de nomeados remata o
-          15 de xullo.
     select:
       title: Escollendo nomeados
-      description: >
-          O comité de premios está a traballar en filtrar a listaxe de nomeados a
-          catro ou cinco candidatos para cada categoría, empregando os teus nomeados
-          e votos. A votación comezará o 28 de xullo.
     voting:
       title: Votando
-      description: >
-          Estamos a votar polos nomeados! Escolle calquera número de nomeados por
-          categoría que ti creas que tería que ser premiado. Podes voltar e mudar
-          o teu voto en calquera intre antes de que remate o período de votación.
-          Os candidatos con máis votos gañan. A votación remata o 18 de setembro,
-          xusto antes da xuntanza do State of the Map 2019, na cal anunciaremos ós
-          gañadores.
       readmore: Le máis sobre os nomeados no {OpenStreetMap Blog}.
-      readmore_link: https://blog.openstreetmap.org/tag/awards2019/
     processing:
       title: Procesando
-      description: >
-          Por favor agarda até que procesemos os resultados da votación. Estarán publicados
-          o 23 de Setembro, antes do anuncio na xuntanza do State of the Map 2019
     results:
       title: Resultados
       description: Eiquí están os resultados dos Premios do OSM. O número de votos está dentro dos cadros de corchetes, o teu voto está marcado cun asterisco. {Eiquí está a listaxe de votos} se a desexas analizar. Grazas a todos os que votaron e parabéns ós nosos gañadores e a tódolos nomeados! Vémonos no seguinte ano!
@@ -113,16 +90,6 @@ gl:
     committee: membro do comité
     deleted: eliminado
     other: outro
-  title: Premios do OSM 2019
-  description: >
-      Este ano, novamente presentamos os Premios do OpenStreetMap! Sete nomeados recibirán
-      un premio en sete categorías na xuntanza do State of the Map 2019. Este é un
-      premio da comunidade: vós decidides cales son os nomeados, antes de votar por
-      eles.
-  description_after: >
-      Este ano, presentamos os Premios do OpenStreetMap por cuarta vez na xuntanza
-      do State of the Map 2019! A comunidade nomeou e votou por sete nomeados para
-      cada unha das sete categorías de premios.
   login: Inicia a sesión para enviar os nomeados ou votar
   who: Quen
   forwhat: Describe o seu traballo

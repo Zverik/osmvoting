@@ -75,31 +75,31 @@ es:
           (que es lo que hicieron para reclamar un premio), y opcionalmente una URL
           de cualquier sitio web que describa el proyecto. Equipos, grupos y compañías,
           comerciales o no, pueden competir solo en la categoría "Equipo". Elegible
-          es todo lo que se anunció después del 2018-06-01. La convocatoria de nominados
-          finaliza el 15 de julio.
+          es todo lo que se anunció después del 2019-07-01. La convocatoria de nominados
+          finaliza el 15 de mayo.
     select:
       title: Seleccionando Nominados
       description: >
           El comité de premios está trabajando en filtrar la lista de nominados a
           cuatro o cinco candidatos para cada categoría, usando tus nominados y votos.
-          La votación empezará el 28 de Julio.
+          La votación empezará el 1 de Junio.
     voting:
       title: Votando
       description: >
           ¡Estamos votando por los nominados! Elige cualquier número de nominados
           por categoría, que tú creas que debería ser premiado. Puedes volver y cambiar
           tu voto en cualquier momento antes de que termine el periodo de votación.
-          Los candidatos con más votos ganan. La votación termina el 18 de Septiembre,
-          justo antes de la conferencia State of the Map 2019, en la cual anunciaremos
-          a los ganadores.
+          Los candidatos con más votos ganan. La votación termina el 1 de Julio, justo
+          antes de la conferencia State of the Map 2020, en la cual anunciaremos a
+          los ganadores.
       readmore: Lee más sobre los nominados en {OpenStreetMap Blog}.
-      readmore_link: https://blog.openstreetmap.org/tag/awards2019/
+      readmore_link: https://blog.openstreetmap.org/tag/awards/
     processing:
       title: Procesando
       description: >
           Por favor espera hasta que procesemos los resultados de la votación. Estarán
-          publicados el 23 de Septiembre, antes del anuncio en la conferencia State
-          of the Map 2019
+          publicados el 5 de Julio, antes del anuncio en la conferencia State of the
+          Map 2020.
     results:
       title: Resultados
       description: Aquí están los resultados de los Premios OSM. El número de votos está dentro de los cuadros de corchetes, tu voto está marcado con un asterisco. {Aquí está la lista de votos} si la quieres analizar. ¡Gracias a todos los que votaron y felicitaciones a nuestros ganadores y a todos los nominados! ¡Nos vemos el próximo año!
@@ -113,15 +113,15 @@ es:
     committee: miembro del comité
     deleted: borrado
     other: otro
-  title: Premios OSM 2019
+  title: Premios OSM 2020
   description: >
       ¡Este año, nuevamente presentamos los Premios OpenStreetMap! Siete nominados
-      recibirán un premio en siete categorías en la conferencia State of the Map 2019.
+      recibirán un premio en siete categorías en la conferencia State of the Map 2020.
       Este es un premio de la comunidad: ustedes deciden cuales son los nominados,
       antes de votar por ellos.
   description_after: >
-      ¡Este año, presentamos los Premios OpenStreetMap por cuarta vez en la conferencia
-      State of the Map 2019! La comunidad nominó y votó por siete nominados para cada
+      ¡Este año, presentamos los Premios OpenStreetMap por quinta vez en la conferencia
+      State of the Map 2020! La comunidad nominó y votó por siete nominados para cada
       una de las siete categorías de premios.
   login: Inicia sesión para enviar nominados o votar
   who: Quién
