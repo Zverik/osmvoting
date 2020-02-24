@@ -435,7 +435,7 @@ def wait():
     # Update a link in the description
     desc = g.lang['stages'][config.STAGE]['description']
     desc = desc.replace('{', '<a href="{}">'.format(
-        url_for('static', filename='osmawards2017.txt'))).replace('}', '</a>')
+        url_for('static', filename='osmawards2020.txt'))).replace('}', '</a>')
     # Yay, done
     return render_template('wait.html',
                            nominees=nominees,
