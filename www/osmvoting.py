@@ -207,7 +207,7 @@ def edit_nominees(cat=None, edit_id=None):
         Nominee.proposedby == uid).count() < config.MAX_NOMINEES_PER_USER)
     return render_template('index.html',
                            form=form, nomination=nom or 'all',
-                           nominees=nominees.naive(), user=uid, isadmin=isadmin,
+                           nominees=nominees.objects(), user=uid, isadmin=isadmin,
                            canvote=canvote(uid),
                            canunvote=config.STAGE == 'callvote' or isteam(uid),
                            votes=votes, statuses={k: v for k, v in Nominee.status.choices},
@@ -338,7 +338,7 @@ def voting():
     uid = session['osm_uid']
     isadmin = uid in config.ADMINS
     nominees_list = Nominee.select(Nominee, Vote.user.alias('voteuser')).where(Nominee.status == Nominee.Status.CHOSEN).join(
-        Vote, JOIN.LEFT_OUTER, on=((Vote.nominee == Nominee.id) & (Vote.user == uid) & (~Vote.preliminary))).naive()
+        Vote, JOIN.LEFT_OUTER, on=((Vote.nominee == Nominee.id) & (Vote.user == uid) & (~Vote.preliminary))).objects()
     # Shuffle the nominees
     nominees = [n for n in nominees_list]
     rnd = Random()
@@ -415,7 +415,7 @@ def wait():
     uid = session['osm_uid'] if 'osm_uid' in session else 0
     isadmin = uid in config.ADMINS
     nominees = Nominee.select(Nominee, Vote.user.alias('voteuser')).where(Nominee.status == Nominee.Status.CHOSEN).join(
-        Vote, JOIN.LEFT_OUTER, on=((Vote.nominee == Nominee.id) & (Vote.user == uid) & (~Vote.preliminary))).naive()
+        Vote, JOIN.LEFT_OUTER, on=((Vote.nominee == Nominee.id) & (Vote.user == uid) & (~Vote.preliminary))).objects()
     # For admin, populate the dict of votes
     winners = {x: [0, 0] for x in config.NOMINATIONS}
     if isadmin or config.STAGE == 'results':
