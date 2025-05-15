@@ -51,12 +51,12 @@ def merge_dict(target, other):
 
 def load_language(path, lang):
     with codecs.open(os.path.join(config.BASE_DIR, path, 'en.yaml'), 'r', 'utf-8') as f:
-        data = yaml.load(f)
+        data = yaml.safe_load(f)
         data = data[data.keys()[0]]
     lang_file = os.path.join(config.BASE_DIR, path, lang + '.yaml')
     if os.path.exists(lang_file):
         with codecs.open(lang_file, 'r', 'utf-8') as f:
-            lang_data = yaml.load(f)
+            lang_data = yaml.safe_load(f)
             merge_dict(data, lang_data[lang_data.keys()[0]])
     return data
 
