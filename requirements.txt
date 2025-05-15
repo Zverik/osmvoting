@@ -5,3 +5,4 @@ flask-WTF
 PyYAML
 authlib
 gunicorn
+pymysql
