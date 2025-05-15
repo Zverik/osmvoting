@@ -17,7 +17,7 @@ import codecs
 
 oauth = OAuth()
 oauth.register(
-    'OpenStreetMap',
+    'openstreetmap',
     base_url='https://api.openstreetmap.org/api/0.6/',
     request_token_url='https://www.openstreetmap.org/oauth/request_token',
     access_token_url='https://www.openstreetmap.org/oauth/access_token',
