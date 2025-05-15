@@ -1,28 +1,30 @@
-from www import app
-from db import database, Nominee, Vote
+from . import app
+from .db import database, Nominee, Vote
 from flask import session, url_for, redirect, request, render_template, g, flash
-from flask_oauthlib.client import OAuth
+from authlib.integrations.flask_client import OAuth
+from authlib.common.errors import AuthlibBaseError
 from flask_wtf import Form
 from wtforms import StringField, HiddenField, TextAreaField, SelectMultipleField, SelectField
 from wtforms.validators import DataRequired, Optional, URL
 from playhouse.shortcuts import model_to_dict
-from datetime import date
 from random import Random
 from peewee import JOIN, fn
+from xml.etree import ElementTree as etree
 import yaml
 import os
 import config
 import codecs
 
 oauth = OAuth()
-openstreetmap = oauth.remote_app(
+oauth.register(
     'OpenStreetMap',
     base_url='https://api.openstreetmap.org/api/0.6/',
     request_token_url='https://www.openstreetmap.org/oauth/request_token',
     access_token_url='https://www.openstreetmap.org/oauth/access_token',
     authorize_url='https://www.openstreetmap.org/oauth/authorize',
     consumer_key=app.config['OAUTH_KEY'] or '123',
-    consumer_secret=app.config['OAUTH_SECRET'] or '123'
+    consumer_secret=app.config['OAUTH_SECRET'] or '123',
+    client_kwargs={'scope': 'read_prefs'},
 )
 
 
@@ -98,37 +100,32 @@ def login():
 
 @app.route('/login')
 def login_to_osm():
-    if 'osm_token' not in session:
+    if 'osm_token2' not in session:
         session['objects'] = request.args.get('objects')
-        return openstreetmap.authorize(callback=url_for('oauth'))
+        return oauth.openstreetmap.authorize_redirect(
+            url_for('oauth_callback', _external=True))
     return login()
 
 
 @app.route('/oauth')
-def oauth():
-    resp = openstreetmap.authorized_response()
-    if resp is None:
+def oauth_callback():
+    try:
+        token = oauth.openstreetmap.authorize_access_token()
+    except AuthlibBaseError:
         return 'Denied. <a href="' + url_for('login') + '">Try again</a>.'
-    session['osm_token'] = (
-            resp['oauth_token'],
-            resp['oauth_token_secret']
-    )
-    user_details = openstreetmap.get('user/details').data
+
+    session['osm_token2'] = token
+
+    response = oauth.openstreetmap.get('user/details')
+    user_details = etree.fromstring(response.content)
     session['osm_uid'] = int(user_details[0].get('id'))
     return redirect(url_for('login'))
 
 
-@openstreetmap.tokengetter
-def get_token(token='user'):
-    if token == 'user' and 'osm_token' in session:
-        return session['osm_token']
-    return None
-
-
 @app.route('/logout')
 def logout():
-    if 'osm_token' in session:
-        del session['osm_token']
+    if 'osm_token2' in session:
+        del session['osm_token2']
     if 'osm_uid' in session:
         del session['osm_uid']
     return redirect(url_for('login'))

@@ -1,6 +1,7 @@
 peewee>=2.8.0
 flask>=0.11
 flask-Compress
-flask-OAuthlib
 flask-WTF
 PyYAML
+authlib
+gunicorn
