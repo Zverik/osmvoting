@@ -15,7 +15,7 @@ import os
 import config
 import codecs
 
-oauth = OAuth()
+oauth = OAuth(app)
 oauth.register(
     'openstreetmap',
     base_url='https://api.openstreetmap.org/api/0.6/',
