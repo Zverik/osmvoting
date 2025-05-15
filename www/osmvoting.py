@@ -62,7 +62,7 @@ def load_language(path, lang):
 
 
 def load_user_language():
-    supported = set([x[:x.index('.')].decode('utf-8') for x in os.listdir(
+    supported = set([x[:x.index('.')] for x in os.listdir(
         os.path.join(config.BASE_DIR, 'lang')) if '.yaml' in x])
     accepted = request.headers.get('Accept-Language', '')
     lang = 'en'
