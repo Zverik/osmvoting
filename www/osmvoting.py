@@ -5,7 +5,10 @@ from authlib.integrations.flask_client import OAuth
 from authlib.common.errors import AuthlibBaseError
 from flask_wtf import FlaskForm
 from functools import wraps
-from wtforms import StringField, HiddenField, TextAreaField, SelectMultipleField, SelectField
+from wtforms import (
+    StringField, HiddenField, TextAreaField, SelectMultipleField,
+    SelectField, URLField,
+)
 from wtforms.validators import DataRequired, Optional, URL
 from playhouse.shortcuts import model_to_dict
 from random import Random
@@ -14,7 +17,6 @@ from xml.etree import ElementTree as etree
 import yaml
 import os
 import config
-import codecs
 
 oauth = OAuth(app)
 oauth.register(
@@ -146,7 +148,7 @@ def logout():
 class AddNomineeForm(FlaskForm):
     who = StringField('Who', validators=[DataRequired()])
     project = TextAreaField('For what')
-    url = StringField('URL', validators=[Optional(), URL()])
+    url = URLField('URL', validators=[Optional(), URL()])
     category = SelectField('Category', validators=[DataRequired()])
     nomid = HiddenField('Nominee IS', validators=[Optional()])
 
@@ -248,9 +250,11 @@ def add_nominee():
         else:
             form.populate_obj(n)
             n.save()
-        return redirect(url_for('edit_nominees'))
-    return 'Error in fields:\n{}'.format(
-        '\n'.join(['{}: {}'.format(k, v) for k, v in form.errors.items()]))
+    else:
+        flash('Error in fields:\n{}'.format(
+            '\n'.join(['{}: {}'.format(k, v)
+                       for k, v in form.errors.items()])))
+    return redirect(url_for('edit_nominees'))
 
 
 @app.route('/delete/<nid>')
@@ -276,7 +280,8 @@ def choose_nominee(nid):
     elif n.status == Nominee.Status.ACCEPTED:
         n.status = Nominee.Status.CHOSEN
     else:
-        raise Exception('Cannot choose non-accepted nominee')
+        flash('Cannot choose non-accepted nominee')
+        return redirect(url_for('edit_nominees'))
     n.save()
     return redirect(url_for('edit_nominees'))
 
