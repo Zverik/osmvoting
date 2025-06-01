@@ -1,25 +1,25 @@
 gl:
   nominations:
     all:
-      title: Tódolos nomeados
+      title: Todos os nomeados
       short: todo
     mine:
       title: Os meus nomeados
       short: os meus
     core:
-      title: Premio Sistema Central
-      short: núcleo
+      title: Premio ecosistema do OSM
+      short: ecosistema OSM
       description: >
           Por contribucións destacadas a calquera das ferramentas, sistemas, procesos
           ou recursos básicos. Non limitado ós sistemas baixo control do OSMF. The
           Rails port, osm2pgsql, openstreetmap-carto, iD, JOSM, mapnik e calquera
           outra ferramenta que os cartógrafos empreguen de xeito diario, con coñecemento
-          ou non, son elixíbeis.
+          ou non, poden ser escollidos.
     innovation:
       title: Premio pola innovación
       short: innovación
       description: >
-          Polo mellor novo servicio ou enfoque. Novas ferramentas para aportar datos,
+          Polo mellor novo servizo ou enfoque. Novas ferramentas para aportar datos,
           recoñecemento de imaxes, rastrexo ou análise de datos do OSM, novo enfoque
           de cartografado ou novas perspectivas sobre antigas ferramentas.
     writing:
@@ -44,13 +44,13 @@ gl:
           Polos esforzos no espallamento da comunidade. Non só xeográficamente, senón
           tamén na diversidade, no sector humanitario ou no goberno.
     team:
-      title: Premio polo logro en equipa
-      short: equipa
+      title: Premio polo logro en equipo
+      short: equipo
       description: Por obter logros sobresaíntes no cartografado, fornecer datos ou xuntar á comunidade do OpenStreetMap. Outorgado a empresas comerciais, organizacións sen fins de lucro, organizacións gobernamentais e grupos de voluntarios.
     latam:
       title: Premio pola mellora da Latinoamérica
       short: latinoamérica
-      description: Por construír a comunidade e mellorar os mapas na América do Sur e Central, dende México a Chile e Arxentina.
+      description: Por construír a comunidade e mellorar os mapas na América do Sur e Central, dende México a Chile e a Arxentina.
     africa:
       title: Premio pola mellora da África
       short: áfrica
@@ -65,8 +65,8 @@ gl:
       description: >
           A contribuíntes individuais por facer unha diferenza no proxecto do OpenStreetMap,
           a través dun bo cartografado, beneficiar á comunidade e outras melloras
-          ó OSM. Calquera membro que estivera activo nalgún intre dende 2004 é elixíbel
-          para este premio.
+          ó OSM. Calquera membro que estivera activo nalgún intre dende 2004 pode
+          ser escollido para este premio.
   stages:
     call:
       title: Chamar ós nomeados
@@ -75,11 +75,12 @@ gl:
     voting:
       title: Votando
       readmore: Le máis sobre os nomeados no {OpenStreetMap Blog}.
+      readmore_link: https://blog.openstreetmap.org/tag/awards/
     processing:
       title: Procesando
     results:
       title: Resultados
-      description: Eiquí están os resultados dos Premios do OSM. O número de votos está dentro dos cadros de corchetes, o teu voto está marcado cun asterisco. {Eiquí está a listaxe de votos} se a desexas analizar. Grazas a todos os que votaron e parabéns ós nosos gañadores e a tódolos nomeados! Vémonos no seguinte ano!
+      description: Velaquí están os resultados dos Premios do OSM. O número de votos está dentro dos cadros de corchetes, o teu voto está marcado cun asterisco. {Velaquí está a listaxe de votos} se a desexas analizar. Grazas a todos os que votaron e parabéns ós nosos gañadores e a todos os nomeados! Vémonos no seguinte ano!
   status:
     submitted: enviado
     accepted: aceptado

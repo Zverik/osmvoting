@@ -35,6 +35,7 @@ pl:
     voting:
       title: Głosowanie
       readmore: Przeczytaj więcej o nominacjach na  {Blogu OpenStreetMap}.
+      readmore_link: https://blog.openstreetmap.org/tag/awards/
     processing:
       title: Przetwarzanie
     results:

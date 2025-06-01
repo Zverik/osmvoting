@@ -43,6 +43,10 @@ hu:
       description: >
           A közösség bővítéséért tett erőfeszítésekért. Nem csak földrajzilag, hanem
           a sokszínűség, a humanitárius ágazat vagy a kormányzat terén is.
+    team:
+      title: Csapatteljesítmény díj
+      short: csapat
+      description: A térképezésben, az adatszolgáltatásban vagy az OpenStreetMap közösség összefogásában elért kiemelkedő eredményekért. Vállalatoknak, nonprofit szervezeteknek, kormányzati szervezeteknek és önkéntes csoportoknak adható.
     latam:
       title: Latin-Amerika javításáért díj
       short: lat-am
@@ -71,6 +75,7 @@ hu:
     voting:
       title: Szavazás
       readmore: A jelöltekről az {OpenStreetMap Blog}on olvashatsz.
+      readmore_link: https://blog.openstreetmap.org/tag/awards/
     processing:
       title: Feldolgozás
     results:

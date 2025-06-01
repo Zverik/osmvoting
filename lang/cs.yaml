@@ -1,0 +1,106 @@
+cs_CZ:
+  nominations:
+    all:
+      title: Všichni nominovaní
+      short: všichni
+    mine:
+      title: Moji nominovaní
+      short: moji
+    core:
+      title: Cena za základní systémy
+      short: jádro
+      description: >
+          Za mimořádné příspěvky k jakémukoli ze základních nástrojů, systémů, procesů
+          nebo zdrojů. Není omezeno na systémy pod kontrolou OSMF. Přípustné jsou
+          Rails port, osm2pgsql, openstreetmap-carto, iD, JOSM, mapnik a jakýkoli
+          jiný nástroj, který mappeři používají denně, ať už vědomě, či ne.
+    innovation:
+      title: Cena za inovaci
+      short: inovace
+      description: >
+          Pro nejlepší novou službu nebo přístup. Nové nástroje pro vkládání dat,
+          rozpoznávání obrazu, trasování nebo analýzu dat OSM, nový přístup k mapování
+          nebo nový pohled na staré nástroje.
+    writing:
+      title: Cena za vlivné psaní
+      short: psaní
+      description: >
+          Pro nejlepší návod, dokumentaci, blog nebo blogový příspěvek. Text nebo
+          série textů, které přilákaly do OSM mnoho nových lidí, poskytly zajímavý
+          pohled na projekt nebo inspirovaly komunitu k lepším věcem.
+    mapping:
+      title: Cena za velikost v mapování
+      short: mapování
+      description: >
+          Za významné přispění k mapovým podkladům nebo příkladné mapování: mikromapování,
+          úklid, mapování měst od nuly, řádné importy.
+    community:
+      title: Rozšíření ceny komunity
+      short: komunita
+      description: >
+          Za snahu o rozšíření komunity. Nejen geograficky, ale také v rozmanitosti,
+          do humanitárního sektoru nebo vlády.
+    team:
+      title: Cena týmu za archivaci
+      short: tým
+      description: Za vynikající archivaci v mapování, poskytování dat nebo sbližování komunity OpenStreetMap. Uděluje se komerčním společnostem, neziskovým organizacím, vládním organizacím a dobrovolnickým skupinám.
+    latam:
+      title: Cena za vylepšení Latinské Ameriky
+      short: latam
+      description: Za budování komunity a vylepšení mapy v Jižní a Střední Americe, od Mexika až po Chile a Argentinu.
+    africa:
+      title: Cena za vylepšení Afriky
+      short: afrika
+      description: Za budování komunity a vylepšení mapy v afrických zemí.
+    asia:
+      title: Cena za vylepšení Asie
+      short: asie
+      description: Za budování komunity a vylepšování mapy v asijských zemích, od Arabského poloostrova až po Japonsko a Indonésii.
+    ulf:
+      title: Pamětní cena Ulfa Möllera
+      short: Ulf
+      description: >
+          Jednotlivým přispěvatelům za změnu v projektu OpenStreetMap prostřednictvím
+          dobrého mapování, přínosu pro komunitu a dalších vylepšení OSM. Každý člen,
+          který byl aktivní kdykoli od roku 2004, má nárok na toto ocenění.
+  stages:
+    call:
+      title: Výzva pro nominované
+    select:
+      title: Výběr nominovaných
+    voting:
+      title: Hlasování
+      readmore: Přečtěte si více o nominovaných na {OpenStreetMap Blog}.
+      readmore_link: https://blog.openstreetmap.org/tag/awards/
+    processing:
+      title: Zpracovává se
+    results:
+      title: Výsledky
+      description: Zde jsou výsledky OSM Awards. Počet hlasů je vytištěn v hranatých závorkách, váš hlas je označen hvězdičkou. {Zde je hrubý seznam hlasů}, pokud chcete provést nějakou analýzu. Děkujeme všem, kteří hlasovali, a gratulujeme našim vítězům a všem nominovaným! Uvidíme se příští rok!
+  status:
+    submitted: odevzdáno
+    accepted: přijato
+    chosen: vybráno
+    duplicate: duplikovat
+    outoftime: není v časovém rámci
+    vague: příliš vágní
+    committee: člen výboru
+    deleted: smazáno
+    other: jiné
+  login: Přihlásit se k předložení kandidátů nebo hlasování
+  who: Koho
+  forwhat: Popište jejich práci
+  url: URL
+  choose_category: Zvolte kategorii
+  optional: volitelné
+  edit: upravit
+  delete: smazat
+  addnominee: Přidat kandidáta
+  updatenominee: Aktualizovat kandidáta
+  deletenominee: Smazat
+  listnominees: Seznam nominovaných
+  novote: Nehlasovat v této kategorii
+  link: odkaz
+  savevotes: Odevzdat mé hlasování
+  thanksvoted: Vaše volba byla uložena, děkujeme za hlasování!
+  peoplevoted: Celkový počet lidí, kteří hlasovali
