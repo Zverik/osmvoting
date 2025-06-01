@@ -1,4 +1,4 @@
-#!.venv/bin/python
+#!venv/bin/python
 from www import app
 from www.db import create_tables
 create_tables()

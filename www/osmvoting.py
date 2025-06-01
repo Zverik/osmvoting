@@ -3,7 +3,8 @@ from .db import database, Nominee, Vote
 from flask import session, url_for, redirect, request, render_template, g, flash
 from authlib.integrations.flask_client import OAuth
 from authlib.common.errors import AuthlibBaseError
-from flask_wtf import Form
+from flask_wtf import FlaskForm
+from functools import wraps
 from wtforms import StringField, HiddenField, TextAreaField, SelectMultipleField, SelectField
 from wtforms.validators import DataRequired, Optional, URL
 from playhouse.shortcuts import model_to_dict
@@ -37,6 +38,17 @@ def before_request():
 def teardown(exception):
     if not database.is_closed():
         database.close()
+
+
+def get_user(f):
+    @wraps(f)
+    def decorated(*args, **kwargs):
+        if 'osm_token2' in session and 'user_id' not in g:
+            g.user_id = session['osm_uid']
+            g.is_admin = g.user_id in config.ADMINS
+            g.is_team = config.STAGE == 'select' and g.user_id in config.TEAM
+        return f(*args, **kwargs)
+    return decorated
 
 
 def merge_dict(target, other):
@@ -131,7 +143,7 @@ def logout():
     return redirect(url_for('login'))
 
 
-class AddNomineeForm(Form):
+class AddNomineeForm(FlaskForm):
     who = StringField('Who', validators=[DataRequired()])
     project = TextAreaField('For what')
     url = StringField('URL', validators=[Optional(), URL()])
@@ -142,17 +154,16 @@ class AddNomineeForm(Form):
 @app.route('/nominees')
 @app.route('/nominees/<cat>')
 @app.route('/edit/<edit_id>')
+@get_user
 def edit_nominees(cat=None, edit_id=None):
     """Called from login(), a convenience method."""
-    uid = session.get('osm_uid', None)
-    isadmin = uid in config.ADMINS
-    if config.STAGE not in ('call', 'callvote', 'select') and not isadmin:
+    if config.STAGE not in ('call', 'callvote', 'select') and not g.is_admin:
         return redirect(url_for('login'))
     if cat is None:
         cat = session.get('nomination', 'core')
     if cat == 'all':
-        cat = None if isadmin else 'mine'
-    if cat == 'mine' and not uid:
+        cat = None if g.is_admin else 'mine'
+    if cat == 'mine' and not g.user_id:
         cat = 'core'
     if cat in config.NOMINATIONS or cat is None or cat == 'mine':
         session['nomination'] = cat
@@ -160,9 +171,9 @@ def edit_nominees(cat=None, edit_id=None):
 
     # Prepare editing form
     edit_obj = None
-    if edit_id and uid and (isadmin or config.STAGE in ('call', 'callvote')):
+    if edit_id and g.user_id and (g.is_admin or config.STAGE in ('call', 'callvote')):
         edit_nom = Nominee.get(Nominee.id == edit_id)
-        if (edit_nom.status == Nominee.Status.SUBMITTED and edit_nom.proposedby == uid) or isadmin:
+        if (edit_nom.status == Nominee.Status.SUBMITTED and edit_nom.proposedby == g.user_id) or g.is_admin:
             edit_obj = model_to_dict(edit_nom)
             edit_obj['nomid'] = edit_id
     form = AddNomineeForm(data=edit_obj)
@@ -171,21 +182,21 @@ def edit_nominees(cat=None, edit_id=None):
     # Select nominees from the database
     nominees = Nominee.select(Nominee, Vote.user.alias('voteuser')).join(
         Vote, JOIN.LEFT_OUTER, on=(
-            (Vote.nominee == Nominee.id) & (Vote.user == uid) & (Vote.preliminary)
+            (Vote.nominee == Nominee.id) & (Vote.user == g.user_id) & (Vote.preliminary)
         )).order_by(Nominee.id.desc())
 
     if nom in config.NOMINATIONS:
         nominees = nominees.where(Nominee.category == nom)
     elif nom == 'mine':
-        nominees = nominees.where(Nominee.proposedby == uid)
-    if nom != 'mine' and not isadmin:
+        nominees = nominees.where(Nominee.proposedby == g.user_id)
+    if nom != 'mine' and not g.is_admin:
         min_status = (Nominee.Status.SUBMITTED
                       if config.STAGE in ('call', 'callvote', 'select')
                       else Nominee.Status.ACCEPTED)
         nominees = nominees.where(Nominee.status >= min_status)
 
     # Calculate the number of votes for the selection team
-    if isteam(uid):
+    if g.is_team:
         votesq = Nominee.select(Nominee.id, fn.COUNT(Vote.id).alias('num_votes')).join(
             Vote, JOIN.LEFT_OUTER, on=((Vote.nominee == Nominee.id) & (Vote.preliminary))).group_by(Nominee.id)
         votes = {}
@@ -196,36 +207,35 @@ def edit_nominees(cat=None, edit_id=None):
 
     # Prepare a list of categories
     filterables = list(config.NOMINATIONS)
-    if uid:
+    if g.user_id:
         filterables.insert(0, 'mine')
-    if isadmin:
+    if g.is_admin:
         filterables.insert(0, 'all')
 
     # All done, return the template
-    canadd = isadmin or (uid and config.STAGE.startswith('call') and Nominee.select().where(
-        Nominee.proposedby == uid).count() < config.MAX_NOMINEES_PER_USER)
+    canadd = g.is_admin or (g.user_id and config.STAGE.startswith('call') and Nominee.select().where(
+        Nominee.proposedby == g.user_id).count() < config.MAX_NOMINEES_PER_USER)
     return render_template('index.html',
                            form=form, nomination=nom or 'all',
-                           nominees=nominees.objects(), user=uid, isadmin=isadmin,
-                           canvote=canvote(uid),
-                           canunvote=config.STAGE == 'callvote' or isteam(uid),
+                           nominees=nominees.objects(), user=g.user_id, isadmin=g.is_admin,
+                           canvote=canvote(g.user_id),
+                           canunvote=config.STAGE == 'callvote' or g.is_team,
                            votes=votes, statuses={k: v for k, v in Nominee.status.choices},
                            stage=config.STAGE, canadd=canadd,
                            nominations=filterables, lang=g.lang)
 
 
 @app.route('/add', methods=['POST'])
+@get_user
 def add_nominee():
-    uid = session.get('osm_uid', None)
-    isadmin = uid in config.ADMINS
-    if not uid or not (config.STAGE.startswith('call') or isadmin):
+    if not g.user_id or not (config.STAGE.startswith('call') or g.is_admin):
         return redirect(url_for('login'))
     form = AddNomineeForm()
     form.category.choices = g.category_choices
     if form.validate():
         if form.nomid.data.isdigit():
             n = Nominee.get(Nominee.id == int(form.nomid.data))
-            if n.proposedby != uid and not isadmin:
+            if n.proposedby != g.user_id and not g.is_admin:
                 return redirect(url_for('edit_nominees'))
         else:
             n = Nominee()
@@ -244,9 +254,10 @@ def add_nominee():
 
 
 @app.route('/delete/<nid>')
+@get_user
 def delete_nominee(nid):
-    if 'osm_token' not in session or (
-            not config.STAGE.startswith('call') and session['osm_uid'] not in config.ADMINS):
+    if not g.user_id or (
+            not config.STAGE.startswith('call') and not g.is_admin):
         return redirect(url_for('login'))
     n = Nominee.get(Nominee.id == nid)
     session['tmp_nominee'] = model_to_dict(n)
@@ -255,8 +266,9 @@ def delete_nominee(nid):
 
 
 @app.route('/choose/<nid>')
+@get_user
 def choose_nominee(nid):
-    if 'osm_token' not in session or session['osm_uid'] not in config.ADMINS:
+    if not g.is_admin:
         return redirect(url_for('login'))
     n = Nominee.get(Nominee.id == nid)
     if n.status == Nominee.Status.CHOSEN:
@@ -271,8 +283,9 @@ def choose_nominee(nid):
 
 @app.route('/setstatus/<nid>')
 @app.route('/setstatus/<nid>/<status>')
+@get_user
 def set_status(nid, status=None):
-    if 'osm_token' not in session or session['osm_uid'] not in config.ADMINS or status is None:
+    if status is None or not g.is_admin:
         return redirect(url_for('login'))
     n = Nominee.get(Nominee.id == nid)
     n.status = status
@@ -280,73 +293,67 @@ def set_status(nid, status=None):
     return redirect(url_for('edit_nominees'))
 
 
+@get_user
 def canvote(uid):
-    if 'osm_token' not in session:
+    if not g.user_id:
         return False
-    if session['osm_uid'] in config.ADMINS:
+    if g.is_admin:
         return True
-    if config.STAGE != 'callvote' and not isteam(uid):
+    if config.STAGE != 'callvote' and not g.is_team:
         return False
     return Vote.select().join(Nominee).where(
         (Vote.user == uid) & (Vote.preliminary) &
         (Nominee.category == session['nomination'])).count() < 5
 
 
-def isteam(uid):
-    return config.STAGE == 'select' and uid in config.TEAM
-
-
 @app.route('/prevote/<nid>')
+@get_user
 def prevote(nid):
-    if 'osm_token' not in session:
-        return redirect(url_for('login'))
-    uid = session['osm_uid']
-    if config.STAGE != 'call' and not isteam(uid):
+    if config.STAGE != 'call' and not g.is_team:
         return redirect(url_for('login'))
     n = Nominee.get(Nominee.id == nid)
     try:
-        v = Vote.get((Vote.user == uid) & (Vote.nominee == n) & (Vote.preliminary))
+        v = Vote.get((Vote.user == g.user_id) & (Vote.nominee == n) & (Vote.preliminary))
         v.delete_instance()
     except Vote.DoesNotExist:
-        if canvote(uid):
+        if canvote(g.user_id):
             v = Vote()
             v.nominee = n
-            v.user = uid
+            v.user = g.user_id
             v.preliminary = True
             v.save()
     return redirect(url_for('edit_nominees'))
 
 
 @app.route('/list')
+@get_user
 def list_chosen():
-    uid = session.get('osm_uid', None)
     nominees = Nominee.select().where(Nominee.status == Nominee.Status.CHOSEN)
     return render_template('list.html',
-                           nominees=nominees, user=uid,
+                           nominees=nominees, user=g.user_id,
                            nominations=config.NOMINATIONS, lang=g.lang)
 
 
 @app.route('/voting')
+@get_user
 def voting():
     """Called from login(), a convenience method."""
-    if 'osm_token' not in session:
+    if not g.user_id:
         return redirect(url_for('list_chosen'))
     if config.STAGE != 'voting':
         return redirect(url_for('login'))
 
-    uid = session['osm_uid']
-    isadmin = uid in config.ADMINS
     nominees_list = Nominee.select(Nominee, Vote.user.alias('voteuser')).where(Nominee.status == Nominee.Status.CHOSEN).join(
-        Vote, JOIN.LEFT_OUTER, on=((Vote.nominee == Nominee.id) & (Vote.user == uid) & (~Vote.preliminary))).objects()
+        Vote, JOIN.LEFT_OUTER, on=((Vote.nominee == Nominee.id) & (Vote.user == g.user_id) & (~Vote.preliminary))).objects()
     # Shuffle the nominees
     nominees = [n for n in nominees_list]
     rnd = Random()
-    rnd.seed(uid)
+    rnd.seed(g.user_id)
     rnd.shuffle(nominees)
     # Make a dict of categories user voted in
-    cats = set([x.category for x in Nominee.select(Nominee.category).join(Vote, JOIN.INNER, on=((Vote.nominee == Nominee.id) & (~Vote.preliminary) & (Vote.user == uid))).distinct()])
+    cats = set([x.category for x in Nominee.select(Nominee.category).join(Vote, JOIN.INNER, on=((Vote.nominee == Nominee.id) & (~Vote.preliminary) & (Vote.user == g.user_id))).distinct()])
     # For admin, populate the dict of votes
-    if isadmin:
+    if g.is_admin:
         votesq = Nominee.select(Nominee.id, fn.COUNT(Vote.id).alias('num_votes')).where(Nominee.status == Nominee.Status.CHOSEN).join(
             Vote, JOIN.LEFT_OUTER, on=((Vote.nominee == Nominee.id) & (~Vote.preliminary))).group_by(Nominee.id)
         votes = {}
@@ -363,25 +370,25 @@ def voting():
     # Yay, done
     return render_template('voting.html',
                            nominees=nominees,
-                           isadmin=isadmin, votes=votes, stage=config.STAGE,
+                           isadmin=g.is_admin, votes=votes, stage=config.STAGE,
                            total=total, voted_cats=cats, readmore=readmore,
                            nominations=config.NOMINATIONS, lang=g.lang)
 
 
 @app.route('/votes', methods=['POST'])
+@get_user
 def vote_all():
-    if 'osm_token' not in session or config.STAGE != 'voting':
+    if not g.user or config.STAGE != 'voting':
         return redirect(url_for('login'))
-    uid = session['osm_uid']
     # Delete current votes to replace by with the new ones
-    q = Vote.delete().where((Vote.user == uid) & (~Vote.preliminary))
+    q = Vote.delete().where((Vote.user == g.user_id) & (~Vote.preliminary))
     q.execute()
     for nom in config.NOMINATIONS:
         votes = request.form.getlist('vote_{}'.format(nom))
         for vote in votes:
             v = Vote()
             v.nominee = Nominee.get(Nominee.id == int(vote))
-            v.user = uid
+            v.user = g.user_id
             v.preliminary = False
             v.save()
     flash(g.lang['thanksvoted'])
@@ -389,35 +396,34 @@ def vote_all():
 
 
 @app.route('/vote/<nid>')
+@get_user
 def vote(nid):
-    if 'osm_token' not in session or config.STAGE != 'voting':
+    if not g.user_id or config.STAGE != 'voting':
         return redirect(url_for('login'))
-    uid = session['osm_uid']
     n = Nominee.get(Nominee.id == nid)
     try:
         # Delete votes from the same category by this voter
-        v = Vote.select().where((Vote.user == uid) & (~Vote.preliminary)).join(Nominee).where(
+        v = Vote.select().where((Vote.user == g.user_id) & (~Vote.preliminary)).join(Nominee).where(
             Nominee.category == n.category).get()
         v.delete_instance()
     except Vote.DoesNotExist:
         pass
     v = Vote()
     v.nominee = n
-    v.user = uid
+    v.user = g.user_id
     v.preliminary = False
     v.save()
     return redirect(url_for('voting'))
 
 
 @app.route('/results')
+@get_user
 def wait():
-    uid = session['osm_uid'] if 'osm_uid' in session else 0
-    isadmin = uid in config.ADMINS
     nominees = Nominee.select(Nominee, Vote.user.alias('voteuser')).where(Nominee.status == Nominee.Status.CHOSEN).join(
-        Vote, JOIN.LEFT_OUTER, on=((Vote.nominee == Nominee.id) & (Vote.user == uid) & (~Vote.preliminary))).objects()
+        Vote, JOIN.LEFT_OUTER, on=((Vote.nominee == Nominee.id) & (Vote.user == g.user_id or 0) & (~Vote.preliminary))).objects()
     # For admin, populate the dict of votes
     winners = {x: [0, 0] for x in config.NOMINATIONS}
-    if isadmin or config.STAGE == 'results':
+    if g.is_admin or config.STAGE == 'results':
         votesq = Nominee.select(Nominee.id, Nominee.category, fn.COUNT(Vote.id).alias('num_votes')).where(Nominee.status == Nominee.Status.CHOSEN).join(
             Vote, JOIN.LEFT_OUTER, on=((Vote.nominee == Nominee.id) & (~Vote.preliminary))).group_by(Nominee.id)
         votes = {}
@@ -437,6 +443,6 @@ def wait():
     return render_template('wait.html',
                            nominees=nominees,
                            description=desc,
-                           isadmin=isadmin, votes=votes, stage=config.STAGE,
+                           isadmin=g.is_admin, votes=votes, stage=config.STAGE,
                            total=total, winners=winners, isresults=config.STAGE == 'results',
                            nominations=config.NOMINATIONS, lang=g.lang)
