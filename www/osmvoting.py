@@ -45,10 +45,16 @@ def teardown(exception):
 def get_user(f):
     @wraps(f)
     def decorated(*args, **kwargs):
-        if 'osm_token2' in session and 'user_id' not in g:
-            g.user_id = session['osm_uid']
-            g.is_admin = g.user_id in config.ADMINS
-            g.is_team = config.STAGE == 'select' and g.user_id in config.TEAM
+        if 'user_id' not in g:
+            if 'osm_token2' in session:
+                g.user_id = session['osm_uid']
+                g.is_admin = g.user_id in config.ADMINS
+                g.is_team = (config.STAGE == 'select' and
+                             g.user_id in config.TEAM)
+            else:
+                g.user_id = None
+                g.is_admin = False
+                g.is_team = False
         return f(*args, **kwargs)
     return decorated
 
