@@ -16,7 +16,9 @@
             {% endif %}
         </div>
         <div class="nomination-why">
-            {{ lang.desc[nom][n.id] or n.project }}
+            {% for line in n.project.splitlines() %}
+            {{ line }}<br>
+            {% endfor %}
             {% if n.url %}
             (<a href="{{ n.url }}" target="_blank">{{ lang.link }}</a>)
             {% endif %}
