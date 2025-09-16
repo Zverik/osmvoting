@@ -389,7 +389,7 @@ def voting():
 @app.route('/votes', methods=['POST'])
 @get_user
 def vote_all():
-    if not g.user or config.STAGE != 'voting':
+    if not g.user_id or config.STAGE != 'voting':
         return redirect(url_for('login'))
     # Delete current votes to replace by with the new ones
     q = Vote.delete().where((Vote.user == g.user_id) & (~Vote.preliminary))
