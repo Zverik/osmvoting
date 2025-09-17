@@ -15,14 +15,15 @@
     <ul>
         {% for n in nominees %}
         {% if n.category == nom %}
-        <li>{{ n.who }}
-        {%- if n.project %},
-        {% if n.url %}
-        <a href="{{ n.url }}">{{ n.project }}</a>
-        {% else %}
-        {{ n.project }}
-        {% endif %}
-        {% endif %}
+        <li>
+          {% if n.url %}
+            <a href="{{ n.url }}">{{ n.who }}</a>
+          {% else %}
+            {{ n.who }}
+          {% endif %}
+          {%- if n.project %},
+            {{ n.project }}
+          {% endif %}
         </li>
         {% endif %}
         {% endfor %}
