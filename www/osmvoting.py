@@ -526,8 +526,8 @@ def dump_wiki():
         print('', file=result)
         print('== {} =='.format(g.lang['nominations'][nom]['title']), file=result)
         print('', file=result)
+        lst = []
         for n in nominees:
-            lst = []
             if n.category == nom:
                 lst.append({
                     'votes': votes[n.id],
@@ -535,8 +535,8 @@ def dump_wiki():
                     'second': ': {}'.format(n.project) if not n.url
                     else ': {} [{}]'.format(n.project, n.url),
                 })
-            for line in sorted(lst, key=lambda k: -k['votes']):
-                print(line['first'], file=result)
-                print(line['second'], file=result)
+        for line in sorted(lst, key=lambda k: -k['votes']):
+            print(line['first'], file=result)
+            print(line['second'], file=result)
 
     return Response(result.getvalue(), mimetype='text/plain')
