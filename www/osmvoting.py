@@ -460,7 +460,11 @@ def wait():
 
 
 @app.route('/votes.txt')
+@get_user
 def dump_votes():
+    if not g.is_admin and config.STAGE != 'results':
+        return redirect(url_for('login'))
+
     result = StringIO()
 
     # Get a list of nominees
@@ -500,5 +504,38 @@ def dump_votes():
     for user in v:
         print(','.join([''.join([str(x+1) for x in sorted(user[nom])])
                         for nom in config.NOMINATIONS]), file=result)
+
+    return Response(result.getvalue(), mimetype='text/plain')
+
+
+@app.route('/wiki.txt')
+@get_user
+def dump_wiki():
+    if not g.is_admin and config.STAGE != 'results':
+        return redirect(url_for('login'))
+
+    result = StringIO()
+    nominees = Nominee.select().where(Nominee.status == Nominee.Status.CHOSEN)
+    votesq = Nominee.select(Nominee.id, Nominee.category, fn.COUNT(Vote.id).alias('num_votes')).where(Nominee.status == Nominee.Status.CHOSEN).join(
+        Vote, JOIN.LEFT_OUTER, on=((Vote.nominee == Nominee.id) & (~Vote.preliminary))).group_by(Nominee.id)
+    votes = {}
+    for v in votesq:
+        votes[v.id] = v.num_votes
+
+    for nom in config.NOMINATIONS:
+        print('', file=result)
+        print('== {} =='.format(g.lang['nominations'][nom]['title']), file=result)
+        for n in nominees:
+            lst = []
+            if n.category == nom:
+                lst.append({
+                    'votes': votes[n.id],
+                    'first': '; {} [{}]'.format(n.who, votes[n.id]),
+                    'second': ': {}'.format(n.project) if not n.url
+                    else ': {} [{}]'.format(n.project, n.url),
+                })
+                for line in sorted(lst, key=lambda k: k['votes']):
+                    print(line['first'], file=result)
+                    print(line['second'], file=result)
 
     return Response(result.getvalue(), mimetype='text/plain')
