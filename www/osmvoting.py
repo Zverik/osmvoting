@@ -491,8 +491,7 @@ def dump_votes():
     for nom in config.NOMINATIONS:
         print(nom, file=result)
         for n in sorted(nominees[nom].values(), key=lambda x: x['pos']):
-            print('- {}: {}'.format(
-                n['who'].encode('utf-8'), n['votes']), file=result)
+            print('- {}: {}'.format(n['who'], n['votes']), file=result)
         print('', file=result)
 
     # Print the result randomized by user ids
