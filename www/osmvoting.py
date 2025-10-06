@@ -1,6 +1,6 @@
 from . import app
 from .db import database, Nominee, Vote
-from flask import session, url_for, redirect, request, render_template, g, flash
+from flask import session, url_for, redirect, request, render_template, g, flash, Response
 from authlib.integrations.flask_client import OAuth
 from authlib.common.errors import AuthlibBaseError
 from flask_wtf import FlaskForm
@@ -11,9 +11,10 @@ from wtforms import (
 )
 from wtforms.validators import DataRequired, Optional, URL
 from playhouse.shortcuts import model_to_dict
-from random import Random
+from random import Random, shuffle
 from peewee import JOIN, fn
 from xml.etree import ElementTree as etree
+from io import StringIO
 import yaml
 import os
 import config
@@ -448,8 +449,7 @@ def wait():
     total = Vote.select(fn.Distinct(Vote.user)).where(~Vote.preliminary).group_by(Vote.user).count()
     # Update a link in the description
     desc = g.lang['stages'][config.STAGE]['description']
-    desc = desc.replace('{', '<a href="{}">'.format(
-        url_for('static', filename='osmawards2020.txt'))).replace('}', '</a>')
+    desc = desc.replace('{', '<a href="{}">'.format(url_for('dump_votes'))).replace('}', '</a>')
     # Yay, done
     return render_template('wait.html',
                            nominees=nominees,
@@ -457,3 +457,49 @@ def wait():
                            isadmin=g.is_admin, votes=votes, stage=config.STAGE,
                            total=total, winners=winners, isresults=config.STAGE == 'results',
                            nominations=config.NOMINATIONS, lang=g.lang)
+
+
+@app.route('/votes.txt')
+def dump_votes():
+    result = StringIO()
+
+    # Get a list of nominees
+    nq = Nominee.select().where(Nominee.status == Nominee.Status.CHOSEN)
+    nominees = {nom: {} for nom in config.NOMINATIONS}
+    allnoms = {}
+    for n in nq:
+        item = {
+                'nom': n.category,
+                'pos': len(nominees[n.category]),
+                'who': n.who,
+                'votes': 0
+               }
+        nominees[n.category][n.id] = item
+        allnoms[n.id] = item
+
+    # Now iterate over users' votes and prepare a dict
+    users = {}
+    vq = Vote.select().where(~Vote.preliminary)
+    for v in vq:
+        if v.user not in users:
+            users[v.user] = {nom: [] for nom in config.NOMINATIONS}
+        n = allnoms[v.nominee.id]
+        users[v.user][n['nom']].append(n['pos'])
+        nominees[n['nom']][v.nominee.id]['votes'] += 1
+
+    # Print that list nicely
+    for nom in config.NOMINATIONS:
+        print(nom, file=result)
+        for n in sorted(nominees[nom].values(), key=lambda x: x['pos']):
+            print('- {}: {}'.format(
+                n['who'].encode('utf-8'), n['votes']), file=result)
+        print('', file=result)
+
+    # Print the result randomized by user ids
+    v = users.values()
+    shuffle(v)
+    for user in v:
+        print(','.join([''.join([str(x+1) for x in sorted(user[nom])])
+                        for nom in config.NOMINATIONS]), file=result)
+
+    return Response(result.getvalue(), mimetype='text/plain')
