@@ -496,7 +496,7 @@ def dump_votes():
         print('', file=result)
 
     # Print the result randomized by user ids
-    v = users.values()
+    v = list(users.values())
     shuffle(v)
     for user in v:
         print(','.join([''.join([str(x+1) for x in sorted(user[nom])])
