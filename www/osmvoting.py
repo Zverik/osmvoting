@@ -521,6 +521,9 @@ def dump_wiki():
     votes = {}
     for v in votesq:
         votes[v.id] = v.num_votes
+    total = Vote.select(fn.Distinct(Vote.user)).where(~Vote.preliminary).group_by(Vote.user).count()
+
+    print('Total number of people who voted: {}'.format(total), file=result)
 
     for nom in config.NOMINATIONS:
         print('', file=result)
